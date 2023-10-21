@@ -1,13 +1,13 @@
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
+import { LayoutStyles } from "./Layout.styles";
 
-
-export const Layout = () => {
+export const Layout = ({children}) => {
     return (
-        <div>
+        <LayoutStyles>
             <Header />
-              
+              {children}
             <Footer />
-        </div>
+        </LayoutStyles>
     )
 }
