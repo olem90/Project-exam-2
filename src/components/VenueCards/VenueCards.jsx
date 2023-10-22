@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { VenueCardsStyles, VenueCardsWrapper } from "./VenueCards.styles";
 import { useNavigate } from "react-router-dom";
 import { ViewVenueButton } from "../Buttons/Buttons.styles";
+import placeholderImg from "../../assets//images/img-placeholder.png";
 
 const url = "https://api.noroff.dev/api/v1/holidaze/venues";
 
@@ -44,13 +45,17 @@ const VenueCards = () => {
     if (isError) {
         return <div>Error loading venues...</div>
     }
-
+    
     return (
         <VenueCardsWrapper>
                 {venues.map((venue) => (
                     <VenueCardsStyles key={venue.id}>
                         <h2>{venue.name}</h2>
-                        <img src={venue.media}></img>
+                        {venue.media && venue.media.length > 0 ? (
+                        <img src={venue.media} alt="venue" onError={(e)=>{e.target.onerror = null; e.target.src=placeholderImg}} />
+                        ) : (
+                        <img src={placeholderImg} alt="Placeholder"></img>
+                        )}
                         <p>{venue.description}</p>
                         <ViewVenueButton onClick={() => goToVenuePage(venue.id)}>View venue</ViewVenueButton>
                     </VenueCardsStyles>
