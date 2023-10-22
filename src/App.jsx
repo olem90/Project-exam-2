@@ -1,11 +1,11 @@
 //import { useState } from 'react';
 import './App.css';
-import { Layout } from './components/Layout/Layout';
-import { Home } from './components/Pages/Home/Home';
+import { Layout } from './components/Layout/Layout.jsx';
+import { Home } from './components/Pages/Home/Home.jsx';
 import { Routes, Route } from 'react-router-dom';
 import Register from './components/Pages/Register/Register.jsx';
-import { Contact } from './components/Pages/Contact/Contact';
-import Login from './components/Pages/Login/Login';
+import { Contact } from './components/Pages/Contact/Contact.jsx';
+import Login from './components/Pages/Login/Login.jsx';
 
 function App() {
   

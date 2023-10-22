@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { LoginFormStyles, LoginFormWrapper } from "./Login.styles";
+import { LoginButton } from "../../Buttons/Buttons.styles";
+import { useNavigate } from "react-router-dom";
 
 const loginUrl = "https://api.noroff.dev/api/v1/holidaze/auth/login";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -21,11 +24,49 @@ const Login = () => {
         setPassword(event.target.value);
     };
 
+    async function onLoginFormSubmit(event) {
+        event.preventDefault();
 
+        try {
+            setIsError(false);
+            setIsLoading(true);
+            const response = await fetch(loginUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const userData = await response.json();
+            console.log(userData);
+            if (response.ok) {              
+                //saving the accessToken
+                localStorage.setItem("accessToken", userData.accessToken);
+                setPasswordError("");
+                setEmailError("");
+                //navigating user to home page
+                navigate("/");
+            } else {
+                setIsError(true);
+                setPasswordError("*Invalid email or password");
+                setEmailError("*Invalid email or password");
+            }
+        } catch (error) {
+            setIsError(true);
+            setPasswordError("Oops! Seems like an error occured while trying to log you in")
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    if (isLoading) {
+        return <div>Hang in there while we are logging you in...</div>
+    }
 
     return (
         <LoginFormWrapper>
-            <LoginFormStyles>
+            <LoginFormStyles onSubmit={onLoginFormSubmit}>
                 <label htmlFor="email">Email</label>
                 <input value= {email}
                 placeholder="Your email"
@@ -37,8 +78,9 @@ const Login = () => {
                 placeholder="Your password"
                 onChange={onPasswordChange}
                 required />
+                <span>{passwordError || emailError}</span>
 
-                <button>Log In</button>
+                <LoginButton>LOG IN</LoginButton>
             </LoginFormStyles>
         </LoginFormWrapper>
     )

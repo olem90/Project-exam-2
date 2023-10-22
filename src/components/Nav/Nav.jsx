@@ -1,8 +1,15 @@
 import { NavStyles } from "./Nav.styles";
 import { NavLink, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+function logOutUser() {
+    localStorage.clear();
+}
+console.log(localStorage);
 
 export function Nav() {
+    const navigate = useNavigate();
+
     return (
         <div>
             <NavStyles>
@@ -11,9 +18,11 @@ export function Nav() {
               <NavLink to= '/register'>Register</NavLink>
               <NavLink to= '/contact'>Contact</NavLink>
               <NavLink to= '/login'>Login</NavLink>
-              
+              <button onClick={() => {logOutUser(); navigate("/login");}}>Log Out</button>
+    
             </NavStyles>
         </div>
     )
 }
+export default Nav;
 
