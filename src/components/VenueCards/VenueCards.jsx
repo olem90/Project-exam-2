@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { VenueCardsStyles, VenueCardsWrapper } from "./VenueCards.styles";
 import { useNavigate } from "react-router-dom";
 import { ViewVenueButton } from "../Buttons/Buttons.styles";
-import placeholderImg from "../../assets//images/img-placeholder.png";
 
 const url = "https://api.noroff.dev/api/v1/holidaze/venues";
 
@@ -45,6 +44,7 @@ const VenueCards = () => {
     if (isError) {
         return <div>Error loading venues...</div>
     }
+    const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images"
     
     return (
         <VenueCardsWrapper>
@@ -52,7 +52,7 @@ const VenueCards = () => {
                     <VenueCardsStyles key={venue.id}>
                         <h2>{venue.name}</h2>
                         {venue.media && venue.media.length > 0 ? (
-                        <img src={venue.media} alt="venue" onError={(e)=>{e.target.onerror = null; e.target.src=placeholderImg}} />
+                        <img src={venue.media} alt="venue" onError={(e)=>{e.target.onerror = null; e.target.src= placeholderImg}} />
                         ) : (
                         <img src={placeholderImg} alt="Placeholder"></img>
                         )}
