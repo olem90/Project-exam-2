@@ -26,7 +26,7 @@ const VenueCards = () => {
                 const response = await fetch(url);
                 const json = await response.json();
                 setVenues(json);
-                console.log(venues);
+                console.log(json);
                 setIsLoading(false);
             } catch (error) {
                 console.error(error);
@@ -52,7 +52,7 @@ const VenueCards = () => {
                     <VenueCardsStyles key={venue.id}>
                         <h2>{venue.name}</h2>
                         {venue.media && venue.media.length > 0 ? (
-                        <img src={venue.media} alt="venue" onError={(e)=>{e.target.onerror = null; e.target.src= placeholderImg}} />
+                        <img src={venue.media} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                         ) : (
                         <img src={placeholderImg} alt="Placeholder"></img>
                         )}

@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Register from './components/Pages/Register/Register.jsx';
 import { Contact } from './components/Pages/Contact/Contact.jsx';
 import Login from './components/Pages/Login/Login.jsx';
+import { SpecificVenue } from './components/Pages/SpecificVenue/SpecificVenue';
 
 function App() {
   
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/venue/:id" element={<SpecificVenue />} />
       </Routes>
    </Layout>
   )
