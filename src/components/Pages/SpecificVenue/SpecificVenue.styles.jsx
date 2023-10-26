@@ -77,7 +77,7 @@ export const SpecificVenueStyles = styled.div`
         min-width: 470px;
         max-width: 470px;
     }
-
+    
     .specific-venue-description {
         flex: 1;
         min-width: 440px;
@@ -89,6 +89,7 @@ export const SpecificVenueStyles = styled.div`
         }
     }
 
+    
     .img-and-description-container {
         display: flex;
     }

@@ -4,12 +4,17 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faWifi, faCar, faCoffee, faPaw } from '@fortawesome/free-solid-svg-icons';
 import { BookNowButton } from "../../Buttons/Buttons.styles";
+import { BookVenueForm } from "../BookingForm/BookingForm";
+
 
 export const SpecificVenue = () => {
     const [venue, setVenue] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { id } = useParams();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = () => setIsModalOpen(!isModalOpen);
 
     useEffect(() => {
         const specificVenueUrl = `https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true`;
@@ -51,6 +56,7 @@ export const SpecificVenue = () => {
     
     return (
         <SpecificVenueWrapper>
+            {isModalOpen && <BookVenueForm closeModal={toggleModal} />}
             <div>
                 {venue ? (
                     <SpecificVenueStyles>
@@ -68,7 +74,7 @@ export const SpecificVenue = () => {
                                 <p>{venue.description}</p>
                             </div>
                         </div>
-                        <BookNowButton>BOOK NOW</BookNowButton>
+                        <BookNowButton onClick={toggleModal}>BOOK NOW</BookNowButton>
 
                         <div className="venue-content">
                             <div className="price-container">

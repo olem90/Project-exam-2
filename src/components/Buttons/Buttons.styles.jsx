@@ -27,3 +27,19 @@ export const BookNowButton = styled.button`
   width: 40%;
   margin: 10px 0 20px 0 ;
 `
+
+export const CloseModalButton = styled.button`
+  display: flex;
+  padding: 2px;
+  margin-right: 0;
+  margin-left: auto;
+  font-weight: bold;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+
+    &:hover {
+      color: red;
+    }
+  
+`
