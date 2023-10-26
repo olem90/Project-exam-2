@@ -55,7 +55,7 @@ export const SpecificVenue = () => {
     const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images";
     
     return (
-        <SpecificVenueWrapper>
+        <SpecificVenueWrapper className={isModalOpen ? "blurred" : ""}>
             {isModalOpen && <BookVenueForm closeModal={toggleModal} />}
             <div>
                 {venue ? (

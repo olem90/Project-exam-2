@@ -3,15 +3,15 @@ import DatePicker from "react-datepicker";
 import { ModalStyles } from "./BookingForm.styles";
 import "react-datepicker/dist/react-datepicker.css";
 import { CloseModalButton } from "../../Buttons/Buttons.styles";
+import { ModalStylesWrapper } from "./BookingForm.styles";
 
-export const BookVenueForm = () => {
+export const BookVenueForm = ({ closeModal }) => {
     const [showModal, setShowModal] = useState(true);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
-    const closeModal = () => setShowModal(false);
-
     return (
+        <ModalStylesWrapper>
         <ModalStyles>
             {showModal ? (
                 <div className="modal-form-container">
@@ -47,5 +47,6 @@ export const BookVenueForm = () => {
                 </div>
             ) : ""}
         </ModalStyles>
+        </ModalStylesWrapper>
     )
 }

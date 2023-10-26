@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const ModalStylesWrapper = styled.div`
+  border: 2px solid red;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+ 
+`
+
 export const ModalStyles = styled.div`
   border: 2px solid gold;
   width: 26%;
@@ -17,7 +29,7 @@ export const ModalStyles = styled.div`
         width: 75%;
         margin-inline: auto;
     }
-
+    
     .booking-form {  
 
         label {
@@ -31,9 +43,11 @@ export const ModalStyles = styled.div`
         }
     } 
 
+
     .datePickerContainer {
         display: flex;
     }
+
 
     input {
         font-size: 15px;
