@@ -5,6 +5,7 @@ export const LoginFormWrapper = styled.div`
   display: flex;
 `
 
+
 export const LoginFormStyles = styled.form`
   border: 2px solid red;
   display: flex;
@@ -30,5 +31,6 @@ export const LoginFormStyles = styled.form`
         font-weight: 700;
         font-size: 15px;
     }
+
 `
 

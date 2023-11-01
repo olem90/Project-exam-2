@@ -43,6 +43,10 @@ const Login = () => {
             if (response.ok) {              
                 //saving the accessToken
                 localStorage.setItem("accessToken", userData.accessToken);
+                if (userData) {
+                    localStorage.setItem("profile", JSON.stringify(userData));
+                };
+
                 setPasswordError("");
                 setEmailError("");
                 //navigating user to home page
