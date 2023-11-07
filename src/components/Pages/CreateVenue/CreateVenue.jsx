@@ -10,7 +10,7 @@ export const CreateVenue = () => {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [media, setMedia] = useState([""]);
+    const [media, setMedia] = useState([]);
     const [price, setPrice] = useState("");
     const [maxGuests, setMaxGuests] = useState("");
     const [rating, setRating] = useState("");
@@ -41,7 +41,8 @@ export const CreateVenue = () => {
     };
 
     function onMediaChange(event) {
-        setMedia(event.target.value);
+        const mediaUrls = event.target.value.split(",").map(mediaUrl => mediaUrl.trim())
+        setMedia(mediaUrls);
     };
 
     function onPriceChange(event) {
@@ -110,17 +111,21 @@ export const CreateVenue = () => {
                 price: Number(price), 
                 maxGuests: parseInt(maxGuests, 10), 
                 rating: Number(rating), 
-                wifi: wifi,
-                parking: parking,
-                breakfast: breakfast,
-                pets: pets,
-                address: address,
-                city: city,
-                zip: zip,
-                country: country,
-                continent: continent,
-                latitude: parseFloat(latitude), 
-                longitude: parseFloat(longitude), 
+                meta: {
+                    wifi: wifi,
+                    parking: parking,
+                    breakfast: breakfast,
+                    pets: pets,
+                },
+                location: {
+                    address: address,
+                    city: city,
+                    zip: zip,
+                    country: country,
+                    continent: continent,
+                    latitude: parseFloat(latitude), 
+                    longitude: parseFloat(longitude), 
+                } 
             }
 
             try {
@@ -311,3 +316,6 @@ export const CreateVenue = () => {
         </CreateVenueWrapper>
     )
 }
+
+
+

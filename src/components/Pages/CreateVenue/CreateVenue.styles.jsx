@@ -28,7 +28,6 @@ export const CreateVenueForm = styled.form`
     }
 `
 
-
 export const VenueFacilities = styled.div`
   box-sizing: border-box;
   display: flex;
