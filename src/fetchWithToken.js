@@ -12,10 +12,11 @@ export async function fetchWithToken(url, options = {}) {
 
     const response = await fetch(url, options);
     if (!response.ok) {
-        const dataError = await response.json();
-        console.log("Api returned an error:", dataError);
+        throw new Error(`API returned an error: ${response.status} ${response.statusText}`);
     }
-    return response.json();
-};
 
+    console.log("HTTP Response:", response);
+
+    return response;
+}
 

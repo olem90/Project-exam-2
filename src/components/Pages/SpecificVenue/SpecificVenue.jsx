@@ -56,13 +56,14 @@ export const SpecificVenue = () => {
     
     return (
         <SpecificVenueWrapper className={isModalOpen ? "blurred" : ""}>
-            {isModalOpen && <BookVenueForm closeModal={toggleModal} />}
+            {isModalOpen && <BookVenueForm closeModal={toggleModal} venueId={id} />}
             <div>
                 {venue ? (
                     <SpecificVenueStyles>
+                        <h1 className="specific-venue-name">{venue.name}</h1>
                         <div className="img-and-description-container">
                             <div className="specific-venue-name-img">
-                              <h1>{venue.name}</h1>
+                              
                               {venue.media && venue.media.length > 0 ? (
                               <img src={venue.media} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                               ) : (
@@ -105,17 +106,17 @@ export const SpecificVenue = () => {
 
                                             <div>
                                                 <FontAwesomeIcon className="parking-icon" icon={faCar} />
-                                                <span>Parking:</span>{venue.meta.wifi ? " Yes" : " No"}
+                                                <span>Parking:</span>{venue.meta.parking ? " Yes" : " No"}
                                             </div>
                                                                    
                                             <div>
                                                 <FontAwesomeIcon className="breakfast-icon" icon={faCoffee} />
-                                                <span>Breakfast:</span>{venue.meta.wifi ? " Yes" : " No"}
-                                            </div>
+                                                <span>Breakfast:</span>{venue.meta.breakfast ? " Yes" : " No"}
+                                            </div> 
 
                                             <div>
                                                 <FontAwesomeIcon className="pets-icon" icon={faPaw} />
-                                                <span>Pets:</span>{venue.meta.wifi ? " Yes" : " No"}
+                                                <span>Pets:</span>{venue.meta.pets ? " Yes" : " No"}
                                             </div>                                  
                                         </div>                      
                                 </div>

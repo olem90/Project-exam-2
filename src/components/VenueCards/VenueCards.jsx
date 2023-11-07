@@ -5,10 +5,10 @@ import { ViewVenueButton } from "../Buttons/Buttons.styles";
 
 const url = "https://api.noroff.dev/api/v1/holidaze/venues";
 
-const VenueCards = () => {
-    const [venues, setVenues] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+const VenueCards = ({ venues, filteredVenues }) => {
+    // const [venues, setVenues] = useState([]);
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [isError, setIsError] = useState(false);
 
     const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ const VenueCards = () => {
         navigate(`/venue/${id}`);
     }
 
+    /*
     // Fetch venues from the API
     useEffect(() => {
         async function GetVenues() {
@@ -36,18 +37,20 @@ const VenueCards = () => {
         }
         GetVenues();
     }, []);
-  
-    if (isLoading) {
-        return <div>Loading venues...</div>
-    }
+  */
 
-    if (isError) {
-        return <div>Error loading venues...</div>
-    }
+    // if (isLoading) {
+    //     return <div>Loading venues...</div>
+    // }
+
+    // if (isError) {
+    //     return <div>Error loading venues...</div>
+    // }
+
     const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images"
     
     return (
-        <VenueCardsWrapper>
+        <VenueCardsWrapper venues={venues}>
                 {venues.map((venue) => (
                     <VenueCardsStyles key={venue.id}>
                         <h2>{venue.name}</h2>

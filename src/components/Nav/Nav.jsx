@@ -18,6 +18,8 @@ export function Nav() {
               <NavLink to= '/register'>Register</NavLink>
               <NavLink to= '/contact'>Contact</NavLink>
               <NavLink to= '/login'>Login</NavLink>
+              <NavLink to= '/account'>Account</NavLink>
+
               <button onClick={() => {logOutUser(); navigate("/login");}}>Log Out</button>
     
             </NavStyles>

@@ -1,10 +1,16 @@
-import { useState } from "react"
-import { CreateVenueWrapper, CreateVenueForm, VenueFacilities } from "./CreateVenue.stylels"
+import { useEffect, useState } from "react";
+import { CreateVenueWrapper, CreateVenueForm, VenueFacilities } from "./CreateVenue.styles";
+import { fetchWithToken } from "../../../fetchWithToken";
+
+const createVenueUrl = "https://api.noroff.dev/api/v1/holidaze/venues";
 
 export const CreateVenue = () => {
+
+    const [formData, setFormData] = useState({});
+
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [media, setMedia] = useState("");
+    const [media, setMedia] = useState([""]);
     const [price, setPrice] = useState("");
     const [maxGuests, setMaxGuests] = useState("");
     const [rating, setRating] = useState("");
@@ -22,151 +28,281 @@ export const CreateVenue = () => {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    
+
+    function onNameChange(event) {
+        setName(event.target.value);
+    };
+
+    function onDescriptionChange(event) {
+        setDescription(event.target.value);
+    };
+
+    function onMediaChange(event) {
+        setMedia(event.target.value);
+    };
+
+    function onPriceChange(event) {
+        setPrice(event.target.value);
+    };
+    
+    function onMaxGuestsChange(event) {
+        setMaxGuests(event.target.value);
+    };
+
+    function onRatingChange(event) {
+        setRating(event.target.value);
+    };
+
+    function onWifiChange() {
+        setWifi(!wifi);
+    };
+    
+    function onBreakfastChange() {
+        setBreakfast(!breakfast);
+    };
+
+    function onParkingChange() {
+        setParking(!parking);
+    };
+
+    function onPetsChange() {
+        setPets(!pets);
+    };
+
+    function onAddressChange(event) {
+        setAddress(event.target.value);
+    };
+
+    function onCityChange(event) {
+        setCity(event.target.value);
+    };
+
+    function onZipChange(event) {
+        setZip(event.target.value);
+    };
+
+    function onCountryChange(event) {
+        setCountry(event.target.value);
+    };
+
+    function onContinentChange(event) {
+        setContinent(event.target.value);
+    };
+
+    function onLatitudeChange(event) {
+        setLatitude(event.target.value);
+    };
+
+    function onLongitudeChange(event) {
+        setLongitude(event.target.value);
+    };
+
+        async function onCreateVenueFormSubmit(event) {
+            event.preventDefault();
+
+            const requestBody = {
+                name: name,
+                description: description,
+                media: media,
+                price: Number(price), 
+                maxGuests: parseInt(maxGuests, 10), 
+                rating: Number(rating), 
+                wifi: wifi,
+                parking: parking,
+                breakfast: breakfast,
+                pets: pets,
+                address: address,
+                city: city,
+                zip: zip,
+                country: country,
+                continent: continent,
+                latitude: parseFloat(latitude), 
+                longitude: parseFloat(longitude), 
+            }
+
+            try {
+                setIsError(false);
+                setIsLoading(true);
+                const response = await fetchWithToken(createVenueUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestBody),
+                });
+                const json = await response.json();
+                setFormData(json);
+                setIsLoading(false);
+                console.log(json);
+
+            } catch (error) {
+                setIsLoading(false);
+                setIsError(true);
+                console.error(error);
+            }
+        }
+    
+        if (isError) {
+            return <div>Oops an error occured submitting the form</div>
+        }
+
+        if (isLoading) {
+            return <div>Submitting the form...</div>
+        }
+
     return (
         <CreateVenueWrapper>
             <div>
-                <CreateVenueForm>
+                <CreateVenueForm onSubmit={onCreateVenueFormSubmit}>
                     <label htmlFor="name">Name</label>
-                    <input 
+                    <input className="form-input"
                     type="text" 
                     value={name}
                     placeholder="Your name"
-                    onChange={1}
+                    onChange={onNameChange}
                     required
                     />
 
                     <label htmlFor="description">Description</label>
-                    <input 
+                    <input className="form-input"
                     type="text" 
                     value={description}
                     placeholder="Your description of the venue"
-                    onChange={1}
+                    onChange={onDescriptionChange}
                     required
                     />
 
                     <label htmlFor="price">price</label>
-                    <input 
+                    <input className="form-input"
                     type="text" 
                     value={price}
                     placeholder="Your price"
-                    onChange={1}
+                    onChange={onPriceChange}
                     required
                     />
 
                     <label htmlFor="maxGuests">Maximum Guests</label>
-                    <input 
+                    <input className="form-input"
                     type="text" 
                     value={maxGuests}
                     placeholder="enter maximum number of guests"
-                    onChange={1}
+                    onChange={onMaxGuestsChange}
                     required
                     />
 
+                    <label htmlFor="rating">Rating</label>
+                    <input className="form-input"
+                    type="text" 
+                    value={rating}
+                    placeholder="rating"
+                    onChange={onRatingChange}
+                    />
+
                     <label htmlFor="media">Images</label>
-                    <input 
+                    <input className="form-input"
                     type="text" 
                     value={media}
                     placeholder="insert your image url"
-                    onChange={1}
+                    onChange={onMediaChange}
                     />
                     
                     <h2>Facilities</h2>
                 <VenueFacilities>
                     <div className="wifi-parking-container">
-                        <label>Wifi</label>
+                        <label htmlFor="wifi">Wifi</label>
                         <input 
                         type="checkbox" 
-                        value={wifi}
-                        onChange={() => setWifi(!wifi)}
+                        checked={wifi}
+                        onChange={onWifiChange}
                         />
 
-                        <label>Parking</label>
+                        <label htmlFor="parking">Parking</label>
                         <input 
                         type="checkbox" 
-                        value={parking}
-                        onChange={() => setParking(!parking)}
+                        checked={parking}
+                        onChange={onParkingChange}
                         />
                     </div>
 
                     <div className="breakfast-pets-container">
-                        <label>Breakfast</label>
+                        <label htmlFor="breakfast">Breakfast</label>
                         <input 
                         type="checkbox"
-                        value={breakfast}
-                        onChange={() => setBreakfast(!breakfast)}
+                        checked={breakfast}
+                        onChange={onBreakfastChange}
                         />
 
-                        <label>Pets</label>
+                        <label htmlFor="pets">Pets</label>
                         <input 
                         type="checkbox" 
-                        value={pets}
-                        onChange={() => setPets(!pets)}
+                        checked={pets}
+                        onChange={onPetsChange}
                         />
                     </div>
                 </VenueFacilities>
-                   
-
-                    
 
                     <h2>Location</h2>
 
-                    <label>Address</label>
-                    <input 
+                    <label htmlFor="address">Address</label>
+                    <input className="form-input"
                     type="text" 
                     value={address}
                     placeholder="Your address"
-                    onChange={1}
+                    onChange={onAddressChange}
                     />
 
-                    <label>City</label>
-                    <input 
+                    <label htmlFor="city">City</label>
+                    <input className="form-input"
                     type="text" 
                     value={city}
                     placeholder="The venues city"
-                    onChange={1}
+                    onChange={onCityChange}
                     />
 
-                    <label>Zip</label>
-                    <input 
+                    <label htmlFor="zip">Zip</label>
+                    <input className="form-input"
                     type="text" 
                     value={zip}
                     placeholder="The venues zip code"
-                    onChange={1}
+                    onChange={onZipChange}
                     />
 
-                     <label>Country</label>
-                    <input 
+                     <label htmlFor="country">Country</label>
+                    <input className="form-input"
                     type="text" 
                     value={country}
                     placeholder="The venues country"
-                    onChange={1}
+                    onChange={onCountryChange}
                     />
 
-                    <label>Continent</label>
-                    <input 
+                    <label htmlFor="continent">Continent</label>
+                    <input className="form-input"
                     type="text" 
                     value={continent}
                     placeholder="The venues continent"
-                    onChange={1}
+                    onChange={onContinentChange}
                     />
 
-                    <label>Latitude</label>
-                    <input 
+                    <label htmlFor="latitude">Latitude</label>
+                    <input className="form-input"
                     type="text" 
                     value={latitude}
                     placeholder="The venues latitude"
-                    onChange={1}
+                    onChange={onLatitudeChange}
                     />
 
-                    <label>Longitude</label>
-                    <input 
+                    <label htmlFor="longitude">Longitude</label>
+                    <input className="form-input"
                     type="text" 
                     value={longitude}
                     placeholder="The venues longitude"
-                    onChange={1}
+                    onChange={onLongitudeChange}
                     />
 
-                    <button>Create Venue</button>
+                    <button type="submit">Create Venue</button>
 
                 </CreateVenueForm>
 

@@ -31,15 +31,31 @@ export const BookNowButton = styled.button`
 export const CloseModalButton = styled.button`
   display: flex;
   padding: 2px;
-  margin-right: 0;
-  margin-left: auto;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 30px;
   background: transparent;
   border: none;
+  position: absolute;
+  top: 5px;
+  right: 15px;
 
     &:hover {
       color: red;
     }
-  
+`
+
+export const ModalSubmitButton = styled.button`
+  background: #000;
+  color: #fff;
+  width: 100%;
+  margin-top: 75px;
+`
+
+export const BecomeVenueManagerButton = styled.button`
+  background: #000;
+  color: #fff;
+  width: fit-content;
+  border-radius: 0;
+  border: none;
+  margin-bottom: 30px;
 `

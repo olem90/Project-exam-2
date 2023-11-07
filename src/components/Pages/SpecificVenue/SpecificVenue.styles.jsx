@@ -3,10 +3,7 @@ import styled from "styled-components";
 export const SpecificVenueWrapper = styled.div`
   border: 2px solid pink;
 
-  .blurred {
-    filter: blur(4px);
-    opacity: 0.6;
-  }
+   
 `
 
 export const SpecificVenueStyles = styled.div`
@@ -20,11 +17,6 @@ export const SpecificVenueStyles = styled.div`
         margin-top: 30px;
         padding: 0;
         font-weight: 500;
-    }
-
-    .blurred {
-        filter: blur(5px) !important;
-        opacity: 0.5 !important;
     }
 
     .owner-card {
@@ -86,20 +78,21 @@ export const SpecificVenueStyles = styled.div`
         min-width: 470px;
         max-width: 470px;
     }
-    
+
     .specific-venue-description {
         flex: 1;
         min-width: 440px;
         max-width: 440px;
 
         p {
-            margin-top: 60px;
+            margin-top: 0;
             margin-left: 18px;
         }
     }
 
     .img-and-description-container {
         display: flex;
+        margin-top: 20px;
     }
 
     .locationContainer {

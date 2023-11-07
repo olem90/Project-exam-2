@@ -35,3 +35,5 @@ export const VenueCardsStyles = styled.div`
         overflow: hidden;
     }
 `
+
+
