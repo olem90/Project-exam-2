@@ -9,6 +9,7 @@ export const ModalStylesWrapper = styled.div`
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 25px;
+  z-index: 99;
 `
 
 export const ModalStyles = styled.div`

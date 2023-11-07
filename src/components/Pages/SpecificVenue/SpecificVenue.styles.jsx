@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const SpecificVenueWrapper = styled.div`
-  border: 2px solid pink;
-
-   
+  border: 2px solid pink; 
 `
 
 export const SpecificVenueStyles = styled.div`
@@ -11,6 +9,26 @@ export const SpecificVenueStyles = styled.div`
   width: fit-content; 
   margin-inline: auto;
   box-sizing: border-box;
+
+    .thumbnail-container {
+      display: flex;
+      gap: 5px;
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+
+        img {
+          
+        }
+    }
+
+    .thumbnail-container img.active-thumbnail {
+      border: 2px solid #000;
+      opacity: 1;
+    }
 
     h3  {
         margin: 30px 0 10px 0;
@@ -66,17 +84,23 @@ export const SpecificVenueStyles = styled.div`
         margin: 0;
     }
 
-    img {
-        max-width: 100%;
-        min-width: 100%;
-        max-height: 360px;
-        object-fit: cover;
-    }
-
     .specific-venue-name-img {
         flex: 1;
         min-width: 470px;
         max-width: 470px;
+
+          img {
+            
+          }
+    }
+
+    .main-img {
+        max-width: 100%;
+        min-width: 100%;
+        max-height: 360px;
+        object-fit: cover;
+        border: 2px solid red;
+
     }
 
     .specific-venue-description {
@@ -141,5 +165,5 @@ export const SpecificVenueStyles = styled.div`
             margin-right: 4px;
           }
     }
-    
 `
+

@@ -13,6 +13,7 @@ export const SpecificVenue = () => {
     const [isError, setIsError] = useState(false);
     const { id } = useParams();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
 
     const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -35,6 +36,10 @@ export const SpecificVenue = () => {
         getSpecificVenue();
     }, [id]);
 
+    const handleThumbnailClick = (index) => {
+        setActiveImageIndex(index);
+    }
+
     function renderStars(rating) {
         const stars = [];
         
@@ -53,7 +58,7 @@ export const SpecificVenue = () => {
     }
 
     const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images";
-    
+    const ownerPlaceholderImg = "https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjI5MS1iYXRjaDUtbnVub29uLTQwLWJlYXV0eV8yLmpwZw.jpg"
     return (
         <SpecificVenueWrapper className={isModalOpen ? "blurred" : ""}>
             {isModalOpen && <BookVenueForm closeModal={toggleModal} venueId={id} />}
@@ -63,12 +68,27 @@ export const SpecificVenue = () => {
                         <h1 className="specific-venue-name">{venue.name}</h1>
                         <div className="img-and-description-container">
                             <div className="specific-venue-name-img">
-                              
-                              {venue.media && venue.media.length > 0 ? (
-                              <img src={venue.media} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
-                              ) : (
-                              <img src={placeholderImg} alt="Placeholder image"></img>
-                              )}
+                                    {venue.media && venue.media.length > 0 ? (
+                                    <img className="main-img" src={venue.media[activeImageIndex]} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
+                                    ) : (
+                                    <img className="main-img" src={placeholderImg} alt="Placeholder image"></img>
+                                    )}
+
+                                    {venue.media && venue.media.length > 1 ? (
+                                        <div className="thumbnail-container">
+                                        {venue.media.map((image, index) => (
+                                            <img
+                                                key={index}
+                                                src={image}
+                                                alt={`thumbnail ${index}`}
+                                                onClick={() => handleThumbnailClick(index)}
+                                                className={index === activeImageIndex ? "active-thumbnail" : "thumbnail"}
+                                            />
+                                        ))}
+                                    </div> 
+
+                                    ) : ""}                
+                                    
                             </div>
 
                             <div className="specific-venue-description">
@@ -124,7 +144,11 @@ export const SpecificVenue = () => {
                             <h3>Owner Information</h3>
                             <div className="owner-card">
                                 <div className="owner-img-container">
-                                    <img src={venue.owner.avatar}></img>
+                                {venue.owner.avatar && venue.owner.avatar.length > 0 ? (
+                              <img src={venue.owner.avatar} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= ownerPlaceholderImg}} />
+                              ) : (
+                              <img src={placeholderImg} alt="Placeholder image"></img>
+                              )}
                                 </div>
                                 <div className="owner-info-container">
                                     <span>Name: {venue.owner.name}</span>
