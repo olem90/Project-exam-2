@@ -72,7 +72,6 @@ export const UsersBookingsCards = styled.div`
   width: 100%;
   padding: 10px;
 
-
     img {
         max-width: 120px;
         min-width: 120px;
@@ -101,3 +100,34 @@ export const UsersBookingsInfo = styled.div`
     }
 `
 
+export const UsersVenueCards = styled.div`
+  display: flex;
+  max-height: 100px;
+  margin-block: 15px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  width: 100%;
+  padding: 10px;
+
+    img {
+        max-width: 120px;
+        min-width: 120px;
+        max-height: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        margin-block: auto;
+    }
+`
+
+export const UsersVenuesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 90px;
+  width: 83%;
+  margin-top: 40px;
+
+    h2 {
+        margin-top: 65px;
+        padding: 0;
+    }
+`

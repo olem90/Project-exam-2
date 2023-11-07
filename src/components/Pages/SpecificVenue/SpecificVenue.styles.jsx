@@ -13,7 +13,8 @@ export const SpecificVenueStyles = styled.div`
     .thumbnail-container {
       display: flex;
       gap: 5px;
-      width: 60px;
+      max-width: 60px;
+      min-width: 60px;
       height: 60px;
       object-fit: cover;
       cursor: pointer;
@@ -21,7 +22,8 @@ export const SpecificVenueStyles = styled.div`
       transition: opacity 0.3s;
 
         img {
-          
+          width: 100%;
+          height: auto;
         }
     }
 
@@ -88,19 +90,14 @@ export const SpecificVenueStyles = styled.div`
         flex: 1;
         min-width: 470px;
         max-width: 470px;
-
-          img {
-            
-          }
     }
 
     .main-img {
         max-width: 100%;
         min-width: 100%;
         max-height: 360px;
+        min-height: 360px;
         object-fit: cover;
-        border: 2px solid red;
-
     }
 
     .specific-venue-description {

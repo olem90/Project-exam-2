@@ -1,5 +1,5 @@
 import 'font-awesome/css/font-awesome.min.css';
-import { ProfileWrapper, ProfileOptionsStyles, UserDataStyles, UserBookingsStyles, UsersBookingsCards, UsersBookingsInfo, UserBookingsWrapper } from './Profile.styles';
+import { ProfileWrapper, ProfileOptionsStyles, UsersVenuesWrapper, UserDataStyles, UsersVenueCards, UserBookingsStyles, UsersBookingsCards, UsersBookingsInfo, UserBookingsWrapper } from './Profile.styles';
 import { useEffect, useState } from 'react';
 import { fetchWithToken } from '../../../fetchWithToken';
 import { BecomeVenueManagerButton } from '../../Buttons/Buttons.styles';
@@ -167,27 +167,34 @@ export const Profile = () => {
         setShowBookings(false); 
     };
     
-
     const MyVenues = () => {
 
         return (
-            <div>
+            <UsersVenuesWrapper>
                 <h2>My Venues</h2>
-                {venues && venues.venues > 0 ? (
+                {venues && venues.venues.length > 0 ? (
                     <div>
                         <Link to="/account/create-venue">Create a new venue</Link>
+                        {venues.venues.map((venue) => (
+                            <UsersVenueCards key={venue.id}>
+                                <div>
+                                    <img src={venue.media[0]}></img>
+                                </div>
 
+                            </UsersVenueCards>
+
+                        ))}
                     </div>
                 ) : ( 
                     <div>
                         <Link to="/account/create-venue">Create a new venue</Link>
                         <p>You have no venues</p>
                     </div>)}
-            </div>
+            </UsersVenuesWrapper>
         )
     }
-    
 
+    
     return (
         <ProfileWrapper>
             <div className="profile-container">
