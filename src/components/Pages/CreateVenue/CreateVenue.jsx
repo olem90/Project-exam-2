@@ -7,7 +7,6 @@ const createVenueUrl = "https://api.noroff.dev/api/v1/holidaze/venues";
 export const CreateVenue = () => {
 
     const [formData, setFormData] = useState({});
-
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [media, setMedia] = useState([]);
@@ -210,10 +209,10 @@ export const CreateVenue = () => {
                     <input className="form-input"
                     type="text" 
                     value={media}
-                    placeholder="insert your image url"
+                    placeholder="insert your image url and separate each url with a comma for more images"
                     onChange={onMediaChange}
                     />
-                    
+                         
                     <h2>Facilities</h2>
                 <VenueFacilities>
                     <div className="wifi-parking-container">

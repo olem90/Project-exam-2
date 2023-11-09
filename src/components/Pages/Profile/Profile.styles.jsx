@@ -49,7 +49,6 @@ export const UserBookingsStyles = styled.div`
  
 `
 
-
 export const UserBookingsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -142,7 +141,4 @@ export const UsersVenuesInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
-
-   
 `
-

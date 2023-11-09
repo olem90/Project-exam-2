@@ -156,6 +156,12 @@ export const Profile = () => {
         )
     }
 
+    const BookingsPerVenueCount = () => {
+            {venueBookings.map((vb) => (
+                <p>Bookings: {vb.bookings.length}</p>
+            ))};
+    };
+
     const handleMyBookingsOnClick = () => {
         setShowBookings(true);
         setShowVenues(false); 
@@ -165,23 +171,26 @@ export const Profile = () => {
         setShowVenues(true);
         setShowBookings(false); 
     };
+      
 
-    // const bookingsCountPerVenue = () => {
-    //     return venueBookings.reduce((bookingsCount, venueBooking) => {
-    //         bookingsCount[venueBooking.id] = venueBooking.bookings?.length || 0;
-    //         return bookingsCount;
-    //     }, {});
-    // };
+    
+/*
+        const bookingCountsPerVenue = venueBookings.map(venue => {
+            return {
+              bookingCount: venue.bookings.length
+            };
+          });
 
-    //const totalVenueBookings = venueBookings.find(vb => vb.id === venueBookings.bookings.id);
-
-    const MyVenues = () => {
-        const venueBookingId = venueBookings.map((booking) => {
-            return booking.id;
+        const bookingsCount = bookingCountsPerVenue.forEach(venueBooking => {
+            return venueBooking.bookingCount;
         });
 
-        console.log("venueBookingsId", venueBookingId);
+        console.log("bookingsCount", bookingsCount);
+*/
 
+/*
+        const MyVenues = () => {
+            
         return (
             <UsersVenuesWrapper>
                 <h2>My Venues</h2>
@@ -196,8 +205,7 @@ export const Profile = () => {
                                 <UsersVenuesInfo>
                                     <h3>{venue.name}</h3>
                                     <div>
-                                        <span>{}</span>
-                                    
+                                        <span>Bookings: {venueBooking ? venueBooking.bookings.length : 0}</span>
                                     </div>
                                 </UsersVenuesInfo>
                             </UsersVenueCards>
@@ -211,7 +219,45 @@ export const Profile = () => {
             </UsersVenuesWrapper>
         )
     }
+*/
 
+    const MyVenues = () => {
+        return (
+            <UsersVenuesWrapper>
+                <h2>My Venues</h2>
+                {profileInfo && profileInfo.venues.length > 0 ? (
+                    <div>
+                        <Link to="/account/create-venue">Create a new venue</Link>
+                        {profileInfo.venues.map((venue) => { 
+                            // Finding the venueBooking that matches the venue.id
+                            const venueBooking = venueBookings.find(vb => vb.id === venue.id); 
+
+                            return (
+                                <UsersVenueCards key={venue.id}>
+                                    <div>
+                                        <img src={venue.media[0]} alt={venue.name} />
+                                    </div>
+                                    <UsersVenuesInfo>
+                                        <h3>{venue.name}</h3>
+                                        <div>
+                                            {/* Displaying the number of bookings for the venue */}
+                                            <span>Bookings: {venueBooking ? venueBooking.bookings.length : 0}</span>
+                                        </div>
+                                    </UsersVenuesInfo>
+                                </UsersVenueCards>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div>
+                        <Link to="/account/create-venue">Create a new venue</Link>
+                        <p>You have no venues</p>
+                    </div>
+                )}
+            </UsersVenuesWrapper>
+        );
+    };
+    
     return (
         <ProfileWrapper>
             <div className="profile-container">
