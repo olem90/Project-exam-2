@@ -5,21 +5,29 @@ import { Link } from "react-router-dom";
 export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
     const [search, setSearch] = useState("");
     const searchRef = useRef(null);
+    const [isSearchDropdownVisible, setIsSearchDropdownVisible] = useState(false);
 
     useEffect(() => {
         function handleClickOutsideSearchBar(event) {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
-                setFilteredVenues(venues);
-                setSearch("");
+                //setFilteredVenues(filteredVenues);
+                // setSearch(event.target.value)
+                setIsSearchDropdownVisible(false);
             } 
         }
-        document.addEventListener("mousedown", handleClickOutsideSearchBar);
+
+        if (isSearchDropdownVisible) {
+            document.addEventListener("mousedown", handleClickOutsideSearchBar);
+        }
+       
 
         return () => {
-            document.removeEventListener("mousedown", handleClickOutsideSearchBar);
+            if (isSearchDropdownVisible) {
+                document.removeEventListener("mousedown", handleClickOutsideSearchBar);
+            }
         };
-    }, [setFilteredVenues, venues]);
-
+    }, [isSearchDropdownVisible]);
+    
         const handleSearchChange = (event) => {
             const searchInput = event.target.value;
             setSearch(searchInput);
@@ -29,6 +37,7 @@ export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
                 : venues;
 
                 setFilteredVenues(matchedVenues);
+                setIsSearchDropdownVisible(true);
         };
 
     return(
@@ -37,8 +46,9 @@ export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
             value={search}
             onChange={handleSearchChange}
             placeholder="Search venues.."
+            onFocus={() => setIsSearchDropdownVisible(true)}
             />
-            {search && venues.length > 0 ? (
+            {search && isSearchDropdownVisible && venues.length > 0 ? (
                 <div className="searchResults">
                 {filteredVenues.map((venue) => (
                     <Link className="searchBarLink" to={`/venue/${venue.id}`} key={venue.id}>
@@ -50,6 +60,3 @@ export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
         </SearchBarStyles>
     )
 }
-
-
-

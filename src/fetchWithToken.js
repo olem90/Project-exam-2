@@ -15,8 +15,6 @@ export async function fetchWithToken(url, options = {}) {
         throw new Error(`API returned an error: ${response.status} ${response.statusText}`);
     }
 
-    console.log("HTTP Response:", response);
-
     return response;
 }
 

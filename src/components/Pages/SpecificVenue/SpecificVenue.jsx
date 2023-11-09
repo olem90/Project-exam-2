@@ -104,6 +104,7 @@ export const SpecificVenue = () => {
                               {venue.rating > 0 ? (
                                     <span>Rating: {renderStars(venue.rating)}</span>
                                 ) : <span>Rating: No ratings yet</span>}
+                                <hr></hr>
                             </div>
 
                             <div className="location-and-facilities-container">

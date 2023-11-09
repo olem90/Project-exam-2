@@ -59,10 +59,12 @@ export const SpecificVenueStyles = styled.div`
                     margin: 0;
                     padding: 0;
                     min-width: 100px;
+                    max-width: 100px;
                     max-height: 100px;
+                    min-height: 100px;
                 }
-          }
-              
+          }        
+
           .owner-info-container {
             display: flex;
             flex-direction: column;

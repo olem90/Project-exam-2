@@ -5,6 +5,10 @@ export const SearchBarStyles = styled.div`
   width: 36%;
   margin-inline: auto;
   margin-block: 15px;
+    
+    .hide-search-results {
+      display: none;
+    }
 
     input {
         width:100%;
