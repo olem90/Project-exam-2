@@ -10,6 +10,7 @@ import { SpecificVenue } from './components/Pages/SpecificVenue/SpecificVenue';
 import { Profile } from './components/Pages/Profile/Profile';
 import { EditAvatar } from './components/Pages/EditAvatar/EditAvatar';
 import { CreateVenue } from './components/Pages/CreateVenue/CreateVenue';
+import { UsersVenueBookings } from './components/UserVenueBookings/UserVenueBookings';
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/venue/:id" element={<SpecificVenue />} />
+        <Route path="/user-venues/" element={<UsersVenueBookings />} />
         <Route path="/account" element={<Profile />} />
         <Route path="/account/edit" element={<EditAvatar />} />
         <Route path="/account/create-venue" element={<CreateVenue />} />
@@ -31,3 +33,4 @@ function App() {
 }
 
 export default App;
+

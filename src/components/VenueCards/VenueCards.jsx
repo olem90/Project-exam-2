@@ -5,7 +5,7 @@ import { ViewVenueButton } from "../Buttons/Buttons.styles";
 
 const url = "https://api.noroff.dev/api/v1/holidaze/venues";
 
-const VenueCards = ({ venues, filteredVenues }) => {
+const VenueCards = ({ venues }) => {
     // const [venues, setVenues] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
     // const [isError, setIsError] = useState(false);

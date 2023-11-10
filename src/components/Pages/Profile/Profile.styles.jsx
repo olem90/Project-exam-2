@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const ProfileWrapper = styled.div`
   box-sizing: border-box;
@@ -99,15 +100,23 @@ export const UsersBookingsInfo = styled.div`
     }
 `
 
-export const UsersVenueCards = styled.div`
+export const UsersVenueCards = styled(Link)`
   display: flex;
   max-height: 140px;
   min-height: 140px;
-  margin-block: 15px;
+  margin-block: 25px;
+
   box-sizing: border-box;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   width: 100%;
   padding: 10px;
+  border: 2px solid red;
+  transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0056b3;
+      text-decoration: none; 
+    }
 
     img {
         max-width: 170px;
@@ -123,6 +132,7 @@ export const UsersVenueCards = styled.div`
       padding: 0;
     }
 `
+
 
 export const UsersVenuesWrapper = styled.div`
   display: flex;

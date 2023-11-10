@@ -6,12 +6,8 @@ import { BecomeVenueManagerButton } from '../../Buttons/Buttons.styles';
 import { Link } from 'react-router-dom';
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
-
-console.log(localStorage.getItem("profile"));
-
-const profileBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}?_bookings=true`;
-const profileInfoUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}?_venues=true&_bookings=true`;
 const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
+const profileInfoUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}?_venues=true&_bookings=true`;
 
 export const Profile = () => {
     const [venueBookings, setVenueBookings] = useState([]);
@@ -156,12 +152,6 @@ export const Profile = () => {
         )
     }
 
-    const BookingsPerVenueCount = () => {
-            {venueBookings.map((vb) => (
-                <p>Bookings: {vb.bookings.length}</p>
-            ))};
-    };
-
     const handleMyBookingsOnClick = () => {
         setShowBookings(true);
         setShowVenues(false); 
@@ -171,23 +161,6 @@ export const Profile = () => {
         setShowVenues(true);
         setShowBookings(false); 
     };
-      
-
-    
-/*
-        const bookingCountsPerVenue = venueBookings.map(venue => {
-            return {
-              bookingCount: venue.bookings.length
-            };
-          });
-
-        const bookingsCount = bookingCountsPerVenue.forEach(venueBooking => {
-            return venueBooking.bookingCount;
-        });
-
-        console.log("bookingsCount", bookingsCount);
-*/
-
 /*
         const MyVenues = () => {
             
@@ -230,10 +203,10 @@ export const Profile = () => {
                         <Link to="/account/create-venue">Create a new venue</Link>
                         {profileInfo.venues.map((venue) => { 
                             // Finding the venueBooking that matches the venue.id
-                            const venueBooking = venueBookings.find(vb => vb.id === venue.id); 
+                            const venueBooking = venueBookings.find(vb => vb.id === venue.id);
 
                             return (
-                                <UsersVenueCards key={venue.id}>
+                                <UsersVenueCards to="/user-venues/" key={venue.id}>
                                     <div>
                                         <img src={venue.media[0]} alt={venue.name} />
                                     </div>

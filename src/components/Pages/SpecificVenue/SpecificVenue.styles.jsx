@@ -20,13 +20,14 @@ export const SpecificVenueStyles = styled.div`
       cursor: pointer;
       opacity: 0.6;
       transition: opacity 0.3s;
+      overflow: scroll;
 
         img {
           width: 100%;
           height: auto;
         }
     }
-
+    
     .thumbnail-container img.active-thumbnail {
       border: 2px solid #000;
       opacity: 1;

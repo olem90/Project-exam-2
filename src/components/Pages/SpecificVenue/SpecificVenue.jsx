@@ -5,7 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faWifi, faCar, faCoffee, faPaw } from '@fortawesome/free-solid-svg-icons';
 import { BookNowButton } from "../../Buttons/Buttons.styles";
 import { BookVenueForm } from "../BookingForm/BookingForm";
+import { UsersVenueBookings } from '../../UserVenueBookings/UserVenueBookings';
 
+const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
+
+const isVenueManager = userProfileLocalStorage.venueManager;
 
 export const SpecificVenue = () => {
     const [venue, setVenue] = useState(null);
@@ -161,6 +165,9 @@ export const SpecificVenue = () => {
                 ) : <p>Product not found</p>
                 }        
             </div>
+            {isVenueManager && <UsersVenueBookings id={id} />}
+            
         </SpecificVenueWrapper>
     )
 }
+
