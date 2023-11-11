@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchWithToken } from '../../../fetchWithToken';
 import { BecomeVenueManagerButton } from '../../Buttons/Buttons.styles';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
@@ -161,39 +162,11 @@ export const Profile = () => {
         setShowVenues(true);
         setShowBookings(false); 
     };
-/*
-        const MyVenues = () => {
-            
-        return (
-            <UsersVenuesWrapper>
-                <h2>My Venues</h2>
-                {profileInfo && profileInfo.venues.length > 0 ? (
-                    <div>
-                        <Link to="/account/create-venue">Create a new venue</Link>
-                        {profileInfo.venues.map((venue) => (
-                            <UsersVenueCards key={venue.id}>
-                                <div>
-                                    <img src={venue.media[0]}></img>
-                                </div>
-                                <UsersVenuesInfo>
-                                    <h3>{venue.name}</h3>
-                                    <div>
-                                        <span>Bookings: {venueBooking ? venueBooking.bookings.length : 0}</span>
-                                    </div>
-                                </UsersVenuesInfo>
-                            </UsersVenueCards>
-                        ))}
-                    </div>
-                ) : ( 
-                    <div>
-                        <Link to="/account/create-venue">Create a new venue</Link>
-                        <p>You have no venues</p>
-                    </div>)}
-            </UsersVenuesWrapper>
-        )
-    }
-*/
 
+    const navigate = useNavigate();
+
+    // navigate to the user specific venue page
+    
     const MyVenues = () => {
         return (
             <UsersVenuesWrapper>
@@ -206,7 +179,7 @@ export const Profile = () => {
                             const venueBooking = venueBookings.find(vb => vb.id === venue.id);
 
                             return (
-                                <UsersVenueCards to="/user-venues/" key={venue.id}>
+                                <UsersVenueCards to={`/account/user-venue/${venue.id}`} key={venue.id}>
                                     <div>
                                         <img src={venue.media[0]} alt={venue.name} />
                                     </div>
@@ -234,7 +207,6 @@ export const Profile = () => {
     return (
         <ProfileWrapper>
             <div className="profile-container">
-             
                 <UserDataStyles>
                     <h1>Account</h1>
                     <img src={userProfileLocalStorage.avatar}></img>
@@ -258,3 +230,4 @@ export const Profile = () => {
         </ProfileWrapper>
     )
 }
+

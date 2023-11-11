@@ -1,4 +1,3 @@
-//import { useState } from 'react';
 import './App.css';
 import { Layout } from './components/Layout/Layout.jsx';
 import { Home } from './components/Pages/Home/Home.jsx';
@@ -10,7 +9,7 @@ import { SpecificVenue } from './components/Pages/SpecificVenue/SpecificVenue';
 import { Profile } from './components/Pages/Profile/Profile';
 import { EditAvatar } from './components/Pages/EditAvatar/EditAvatar';
 import { CreateVenue } from './components/Pages/CreateVenue/CreateVenue';
-import { UsersVenueBookings } from './components/UserVenueBookings/UserVenueBookings';
+import { UserSpecificVenue } from './components/Pages/UserSpecificVenue/UserSpecificVenue';
 
 function App() {
   
@@ -23,7 +22,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/venue/:id" element={<SpecificVenue />} />
-        <Route path="/user-venues/" element={<UsersVenueBookings />} />
+        <Route path="/account/user-venue/:id" element={<UserSpecificVenue />} />
         <Route path="/account" element={<Profile />} />
         <Route path="/account/edit" element={<EditAvatar />} />
         <Route path="/account/create-venue" element={<CreateVenue />} />
@@ -33,4 +32,3 @@ function App() {
 }
 
 export default App;
-

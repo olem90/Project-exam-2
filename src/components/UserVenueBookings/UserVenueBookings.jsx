@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { VenueBookingsCards } from "./UserVenueBookings.styles";
 import { VenueBookingsWrapper } from "./UserVenueBookings.styles";
-import { useParams } from "react-router-dom";
 
 const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true&?_owner=true`;
 
@@ -30,13 +29,6 @@ export const UsersVenueBookings = ({ id }) => {
         getVenueBookings();
     }, []);
 
-
-    const VenueBookingsArray = venueBookings.map((vb) => {
-        return vb.bookings;
-    })
-
-    console.log("venueBookingsArray", VenueBookingsArray);
-
     if (isError) {
         return <div>Oops looks like an error has occured while loading venue bookings. Please try again.</div>
     }
@@ -64,5 +56,4 @@ export const UsersVenueBookings = ({ id }) => {
         </VenueBookingsWrapper>
     )
 }
-
 

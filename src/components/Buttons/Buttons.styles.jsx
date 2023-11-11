@@ -26,7 +26,7 @@ export const BookNowButton = styled.button`
   padding: 10px;
   font-weight: bold;
   width: 51.7%;
-  margin: 10px 0 20px 0 ;
+  margin: 40px 0 20px 0 ;
 `
 
 export const CloseModalButton = styled.button`

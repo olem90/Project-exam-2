@@ -133,7 +133,6 @@ export const UsersVenueCards = styled(Link)`
     }
 `
 
-
 export const UsersVenuesWrapper = styled.div`
   display: flex;
   flex-direction: column;

@@ -10,24 +10,29 @@ export const SpecificVenueStyles = styled.div`
   margin-inline: auto;
   box-sizing: border-box;
 
+    .all-thumbnails-container {
+      min-width: 470px;
+      max-width: 470px;
+      overflow-x: auto;
+    }
+
     .thumbnail-container {
       display: flex;
       gap: 5px;
       max-width: 60px;
       min-width: 60px;
-      height: 60px;
+      max-height: 60px;
       object-fit: cover;
       cursor: pointer;
       opacity: 0.6;
       transition: opacity 0.3s;
-      overflow: scroll;
 
         img {
           width: 100%;
-          height: auto;
+          min-height: 100%;
         }
     }
-    
+
     .thumbnail-container img.active-thumbnail {
       border: 2px solid #000;
       opacity: 1;

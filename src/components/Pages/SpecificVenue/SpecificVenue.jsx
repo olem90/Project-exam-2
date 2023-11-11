@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import { SpecificVenueWrapper, SpecificVenueStyles } from "./SpecificVenue.styles";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faWifi, faCar, faCoffee, faPaw } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faWifi, faCar, faCoffee, faPaw, faExpand  } from '@fortawesome/free-solid-svg-icons';
 import { BookNowButton } from "../../Buttons/Buttons.styles";
 import { BookVenueForm } from "../BookingForm/BookingForm";
-import { UsersVenueBookings } from '../../UserVenueBookings/UserVenueBookings';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
-
-const isVenueManager = userProfileLocalStorage.venueManager;
 
 export const SpecificVenue = () => {
     const [venue, setVenue] = useState(null);
@@ -77,30 +76,37 @@ export const SpecificVenue = () => {
                                     ) : (
                                     <img className="main-img" src={placeholderImg} alt="Placeholder image"></img>
                                     )}
-
-                                    {venue.media && venue.media.length > 1 ? (
-                                        <div className="thumbnail-container">
-                                        {venue.media.map((image, index) => (
-                                            <img
-                                                key={index}
-                                                src={image}
-                                                alt={`thumbnail ${index}`}
-                                                onClick={() => handleThumbnailClick(index)}
-                                                className={index === activeImageIndex ? "active-thumbnail" : "thumbnail"}
-                                            />
-                                        ))}
-                                    </div> 
-
-                                    ) : ""}                
-                                    
+                                    <Swiper 
+                                        spaceBetween={10}
+                                        slidesPerView={'auto'}
+                                        freeMode={true}
+                                        className="all-thumbnails-container"
+                                        onSwiper={(swiper) => console.log(swiper)}
+                                    >             
+                                        <SwiperSlide>
+                                            <div className="all-thumbnails-container">
+                                                {venue.media && venue.media.length > 1 ? (
+                                                    <div  className="thumbnail-container">
+                                                    {venue.media.map((image, index) => (
+                                                        <img
+                                                        key={index}
+                                                        src={image}
+                                                        alt={`thumbnail ${index}`}
+                                                        onClick={() => handleThumbnailClick(index)}
+                                                        className={index === activeImageIndex ? "active-thumbnail" : "thumbnail"}
+                                                        />
+                                                    ))}
+                                                    </div> 
+                                                ) : ""}    
+                                            </div>
+                                        </SwiperSlide>
+                                    </Swiper>                                 
                             </div>
-
                             <div className="specific-venue-description">
                                 <p>{venue.description}</p>
                             </div>
                         </div>
                         <BookNowButton onClick={toggleModal}>BOOK NOW</BookNowButton>
-
                         <div className="venue-content">
                             <div className="price-container">
                               <span>Price: ${venue.price}</span>
@@ -164,9 +170,7 @@ export const SpecificVenue = () => {
                     </SpecificVenueStyles>
                 ) : <p>Product not found</p>
                 }        
-            </div>
-            {isVenueManager && <UsersVenueBookings id={id} />}
-            
+            </div> 
         </SpecificVenueWrapper>
     )
 }

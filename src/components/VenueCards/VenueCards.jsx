@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { VenueCardsStyles, VenueCardsWrapper } from "./VenueCards.styles";
 import { useNavigate } from "react-router-dom";
 import { ViewVenueButton } from "../Buttons/Buttons.styles";
@@ -6,10 +5,6 @@ import { ViewVenueButton } from "../Buttons/Buttons.styles";
 const url = "https://api.noroff.dev/api/v1/holidaze/venues";
 
 const VenueCards = ({ venues }) => {
-    // const [venues, setVenues] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [isError, setIsError] = useState(false);
-
     const navigate = useNavigate();
 
     // navigate to the venue page
@@ -46,7 +41,6 @@ const VenueCards = ({ venues }) => {
     // if (isError) {
     //     return <div>Error loading venues...</div>
     // }
-
     const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images"
     
     return (
