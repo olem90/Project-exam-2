@@ -165,7 +165,7 @@ export const Profile = () => {
 
     const navigate = useNavigate();
 
-    // navigate to the user specific venue page
+    // navigate to the users venues
     
     const MyVenues = () => {
         return (
@@ -230,4 +230,3 @@ export const Profile = () => {
         </ProfileWrapper>
     )
 }
-

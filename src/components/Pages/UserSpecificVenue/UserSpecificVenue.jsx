@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { UserSpecificVenueWrapper } from "./UserSpecificVenue.styles";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,6 +7,8 @@ import { SpecificVenueStyles } from "../SpecificVenue/SpecificVenue.styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faWifi, faCar, faCoffee, faPaw, faExpand  } from '@fortawesome/free-solid-svg-icons';
 import { UsersVenueBookings } from "../../UserVenueBookings/UserVenueBookings";
+import { UpdateVenueButton } from "../../Buttons/Buttons.styles";
+import { RemoveVenue } from "../RemoveVenue/RemoveVenue";
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 const isVenueManager = userProfileLocalStorage.venueManger;
@@ -19,10 +21,17 @@ export const UserSpecificVenue = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { id } = useParams();
+    console.log("Venue ID:", id);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
 
     const handleThumbnailClick = (index) => {
         setActiveImageIndex(index);
+    };
+
+    const navigate = useNavigate();
+
+    const goToUpdateVenuePage = (id) => {
+        navigate(`/account/update-venue/${id}`);
     };
 
     function renderStars(rating) {
@@ -112,8 +121,10 @@ export const UserSpecificVenue = () => {
                             {managerVenue.rating > 0 ? (
                             <span>Rating: {renderStars(managerVenue.rating)}</span>
                             ) : <span>Rating: No ratings yet</span>}
-                            <hr></hr>
                             </div>
+
+                            <UpdateVenueButton onClick={() => goToUpdateVenuePage(id)}>Update Venue</UpdateVenueButton>
+                            <RemoveVenue />
 
                             <div className="location-and-facilities-container">
                                 <div className="locationContainer">

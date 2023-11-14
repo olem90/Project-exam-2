@@ -60,3 +60,12 @@ export const BecomeVenueManagerButton = styled.button`
   border: none;
   margin-bottom: 30px;
 `
+
+export const UpdateVenueButton = styled.button`
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  width: 30%;
+  margin: 40px 82px 20px 0 ;
+`

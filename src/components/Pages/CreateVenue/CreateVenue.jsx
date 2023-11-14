@@ -30,7 +30,6 @@ export const CreateVenue = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     
-
     function onNameChange(event) {
         setName(event.target.value);
     };
@@ -315,6 +314,4 @@ export const CreateVenue = () => {
         </CreateVenueWrapper>
     )
 }
-
-
 

@@ -29,6 +29,12 @@ export const UsersVenueBookings = ({ id }) => {
         getVenueBookings();
     }, []);
 
+    const VenueBookingsArray = venueBookings.map((vb) => {
+        return vb.bookings;
+    })
+
+    console.log("venueBookingsArray", VenueBookingsArray);
+
     if (isError) {
         return <div>Oops looks like an error has occured while loading venue bookings. Please try again.</div>
     }
@@ -45,9 +51,9 @@ export const UsersVenueBookings = ({ id }) => {
 
             return (
                 <VenueBookingsCards key={vb.id}>
-                   {venueBooking ? VenueBookingsArray.map((venB) => (
+                   {venueBooking ? VenueBookingsArray.map((venueBooking) => (
                     <div>
-                        <span>{}</span>
+                        <span>{venueBooking.name}</span>
                     </div>
                    )) : ""}
                 </VenueBookingsCards>
@@ -56,4 +62,3 @@ export const UsersVenueBookings = ({ id }) => {
         </VenueBookingsWrapper>
     )
 }
-

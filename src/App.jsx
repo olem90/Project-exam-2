@@ -10,6 +10,7 @@ import { Profile } from './components/Pages/Profile/Profile';
 import { EditAvatar } from './components/Pages/EditAvatar/EditAvatar';
 import { CreateVenue } from './components/Pages/CreateVenue/CreateVenue';
 import { UserSpecificVenue } from './components/Pages/UserSpecificVenue/UserSpecificVenue';
+import { UpdateVenue } from './components/Pages/UpdateVenue/UpdateVenue';
 
 function App() {
   
@@ -26,9 +27,11 @@ function App() {
         <Route path="/account" element={<Profile />} />
         <Route path="/account/edit" element={<EditAvatar />} />
         <Route path="/account/create-venue" element={<CreateVenue />} />
+        <Route path="/account/update-venue/:id" element={<UpdateVenue />} />
       </Routes>
    </Layout>
   )
 }
 
 export default App;
+

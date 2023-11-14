@@ -4,4 +4,5 @@ import styled from "styled-components";
 
 export const UserSpecificVenueWrapper = styled.div`
   border: 2px solidi gold;
+  
 `
