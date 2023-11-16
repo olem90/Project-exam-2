@@ -12,10 +12,3 @@ export const RemoveVenueLink = styled(Link)`
             color: red;
         }
 `
-
-export const ModalStyles = styled.div`
-  font-weight: bold;
-  color: green;
-  font-size: 22px;
-  border: 1px solid black;
-`
