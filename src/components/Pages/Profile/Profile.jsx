@@ -162,10 +162,6 @@ export const Profile = () => {
         setShowVenues(true);
         setShowBookings(false); 
     };
-
-    const navigate = useNavigate();
-
-    // navigate to the users venues
     
     const MyVenues = () => {
         return (

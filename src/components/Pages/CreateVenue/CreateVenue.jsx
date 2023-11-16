@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { CreateVenueWrapper, CreateVenueForm, VenueFacilities } from "./CreateVenue.styles";
 import { fetchWithToken } from "../../../fetchWithToken";
+import { Modal } from "../../Modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 const createVenueUrl = "https://api.noroff.dev/api/v1/holidaze/venues";
 
 export const CreateVenue = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [createVenueSuccess, setCreateVenueSuccess] = useState(false);
 
     const [formData, setFormData] = useState({});
     const [name, setName] = useState("");
@@ -136,6 +140,13 @@ export const CreateVenue = () => {
                     },
                     body: JSON.stringify(requestBody),
                 });
+
+                if (response.ok) {
+                    setCreateVenueSuccess(true);
+                } else {
+                    console.error("Oops! An error occured while creating the venue. Please try again.")
+                }
+
                 const json = await response.json();
                 setFormData(json);
                 setIsLoading(false);
@@ -146,6 +157,20 @@ export const CreateVenue = () => {
                 setIsError(true);
                 console.error(error);
             }
+        }
+
+        
+        const navigate = useNavigate();
+
+        const closeModal = () => {
+            setShowModal(false);
+            if (deleteSuccess) {
+                navigate("/account");
+            }
+        }
+    
+        const onCancel = () => {
+            setShowModal(false);
         }
     
         if (isError) {
@@ -305,12 +330,18 @@ export const CreateVenue = () => {
                     onChange={onLongitudeChange}
                     />
 
-                    <button type="submit">Create Venue</button>
-
+                    <button onClick={() => setShowModal(true)} type="submit">Create Venue</button>
+                    {showModal && (
+                    <Modal 
+                        isOpen = {showModal}
+                        message = {createVenueSuccess && "Your venue was successfullly created."}
+                        onClose = {closeModal}
+                        createVenueSuccess = {createVenueSuccess}
+                    />
+                    )}               
                 </CreateVenueForm>
 
             </div>
-
         </CreateVenueWrapper>
     )
 }

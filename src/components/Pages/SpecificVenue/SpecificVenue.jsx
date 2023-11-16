@@ -158,7 +158,7 @@ export const SpecificVenue = () => {
                                 {venue.owner.avatar && venue.owner.avatar.length > 0 ? (
                               <img src={venue.owner.avatar} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= ownerPlaceholderImg}} />
                               ) : (
-                              <img src={placeholderImg} alt="Placeholder image"></img>
+                              <img src={ownerPlaceholderImg} alt="Placeholder image"></img>
                               )}
                                 </div>
                                 <div className="owner-info-container">
