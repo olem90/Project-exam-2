@@ -108,10 +108,12 @@ export const SpecificVenueStyles = styled.div`
         object-fit: cover;
     }
 
+    
     .specific-venue-description {
         flex: 1;
         min-width: 440px;
         max-width: 440px;
+        line-height: 30px;
 
         p {
             margin-top: 0;

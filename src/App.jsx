@@ -25,9 +25,12 @@ function App() {
         <Route path="/venue/:id" element={<SpecificVenue />} />
         <Route path="/account/user-venue/:id" element={<UserSpecificVenue />} />
         <Route path="/account" element={<Profile />} />
+        <Route path="/account/my-venues" element={<Profile />} />
+        <Route path="/account/my-bookings" element={<Profile />} />
         <Route path="/account/edit" element={<EditAvatar />} />
         <Route path="/account/create-venue" element={<CreateVenue />} />
         <Route path="/account/update-venue/:id" element={<UpdateVenue />} />
+       
       </Routes>
    </Layout>
   )

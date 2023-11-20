@@ -141,7 +141,6 @@ export const Profile = () => {
                         <div>
                             <img src={booking.venue.media[0]}></img>
                         </div>
-
                         <UsersBookingsInfo>
                             <h3>{booking.venue.name}</h3>
                             <span>From: {formattedDates[index]?.formattedDateFrom || ''}</span>
@@ -162,6 +161,8 @@ export const Profile = () => {
         setShowVenues(true);
         setShowBookings(false); 
     };
+
+    const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images";
     
     const MyVenues = () => {
         return (
@@ -177,7 +178,11 @@ export const Profile = () => {
                             return (
                                 <UsersVenueCards to={`/account/user-venue/${venue.id}`} key={venue.id}>
                                     <div>
-                                        <img src={venue.media[0]} alt={venue.name} />
+                                        {venue.media[0] && venue.media[0].length > 0 ? (
+                                        <img src={venue.media[0]} alt={venue.name} onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
+                                        ) : (
+                                        <img src={placeholderImg} alt="Placeholder image"></img>
+                                        )}
                                     </div>
                                     <UsersVenuesInfo>
                                         <h3>{venue.name}</h3>
@@ -212,8 +217,13 @@ export const Profile = () => {
                     <span> Venue Manager: {userProfileLocalStorage.venueManager ? "Yes" : "No"}</span>
 
                     <ProfileOptionsStyles>
-                        <Link onClick={handleMyBookingsOnClick}>My Bookings ({profileInfo._count?.bookings || 0})</Link>
-                        {userProfileLocalStorageInfo ? <Link onClick={handleMyVenuesOnClick}>My Venues ({profileInfo._count?.venues || 0})</Link> 
+                        <Link to="/account/my-bookings" 
+                        onClick={handleMyBookingsOnClick}>My Bookings ({profileInfo._count?.bookings || 0})
+                        </Link>
+                        {userProfileLocalStorageInfo ? 
+                        <Link to="/account/my-venues" 
+                        onClick={handleMyVenuesOnClick}>My Venues ({profileInfo._count?.venues || 0})
+                        </Link> 
                         : <BecomeVenueManagerButton onClick={becomeAVenueManager}>Become a Venue Manager</BecomeVenueManagerButton>}   
                     </ProfileOptionsStyles>
                 </UserDataStyles>
@@ -226,3 +236,4 @@ export const Profile = () => {
         </ProfileWrapper>
     )
 }
+

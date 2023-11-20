@@ -122,10 +122,8 @@ export const UserSpecificVenue = () => {
                             <span>Rating: {renderStars(managerVenue.rating)}</span>
                             ) : <span>Rating: No ratings yet</span>}
                             </div>
-
                             <UpdateVenueButton onClick={() => goToUpdateVenuePage(id)}>Update Venue</UpdateVenueButton>
                             <RemoveVenue />
-
                             <div className="location-and-facilities-container">
                                 <div className="locationContainer">
                                     <h2>Location:</h2>
@@ -166,8 +164,11 @@ export const UserSpecificVenue = () => {
                 ) : <p>Product not found</p>
                 }        
             </div> 
-             <UsersVenueBookings />
+             <UsersVenueBookings id={id} />
         </UserSpecificVenueWrapper>
     )
 }
+
+
+
 

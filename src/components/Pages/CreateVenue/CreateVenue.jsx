@@ -159,16 +159,17 @@ export const CreateVenue = () => {
             }
         }
 
-        
+
         const navigate = useNavigate();
 
         const closeModal = () => {
             setShowModal(false);
-            if (deleteSuccess) {
+            if (createVenueSuccess) {
                 navigate("/account");
             }
         }
     
+        
         const onCancel = () => {
             setShowModal(false);
         }

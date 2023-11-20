@@ -155,11 +155,11 @@ export const SpecificVenue = () => {
                             <h3>Owner Information</h3>
                             <div className="owner-card">
                                 <div className="owner-img-container">
-                                {venue.owner.avatar && venue.owner.avatar.length > 0 ? (
-                              <img src={venue.owner.avatar} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= ownerPlaceholderImg}} />
-                              ) : (
-                              <img src={ownerPlaceholderImg} alt="Placeholder image"></img>
-                              )}
+                                    {venue.owner.avatar && venue.owner.avatar.length > 0 ? (
+                                    <img src={venue.owner.avatar} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= ownerPlaceholderImg}} />
+                                    ) : (
+                                    <img src={ownerPlaceholderImg} alt="Placeholder image"></img>
+                                    )}
                                 </div>
                                 <div className="owner-info-container">
                                     <span>Name: {venue.owner.name}</span>

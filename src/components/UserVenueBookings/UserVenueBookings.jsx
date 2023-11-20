@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { VenueBookingsCards } from "./UserVenueBookings.styles";
-import { VenueBookingsWrapper } from "./UserVenueBookings.styles";
-
-const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true&?_owner=true`;
+import { VenueBookingsCards, VenueBookingsWrapper } from "./UserVenueBookings.styles";
 
 export const UsersVenueBookings = ({ id }) => {
     const [venueBookings, setVenueBookings] = useState([]);
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    console.log("ProfileInfom Prop:", id);
+    const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues/${id}?_bookings=true`;
+    const bookings = venueBookings.bookings || {};
 
     useEffect(() => {
         async function getVenueBookings() {
@@ -27,13 +25,35 @@ export const UsersVenueBookings = ({ id }) => {
             }
         }
         getVenueBookings();
-    }, []);
+    }, [id]);
 
-    const VenueBookingsArray = venueBookings.map((vb) => {
-        return vb.bookings;
-    })
-
-    console.log("venueBookingsArray", VenueBookingsArray);
+    const getFormattedDates = (dateFrom, dateTo, dateCreated, dateUpdated) => {
+        const parsedDateFrom = new Date(dateFrom);
+        const parsedDateTo = new Date(dateTo);
+        const parsedDateCreated = new Date(dateCreated)
+        const parsedDateUpdated = new Date(dateUpdated)
+        const formattedDateFrom = parsedDateFrom.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+        const formattedDateTo = parsedDateTo.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+        const formattedDateCreated = parsedDateCreated.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+        const formattedDateUpdated = parsedDateUpdated.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+        return { formattedDateFrom, formattedDateTo, formattedDateCreated, formattedDateUpdated };
+    };
 
     if (isError) {
         return <div>Oops looks like an error has occured while loading venue bookings. Please try again.</div>
@@ -44,21 +64,33 @@ export const UsersVenueBookings = ({ id }) => {
     }
 
     return (
-        <VenueBookingsWrapper key={venueBookings.id}>
-            <h3>Bookings</h3>
-            {venueBookings.map((vb) => {
-                const venueBooking = venueBookings.find(vb => vb.id === id);
-
-            return (
-                <VenueBookingsCards key={vb.id}>
-                   {venueBooking ? VenueBookingsArray.map((venueBooking) => (
-                    <div>
-                        <span>{venueBooking.name}</span>
-                    </div>
-                   )) : ""}
-                </VenueBookingsCards>
-            )
-        })};
+        <VenueBookingsWrapper>
+            <h3>Bookings({bookings.length})</h3>
+            {bookings.length > 0 ? (
+                bookings.map((booking) => {
+                    const { 
+                        formattedDateFrom, 
+                        formattedDateTo, 
+                        formattedDateCreated, 
+                        formattedDateUpdated } = getFormattedDates(booking.dateFrom, booking.dateTo, booking.created, booking.updated);
+                    return ( 
+                        <VenueBookingsCards key={booking.id}>
+                            <span>From: {formattedDateFrom}</span>
+                            <span>To: {formattedDateTo}</span>
+                            <span>Number of guests: {booking.guests}</span> 
+                            <hr />        
+                            <span>Created: {formattedDateCreated}</span>
+                            <span>Last Updated: {formattedDateUpdated}</span>       
+                        </VenueBookingsCards>
+                    );   
+                })
+            ) : (
+                <p>No bookings available for this venue.</p>
+            )}
         </VenueBookingsWrapper>
     )
 }
+
+
+
+
