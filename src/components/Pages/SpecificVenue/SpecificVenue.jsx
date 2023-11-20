@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { SpecificVenueWrapper, SpecificVenueStyles } from "./SpecificVenue.styles";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faWifi, faCar, faCoffee, faPaw, faExpand  } from '@fortawesome/free-solid-svg-icons';
 import { BookNowButton } from "../../Buttons/Buttons.styles";
@@ -71,6 +71,8 @@ export const SpecificVenue = () => {
                         <h1 className="specific-venue-name">{venue.name}</h1>
                         <div className="img-and-description-container">
                             <div className="specific-venue-name-img">
+                                <Link><FontAwesomeIcon className="faExpand" icon={faExpand} /></Link>
+                                
                                     {venue.media && venue.media.length > 0 ? (
                                     <img className="main-img" src={venue.media[activeImageIndex]} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                                     ) : (

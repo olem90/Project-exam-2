@@ -77,7 +77,6 @@ export const ModalStyles = styled.div`
         }
     } 
 
-
     .datePickerContainer {
         display: flex;
         justify-content: center;
@@ -91,7 +90,6 @@ export const ModalStyles = styled.div`
                 gap: 10px;
             }  
     }
-
 
     .guests-booking {
         margin-top: 25px;   

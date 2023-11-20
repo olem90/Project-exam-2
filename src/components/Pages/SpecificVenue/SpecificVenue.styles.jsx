@@ -10,6 +10,17 @@ export const SpecificVenueStyles = styled.div`
   margin-inline: auto;
   box-sizing: border-box;
 
+    .faExpand {
+      position: absolute;
+      bottom: 17px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: transparent;
+      transition: color 0.3s ease;
+      z-index: 99;
+    }
+
     .all-thumbnails-container {
       min-width: 470px;
       max-width: 470px;
@@ -98,6 +109,15 @@ export const SpecificVenueStyles = styled.div`
         flex: 1;
         min-width: 470px;
         max-width: 470px;
+        position: relative;
+    }
+
+    .specific-venue-name-img:hover .main-img{
+      filter: brightness(50%);
+    }
+
+    .specific-venue-name-img:hover .faExpand {
+      color: #fff;
     }
 
     .main-img {
@@ -106,9 +126,14 @@ export const SpecificVenueStyles = styled.div`
         max-height: 360px;
         min-height: 360px;
         object-fit: cover;
+        transition: filter 0.3s ease;
     }
 
-    
+    .main-img:hover .faExpand {
+      display: block;
+      color: red;
+    }
+
     .specific-venue-description {
         flex: 1;
         min-width: 440px;
