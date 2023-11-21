@@ -7,10 +7,14 @@ import { ModalStylesWrapper } from "./BookingForm.styles";
 import { fetchWithToken } from "../../../fetchWithToken";
 import moment from 'moment';
 import 'moment-timezone';
+import { Link } from "react-router-dom";
 
 const bookingUrl = "https://api.noroff.dev/api/v1/holidaze/bookings";
 
 export const BookVenueForm = ({ closeModal, venueId }) => {
+    const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
+    const isLoggedIn = userProfileLocalStorage !== null;
+
     const [showModal, setShowModal] = useState(true);
     const [isError, setIsError] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -18,9 +22,9 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
     const [dateFrom, setDateFrom] = useState(moment().toDate());
     const [guests, setGuests] = useState("1");
     const [bookedDates, setBookedDates] = useState(new Set());
+    const [maxGuests, setMaxGuests] = useState(0);
 
     const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues/${venueId}?_bookings=true`;
-
     const bookedDatesArray = Array.from(bookedDates).map(dateStr => moment(dateStr).toDate());
 
     function isPastDate(date) {
@@ -29,50 +33,15 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
     }
     
     function isBooked(date) {
-      let normalizedDate = moment(date).format('YYYY-MM-DD');
-      console.log("Checking if booked:", normalizedDate, bookedDates.has(normalizedDate));
-      return bookedDates.has(normalizedDate);
+        let normalizedDate = moment(date).format('YYYY-MM-DD');
+        return bookedDates.has(normalizedDate);
     }
 
-  /*
-        async function fetchBookings() {
-            try {
-                const response = await fetchWithToken(bookingUrl, {
-                  method: 'GET',
-                  headers: { 
-                    "Content-Type": "Application/json" 
-                },
-                });
-              
-                if (response) {
-                    const bookings = await response.json();
+    const guestOtions = [];
+    for(let i = 1; i <= maxGuests; i++) {
+      guestOtions.push(<option key={i} value={i}>{i}</option>)
+    }
 
-                    console.log("Fetched bookings:", bookings);
-
-                      const newBookedDatesSet = new Set();
-                      bookings.forEach(booking => {
-                        const dateFrom = new Date(booking.dateFrom);
-                        const dateTo = new Date(booking.dateTo);
-
-                        for (let date = new Date(dateFrom); date <= dateTo; date.setDate(date.getDate() + 1)) {
-                          newBookedDatesSet.add(date.toISOString().split('T')[0]); // Store date in YYYY-MM-DD format
-                      }
-                      });
-      
-                  setBookedDates(newBookedDatesSet);
-                 
-
-                    console.log("Updated bookedDates: ", Array.from(newBookedDatesSet));
-                  } else {
-                    setIsError('Failed to fetch bookings');
-                    console.error('Failed to fetch bookings:', response);
-                  }
-            } catch (error) {
-                console.error('Could not fetch bookings:', error);
-            }
-        };
-       */
-      
         async function fetchBookings() {
           try {
               const response = await fetchWithToken(venueBookingsUrl, {
@@ -87,18 +56,8 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
                   const venueSpecificBookings = venueData.bookings || []; 
                   console.log("checking VenueBookings:", venueSpecificBookings);
                   setBookedDates(bookedDatesArray);
+                  setMaxGuests(venueData.maxGuests);
                   const newBookedDatesSet = new Set();
-                /*    venueSpecificBookings.forEach(booking => {
-                      let dateFrom = new Date(booking.dateFrom);
-                      let dateTo = new Date(booking.dateTo);
-                      dateTo.setUTCDate(dateTo.getUTCDate() + 1);
-      
-                      for (let date = new Date(dateFrom); date <= dateTo; date.setDate(date.getDate() + 1)) {
-                          newBookedDatesSet.add(date.toISOString().split('T')[0]); // Store date in YYYY-MM-DD format
-                      }
-                  });
-*/
-             
                   venueSpecificBookings.forEach(booking => {
                     let startDate = moment(booking.dateFrom);
                     let endDate = moment(booking.dateTo).add(1, 'days'); // Include the end date
@@ -112,15 +71,13 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
                   console.log("NEWBOOKEDDDDATES:", newBookedDatesSet)
                   setBookedDates(newBookedDatesSet);
               } else {
-                  // Handle errors
                   setIsError('Failed to fetch bookings for the venue');
               }
           } catch (error) {
-              // Handle errors
               setIsError('Error fetching bookings for the venue');
           }
       }
-
+    
       useEffect(() => {
         fetchBookings();
        }, [venueId]);
@@ -131,83 +88,25 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
 
           while (start.isBefore(end)) {
             if (bookedDates.has(start.format('YYYY-MM-DD'))) {
-              return false; // Found a booked date in the range
+              return false; 
             }
             start.add(1, 'days');
           }
-          return true; // No booked dates found in the range
+          return true; 
         }
-
-/*
-    async function onBookingSubmit(event) {
-        event.preventDefault();
-
-        if (dateTo <= dateFrom) {
-           setIsError("Oops! The end date needs to be later than the start date.");
-            return;
-        }
-
-        if (!isDateRangeAvailable(dateFrom, dateTo, bookedDates)) {
-            setIsError("Oops! These dates are already booked.");
-            return;
-        }  
-
-        const payload = {
-            dateFrom: dateFrom.toISOString(),
-            dateTo: dateTo.toISOString(),
-            guests: Number(guests),
-            venueId
-        };
-
-        console.log("this is payload", payload);
-
-        try {
-            const response = await fetchWithToken(bookingUrl, {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "Application/json" 
-                },
-                body: JSON.stringify(payload)
-            }); 
-            const json = await response.json();
-            console.log("this is json", json);
-            console.log('Initial response:', response);
-
-            if (response.ok) {
-                setBookedDates(new Set(bookedDates));
-                setIsSuccess(true);
-                setIsError(false);
-
-                let newBookedDatesSet = new Set(bookedDates);
-                let dateFrom = new Date(dateFrom);
-                let dateTo = new Date(dateTo);
-                dateTo.setDate(dateTo.getDate() + 1); // Include the end date
-
-                for (let date = new Date(dateFrom); date < dateTo; date.setDate(date.getDate() + 1)) {
-                  newSet.add(date.toISOString().split('T')[0]);
-                }
-
-                setBookedDates(newBookedDatesSet);
-
-                //setBookedDates(bookedDatesArray);
-
-                console.log("Booking successful");
-                fetchBookings();
-            } else {
-                console.log("Booking failed");
-                setIsError("An error occurred while booking. Please try again.");
-            }
-
-        } catch (error) {
-            console.log("An error occurred:", error);
-            setIsError("An error occurred while booking. Please try again.");
-        }
-    };
-*/
-
 
 async function onBookingSubmit(event) {
   event.preventDefault();
+
+  if (!isLoggedIn) {
+    setIsError( 
+    <div className="not-logged-in">
+        <p>You need to be logged in to make a booking.</p>
+        <div>You can log in <Link to="/login"> HERE</Link></div>
+        <div>Don't have an account? Register <Link to="/register"> HERE</Link></div>
+    </div>);
+    return;
+  };
 
   let mDateFrom = moment(dateFrom);
   let mDateTo = moment(dateTo);
@@ -244,6 +143,10 @@ async function onBookingSubmit(event) {
           setIsSuccess(true);
           setIsError(false);
 
+          setInterval(() => {
+            closeModal();
+          }, 4000)
+
           let updatedBookedDatesSet = new Set(bookedDates);
           mDateTo.add(1, 'day');
 
@@ -266,22 +169,32 @@ async function onBookingSubmit(event) {
   }
 };
 
+    
+
     const getDayClassName = (date) => {
       console.log(`Checking class for date: ${moment(date).format('YYYY-MM-DD')}`);
+      const formattedDate = moment(date).format('YYYY-MM-DD');
+      const formattedDateFrom = moment(dateFrom).format('YYYY-MM-DD');
+      const formattedDateTo = moment(dateTo).format('YYYY-MM-DD');
+
+      if ((formattedDate === formattedDateFrom && formattedDate !== formattedDateTo) || 
+        (moment(date).isAfter(dateFrom) && moment(date).isBefore(dateTo))) {
+        return "date-range";
+      }
+      if (moment(date).isAfter(dateFrom) && moment(date).isBefore(dateTo)) {
+        return "date-range"; // Apply style to dates between dateFrom and dateTo
+      }
       if (isPastDate(date)) {
-        console.log('Assigning past-date');
         return "past-date";
       }
       if (isBooked(date)) {
-        console.log('Assigning booked');
         return "booked";
       }
-      console.log('Assigning available');
       return "available"; 
     };
 
-      console.log("Booked Dates Array: ", bookedDatesArray);
-      console.log("useState Booked:", bookedDates);
+    console.log("Booked Dates Array: ", bookedDatesArray);
+    console.log("useState Booked:", bookedDates);
 
     return (
         <ModalStylesWrapper>
@@ -315,15 +228,11 @@ async function onBookingSubmit(event) {
                             </div>
                         </div>
 
+
                         <div className="guests-booking">
                             <label>Guests</label>
-                            <select name="guests" id="guests" onChange={event => setGuests(event.target.value)}>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
+                            <select name="guests" id="guests" size={6} onChange={event => setGuests(event.target.value)}>
+                                {guestOtions}
                             </select>
                         </div>
                         
@@ -331,10 +240,12 @@ async function onBookingSubmit(event) {
                         <ModalSubmitButton>Book Venue</ModalSubmitButton>  
                     </form>
                     {isError && <p className="error-message">{isError}</p>}
-                    {isSuccess && <div className="success-message">Booking Successful!🎉</div>}
+                    {isSuccess && <div className="success-message">Your booking was successful!🎉</div>}
                 </div>
             ) : ""}
           </ModalStyles>
         </ModalStylesWrapper>
     )
 }
+
+

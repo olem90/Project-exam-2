@@ -130,13 +130,13 @@ export const SpecificVenue = () => {
                                 </div>
                                 
                                 <div className="facilities-container">
-                                    <h2>Facilities</h2>                                
+                                    <h2>Facilities:</h2>                                
                                         <div className="icons-container">
                                             <div>
                                                 <FontAwesomeIcon className="wifi-icon" icon={faWifi} />
                                                 <span>Wifi:</span>{venue.meta.wifi ? " Yes" : " No"}
                                             </div>
-
+   
                                             <div>
                                                 <FontAwesomeIcon className="parking-icon" icon={faCar} />
                                                 <span>Parking:</span>{venue.meta.parking ? " Yes" : " No"}

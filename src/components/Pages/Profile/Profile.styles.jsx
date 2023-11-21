@@ -13,7 +13,27 @@ export const ProfileWrapper = styled.div`
         width: 80%;
         margin-inline: auto;
     }
+
+    .not-logged-in {
+      border: 2px solid red;
+      width: 420px;
+      margin-inline: auto;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      margin-block: 30px;
+    }
 `
+
+
+
+
+
+
+
+
+
+
 
 export const UserDataStyles = styled.div`
   display: flex;

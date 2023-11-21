@@ -10,7 +10,13 @@ export const ModalStylesWrapper = styled.div`
   backdrop-filter: blur(10px);
   border-radius: 25px;
   z-index: 99;
+
+    .success-message {
+        color: green;
+        font-weight: 700;
+    }
 `
+
 
 export const ModalStyles = styled.div`
   width: 29%;
@@ -35,6 +41,11 @@ export const ModalStyles = styled.div`
         padding: 8px;
     }
 
+    .date-range {
+        color: white;
+        background: #006400;
+    }
+
     .past-date {
         pointer-events: none;
         cursor: not-allowed;
@@ -42,7 +53,7 @@ export const ModalStyles = styled.div`
     
     .booked {
         color: #000;
-        background: #FF9999 !important;
+        background: #FF9999;
     }
     
     .available {
@@ -96,9 +107,12 @@ export const ModalStyles = styled.div`
     } 
 
     #guests {
-        margin-left: 10px;
+        margin-left: 9px;
         font-size: 15px;
         padding: 3px;
-    }
-`
+        
+        overflow-y: auto;
 
+    }
+
+`

@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import { fetchWithToken } from '../../../fetchWithToken';
 import { BecomeVenueManagerButton } from '../../Buttons/Buttons.styles';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
 const profileInfoUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}?_venues=true&_bookings=true`;
+const isLoggedIn = userProfileLocalStorage !== null;
 
 export const Profile = () => {
     const [venueBookings, setVenueBookings] = useState([]);
@@ -62,8 +62,15 @@ export const Profile = () => {
     }, []);
 
     async function getUserProfileInfo() {
-        const userProfileDataUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}`;
+        const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 
+        if (!userProfileLocalStorage) {
+            console.log("User is not logged in");
+            return;
+        }
+
+        const userProfileDataUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}`;
+        
         try {
             const response = await fetchWithToken(userProfileDataUrl);
             const userProfileData = await response.json();
@@ -147,11 +154,11 @@ export const Profile = () => {
                             <span>To: {formattedDates[index]?.formattedDateTo || ''}</span>
                         </UsersBookingsInfo>
                     </UsersBookingsCards>
-                ))};
+                ))}
             </UserBookingsWrapper>
         )
     }
-
+    
     const handleMyBookingsOnClick = () => {
         setShowBookings(true);
         setShowVenues(false); 
@@ -207,33 +214,48 @@ export const Profile = () => {
     
     return (
         <ProfileWrapper>
-            <div className="profile-container">
+            {isLoggedIn ? (
+                <div className="profile-container">
                 <UserDataStyles>
                     <h1>Account</h1>
-                    <img src={userProfileLocalStorage.avatar}></img>
+                    {profileInfo.avatar && profileInfo.avatar.length > 0 ? (
+                        <img src={profileInfo.avatar} alt={profileInfo.name} onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
+                            ) : (
+                            <img src={placeholderImg} alt="Placeholder image"></img>
+                            )}
                     <Link to= "/account/edit" className="edit-link">Edit</Link>
                     <h2>{userProfileLocalStorage.name}</h2>
                     <span>Email: {userProfileLocalStorage.email}</span>
                     <span> Venue Manager: {userProfileLocalStorage.venueManager ? "Yes" : "No"}</span>
 
                     <ProfileOptionsStyles>
-                        <Link to="/account/my-bookings" 
-                        onClick={handleMyBookingsOnClick}>My Bookings ({profileInfo._count?.bookings || 0})
+                        <Link to="/account/my-bookings" onClick={handleMyBookingsOnClick}>
+                            My Bookings ({profileInfo._count?.bookings || 0})
                         </Link>
-                        {userProfileLocalStorageInfo ? 
-                        <Link to="/account/my-venues" 
-                        onClick={handleMyVenuesOnClick}>My Venues ({profileInfo._count?.venues || 0})
-                        </Link> 
-                        : <BecomeVenueManagerButton onClick={becomeAVenueManager}>Become a Venue Manager</BecomeVenueManagerButton>}   
+                        {isVenueManager ? (
+                            <Link to="/account/my-venues" onClick={handleMyVenuesOnClick}>
+                                My Venues ({profileInfo._count?.venues || 0})
+                            </Link>
+                        ) : (
+                            <BecomeVenueManagerButton onClick={becomeAVenueManager}>
+                                Become a Venue Manager
+                            </BecomeVenueManagerButton>
+                        )} 
                     </ProfileOptionsStyles>
                 </UserDataStyles>
 
                 <UserBookingsStyles>
-                   {showBookings && <MyBookings />}
-                   {showVenues && <MyVenues />}
+                   {isLoggedIn && showBookings && <MyBookings />}
+                   {isVenueManager && showVenues && <MyVenues />}
                 </UserBookingsStyles>
             </div>
+            ) : (
+                <div className="not-logged-in">
+                    <p>You need to be logged in to view this page.</p>
+                    <div>You can log in <Link to="/login"> HERE</Link></div>
+                    <div>Don't have an account? Register <Link to="/register"> HERE</Link></div>
+                </div>
+            )}
         </ProfileWrapper>
-    )
-}
-
+    );
+};

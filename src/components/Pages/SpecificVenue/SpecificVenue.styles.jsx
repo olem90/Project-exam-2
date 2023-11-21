@@ -12,7 +12,7 @@ export const SpecificVenueStyles = styled.div`
 
     .faExpand {
       position: absolute;
-      bottom: 17px;
+      top: 17px;
       right: 15px;
       font-size: 24px;
       font-weight: bold;
@@ -111,7 +111,7 @@ export const SpecificVenueStyles = styled.div`
         max-width: 470px;
         position: relative;
     }
-
+    
     .specific-venue-name-img:hover .main-img{
       filter: brightness(50%);
     }
@@ -167,7 +167,7 @@ export const SpecificVenueStyles = styled.div`
 
     .location-and-facilities-container {
         display: flex;
-        margin-top: 30px;
+        margin-top: 30px; 
     }
 
     .facilities-container {
