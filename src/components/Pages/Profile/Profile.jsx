@@ -1,9 +1,13 @@
 import 'font-awesome/css/font-awesome.min.css';
-import { ProfileWrapper, ProfileOptionsStyles, UsersVenuesInfo, UsersVenuesWrapper, UserDataStyles, UsersVenueCards, UserBookingsStyles, UsersBookingsCards, UsersBookingsInfo, UserBookingsWrapper } from './Profile.styles';
+import { ProfileWrapper, ProfileOptionsStyles, UsersVenuesInfo, 
+        UsersVenuesWrapper, UserDataStyles, UsersVenueCards, UserBookingsStyles, 
+        UsersBookingsCards, UsersBookingsInfo, UserBookingsWrapper } from './Profile.styles';
 import { useEffect, useState } from 'react';
 import { fetchWithToken } from '../../../fetchWithToken';
-import { BecomeVenueManagerButton } from '../../Buttons/Buttons.styles';
+import { BecomeVenueManagerButton, MyBookingsUpdateButton, MyBookingsDeleteLink } from '../../Buttons/Buttons.styles';
 import { Link } from 'react-router-dom';
+import { MyBookingsConfirmationModal } from '../../Modal/Modal';
+import { useNavigate } from 'react-router-dom';
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
@@ -19,12 +23,27 @@ export const Profile = () => {
     const [showVenues, setShowVenues] = useState(false);
     const [isVenueManager, setIsVenueManager] = useState(null);
     const [userProfileLocalStorageInfo, setUserProfileLocalStorageInfo] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
+    const [currentBookingId, setCurrentBookingId] = useState(null);
 
     useEffect(() => {
         getUserProfileInfo();
     }, []);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (deleteSuccess) {
+            navigate("/account");
+            setDeleteSuccess(false);
+        }
+    }, [deleteSuccess]);
     
     useEffect(() => {
+        getProfileInfo();
+    }, [deleteSuccess]);
+    
         async function getProfileInfo() {
             try {
                 setIsError(false);
@@ -38,10 +57,8 @@ export const Profile = () => {
                 setIsLoading(false);
                 setIsError(true);
             }
-        }
-        getProfileInfo();
-    }, []);
-
+        };
+    
     useEffect(() => {
         async function getUsersVenueBookings() {
             try {
@@ -83,7 +100,7 @@ export const Profile = () => {
             console.log(error);
         }
     }
-    
+
     async function becomeAVenueManager() {
         const userProfileDataUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}`;
 
@@ -105,6 +122,46 @@ export const Profile = () => {
         }
     }
 
+
+    async function deleteBooking(bookingId) {      
+        const myDeleteBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${bookingId}`;
+
+        try {
+            setIsError(false);
+            const response = await fetchWithToken(myDeleteBookingsUrl, {
+                method: "DELETE",
+            });
+            if (response.ok) {
+                
+                setDeleteSuccess(true);   
+            } else {     
+                throw new Error("An error occured trying to delete booking");    
+            }
+
+        } catch (error) {
+            setIsError(true);
+            setShowModal(false);
+        }
+    }   
+
+    const handleDeleteClick = (bookingId) => {
+        setCurrentBookingId(bookingId);
+        setShowModal(true);
+    };
+
+        const confirmDeleteBooking = () => {       
+                if (currentBookingId) {
+                    deleteBooking(currentBookingId);
+                    setCurrentBookingId(null);
+                    
+                    setShowModal(false);
+                }
+        };
+        
+        const onCancel = () => {
+            setShowModal(false);
+        };
+        
     const MyBookings = () => {
         const formattedDates = getFormattedDates();
 
@@ -116,6 +173,7 @@ export const Profile = () => {
                         const fetchedDateTo = booking.dateTo;
                         const parsedDateFrom = new Date(fetchedDateFrom);
                         const parsedDateTo = new Date(fetchedDateTo);
+                        
                         const formattedDateFrom = parsedDateFrom.toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "long",
@@ -140,9 +198,13 @@ export const Profile = () => {
             return <div>Loading your bookings...</div>
         }
 
+
         return (
             <UserBookingsWrapper>
-                <h2>My Bookings</h2>
+                {profileInfo.bookings.length > 0 ? (
+                    <h2>My Bookings</h2>
+                ) : <div className="">You have no bookings</div>}
+                
                 {profileInfo.bookings.map((booking, index) => (
                     <UsersBookingsCards key={booking.id}>
                         <div>
@@ -152,13 +214,28 @@ export const Profile = () => {
                             <h3>{booking.venue.name}</h3>
                             <span>From: {formattedDates[index]?.formattedDateFrom || ''}</span>
                             <span>To: {formattedDates[index]?.formattedDateTo || ''}</span>
+
+                            <div className="my-bookings-buttons">
+                                <MyBookingsUpdateButton>Update</MyBookingsUpdateButton>
+                                <MyBookingsDeleteLink onClick={() => handleDeleteClick(booking.id)}>Delete</MyBookingsDeleteLink>
+                            </div>
                         </UsersBookingsInfo>
+
+                        {showModal && (
+                        <MyBookingsConfirmationModal
+                            onConfirm={() => confirmDeleteBooking()}
+                            deleteSuccess = {deleteSuccess}
+                            onCancel = {!deleteSuccess ? onCancel : null}
+                            message = {deleteSuccess ? "Your booking was successfully deleted." : "Are you sure you want to delete this venue?"}
+                            isOpen = {showModal}
+                        />
+                        )}
                     </UsersBookingsCards>
                 ))}
             </UserBookingsWrapper>
         )
     }
-    
+
     const handleMyBookingsOnClick = () => {
         setShowBookings(true);
         setShowVenues(false); 

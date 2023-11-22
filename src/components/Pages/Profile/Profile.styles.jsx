@@ -85,13 +85,13 @@ export const UserBookingsWrapper = styled.div`
 
 export const UsersBookingsCards = styled.div`
   display: flex;
-  max-height: 100px;
   margin-block: 15px;
   box-sizing: border-box;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   width: 100%;
   padding: 10px;
-
+  max-height: 150px;
+  
     img {
         max-width: 120px;
         min-width: 120px;
@@ -100,12 +100,14 @@ export const UsersBookingsCards = styled.div`
         object-fit: cover;
         margin-block: auto;
     }
+    
 `
 
 export const UsersBookingsInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  width: 100%;
 
     h3 {
         margin-top: 0;
@@ -118,6 +120,12 @@ export const UsersBookingsInfo = styled.div`
         padding: 0;
         margin-top: auto;
     }
+
+    .my-bookings-buttons {
+      display: flex;
+      min-width: 300px;
+      margin-top: 15px;
+    }
 `
 
 export const UsersVenueCards = styled(Link)`
@@ -125,12 +133,11 @@ export const UsersVenueCards = styled(Link)`
   max-height: 140px;
   min-height: 140px;
   margin-block: 25px;
-
+  border: 2px solid red;
   box-sizing: border-box;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   width: 100%;
   padding: 10px;
-  border: 2px solid red;
   transition: background-color 0.3s;
 
     &:hover {

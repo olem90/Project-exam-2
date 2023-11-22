@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginButton = styled.button`
@@ -45,11 +46,11 @@ export const CloseModalButton = styled.button`
     }
 `
 
-export const ModalSubmitButton = styled.button`
+export const BookingFormSubmitButton = styled.button`
   background: #000;
   color: #fff;
   width: 100%;
-  margin-top: 75px;
+  margin-top: 175px;
 `
 
 export const BecomeVenueManagerButton = styled.button`
@@ -68,4 +69,25 @@ export const UpdateVenueButton = styled.button`
   font-weight: bold;
   width: 30%;
   margin: 40px 82px 20px 0 ;
+`
+
+export const MyBookingsUpdateButton = styled.button`
+  background: #000;
+  color: #fff;
+  padding: 2px;
+  font-weight: bold;
+  width: 100px;
+  margin-right: auto;
+  font-size: 14px;
+  height: 30px;
+  border-radius: 3px;
+`
+
+export const MyBookingsDeleteLink = styled(Link)`
+  color: red;
+  padding: 6px;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: 0;
+  font-size: 15px;
 `

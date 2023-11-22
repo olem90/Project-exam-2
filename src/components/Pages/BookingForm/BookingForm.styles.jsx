@@ -9,14 +9,14 @@ export const ModalStylesWrapper = styled.div`
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 25px;
-  z-index: 99;
+  z-index: 90;
 
     .success-message {
         color: green;
         font-weight: 700;
+        margin-top: 20px;
     }
 `
-
 
 export const ModalStyles = styled.div`
   width: 29%;
@@ -29,7 +29,7 @@ export const ModalStyles = styled.div`
   background: gray;
   padding: 50px;
   border-radius: 25px;
-
+  
     .error-message {
         min-width: 260px;
         color: red;
@@ -67,6 +67,7 @@ export const ModalStyles = styled.div`
     }
 
     .modal-form-container {
+        box-sizing: border-box;
         padding: 5px;
         width: 84%;
         margin-inline: auto;
@@ -104,15 +105,20 @@ export const ModalStyles = styled.div`
 
     .guests-booking {
         margin-top: 25px;   
+        position: relative;
     } 
 
     #guests {
         margin-left: 9px;
         font-size: 15px;
         padding: 3px;
+        max-height: 120px;
+        position: absolute;
         
-        overflow-y: auto;
-
+          option {
+            padding-inline: 8px;
+          }
+        
     }
 
 `

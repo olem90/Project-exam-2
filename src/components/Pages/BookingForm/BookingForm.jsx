@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { ModalStyles } from "./BookingForm.styles";
 import "react-datepicker/dist/react-datepicker.css";
-import { CloseModalButton, ModalSubmitButton } from "../../Buttons/Buttons.styles";
+import { CloseModalButton, BookingFormSubmitButton } from "../../Buttons/Buttons.styles";
 import { ModalStylesWrapper } from "./BookingForm.styles";
 import { fetchWithToken } from "../../../fetchWithToken";
 import moment from 'moment';
@@ -23,6 +23,7 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
     const [guests, setGuests] = useState("1");
     const [bookedDates, setBookedDates] = useState(new Set());
     const [maxGuests, setMaxGuests] = useState(0);
+    const [isSelectDropdown, setIsSelectDropdown] = useState(false);
 
     const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues/${venueId}?_bookings=true`;
     const bookedDatesArray = Array.from(bookedDates).map(dateStr => moment(dateStr).toDate());
@@ -95,6 +96,7 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
           return true; 
         }
 
+
 async function onBookingSubmit(event) {
   event.preventDefault();
 
@@ -142,10 +144,6 @@ async function onBookingSubmit(event) {
       if (response.ok) {
           setIsSuccess(true);
           setIsError(false);
-
-          setInterval(() => {
-            closeModal();
-          }, 4000)
 
           let updatedBookedDatesSet = new Set(bookedDates);
           mDateTo.add(1, 'day');
@@ -228,16 +226,23 @@ async function onBookingSubmit(event) {
                             </div>
                         </div>
 
-
                         <div className="guests-booking">
                             <label>Guests</label>
-                            <select name="guests" id="guests" size={6} onChange={event => setGuests(event.target.value)}>
+                            <select name="guests" id="guests" 
+                                size={isSelectDropdown ? Math.min(maxGuests, 6) : 1} 
+                                onFocus={() => setIsSelectDropdown(true)}
+                                onBlur={() => setIsSelectDropdown(false)}
+                                onChange={event => {
+                                  setGuests(event.target.value);
+                                  setIsSelectDropdown(false);
+                                }}
+                                >
                                 {guestOtions}
                             </select>
                         </div>
                         
                         <input type="hidden" name="id" value={venueId} />
-                        <ModalSubmitButton>Book Venue</ModalSubmitButton>  
+                        <BookingFormSubmitButton>Book Venue</BookingFormSubmitButton>  
                     </form>
                     {isError && <p className="error-message">{isError}</p>}
                     {isSuccess && <div className="success-message">Your booking was successful!🎉</div>}
@@ -247,5 +252,6 @@ async function onBookingSubmit(event) {
         </ModalStylesWrapper>
     )
 }
+
 
 

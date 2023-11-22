@@ -43,7 +43,6 @@ export const RemoveVenue = () => {
         }
     }
 
-
     const onCancel = () => {
         setShowModal(false);
     }
@@ -63,7 +62,7 @@ export const RemoveVenue = () => {
                     onClose = {closeModal}
                     onCancel = {!deleteSuccess ? onCancel : null}
                     deleteSuccess = {deleteSuccess}
-            />
+                />
             )}
         </>
     )
