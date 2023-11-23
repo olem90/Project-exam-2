@@ -34,6 +34,14 @@ export const VenueCardsStyles = styled.div`
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+
+    .star {
+      color: gold;
+    }
+
+    h1 {
+      margin: 0;
+      margin-block: 5px;
+      font-size: 29px;
+    }
 `
-
-

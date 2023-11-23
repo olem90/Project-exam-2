@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { SpecificVenueWrapper, SpecificVenueStyles } from "./SpecificVenue.styles";
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faWifi, faCar, faCoffee, faPaw, faExpand  } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faWifi, faCar, faCoffee, faPaw, faExpand } from '@fortawesome/free-solid-svg-icons';
 import { BookNowButton } from "../../Buttons/Buttons.styles";
 import { BookVenueForm } from "../BookingForm/BookingForm";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -72,7 +72,6 @@ export const SpecificVenue = () => {
                         <div className="img-and-description-container">
                             <div className="specific-venue-name-img">
                                 <Link><FontAwesomeIcon className="faExpand" icon={faExpand} /></Link>
-                                
                                     {venue.media && venue.media.length > 0 ? (
                                     <img className="main-img" src={venue.media[activeImageIndex]} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                                     ) : (
@@ -176,4 +175,3 @@ export const SpecificVenue = () => {
         </SpecificVenueWrapper>
     )
 }
-

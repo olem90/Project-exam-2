@@ -8,6 +8,7 @@ import { BecomeVenueManagerButton, MyBookingsUpdateButton, MyBookingsDeleteLink 
 import { Link } from 'react-router-dom';
 import { MyBookingsConfirmationModal } from '../../Modal/Modal';
 import { useNavigate } from 'react-router-dom';
+import { BookVenueForm } from '../BookingForm/BookingForm';
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
@@ -26,12 +27,21 @@ export const Profile = () => {
     const [showModal, setShowModal] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [currentBookingId, setCurrentBookingId] = useState(null);
+    const [isOnUpdateModal, setIsOnUpdateModal] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState(false);
 
     useEffect(() => {
         getUserProfileInfo();
     }, []);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (deleteSuccess) {
+            navigate("/account");
+            setDeleteSuccess(false);
+        }
+    }, [deleteSuccess]);
 
     useEffect(() => {
         if (deleteSuccess) {
@@ -122,7 +132,6 @@ export const Profile = () => {
         }
     }
 
-
     async function deleteBooking(bookingId) {      
         const myDeleteBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${bookingId}`;
 
@@ -144,19 +153,29 @@ export const Profile = () => {
         }
     }   
 
+    const handleUpdateBooking = (booking) => {
+        console.log("Selected booking for update:", booking);
+        setIsOnUpdateModal(true);
+        setSelectedBooking(booking);
+    };
+
+    const onBookingUpdate = () => {
+        console.log("Booking update callback triggered");
+        
+    };
+
     const handleDeleteClick = (bookingId) => {
         setCurrentBookingId(bookingId);
         setShowModal(true);
     };
 
-        const confirmDeleteBooking = () => {       
-                if (currentBookingId) {
-                    deleteBooking(currentBookingId);
-                    setCurrentBookingId(null);
-                    
-                    setShowModal(false);
-                }
-        };
+    const confirmDeleteBooking = () => {       
+            if (currentBookingId) {
+                deleteBooking(currentBookingId);
+                setCurrentBookingId(null);
+                setShowModal(false);
+            }
+    };
         
         const onCancel = () => {
             setShowModal(false);
@@ -197,13 +216,12 @@ export const Profile = () => {
         if (isLoading) {
             return <div>Loading your bookings...</div>
         }
-
-
+        
         return (
             <UserBookingsWrapper>
                 {profileInfo.bookings.length > 0 ? (
                     <h2>My Bookings</h2>
-                ) : <div className="">You have no bookings</div>}
+                ) : <div className="no-bookings">You have no bookings</div>}
                 
                 {profileInfo.bookings.map((booking, index) => (
                     <UsersBookingsCards key={booking.id}>
@@ -216,10 +234,23 @@ export const Profile = () => {
                             <span>To: {formattedDates[index]?.formattedDateTo || ''}</span>
 
                             <div className="my-bookings-buttons">
-                                <MyBookingsUpdateButton>Update</MyBookingsUpdateButton>
+                                <MyBookingsUpdateButton to="/account/update-booking" onClick={() => handleUpdateBooking(booking)}>Update</MyBookingsUpdateButton>
                                 <MyBookingsDeleteLink onClick={() => handleDeleteClick(booking.id)}>Delete</MyBookingsDeleteLink>
                             </div>
                         </UsersBookingsInfo>
+                        {isOnUpdateModal && selectedBooking && (
+                            console.log("Rendering BookVenueForm for update with booking:", selectedBooking),
+                            <BookVenueForm
+                                selectedBooking={selectedBooking}
+                                setSelectedBooking={setSelectedBooking}
+                                onBookingUpdate={onBookingUpdate}
+                                closeModal={() => setIsOnUpdateModal(false)}
+                                venueId={selectedBooking.venue.id}
+                                setIsOnUpdateModal={setIsOnUpdateModal}
+                                isOnUpdateModal={isOnUpdateModal}
+                                getProfileInfo={getProfileInfo}
+                            />
+                        )}
 
                         {showModal && (
                         <MyBookingsConfirmationModal

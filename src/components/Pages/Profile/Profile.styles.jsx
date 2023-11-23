@@ -81,7 +81,14 @@ export const UserBookingsWrapper = styled.div`
         margin-top: 65px;
         padding: 0;
     }
+
+    .no-bookings {
+      font-weight: bold;
+      font-size: 22px;
+      margin-top: 120px;
+    }
 `
+
 
 export const UsersBookingsCards = styled.div`
   display: flex;
@@ -100,7 +107,7 @@ export const UsersBookingsCards = styled.div`
         object-fit: cover;
         margin-block: auto;
     }
-    
+
 `
 
 export const UsersBookingsInfo = styled.div`

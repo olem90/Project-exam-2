@@ -27,10 +27,10 @@ function App() {
         <Route path="/account" element={<Profile />} />
         <Route path="/account/my-venues" element={<Profile />} />
         <Route path="/account/my-bookings" element={<Profile />} />
+        <Route path="/account/update-booking" element={<Profile />} />
         <Route path="/account/edit" element={<EditAvatar />} />
         <Route path="/account/create-venue" element={<CreateVenue />} />
         <Route path="/account/update-venue/:id" element={<UpdateVenue />} />
-       
       </Routes>
    </Layout>
   )

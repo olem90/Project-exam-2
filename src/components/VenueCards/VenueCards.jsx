@@ -1,6 +1,8 @@
 import { VenueCardsStyles, VenueCardsWrapper } from "./VenueCards.styles";
 import { useNavigate } from "react-router-dom";
 import { ViewVenueButton } from "../Buttons/Buttons.styles";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const url = "https://api.noroff.dev/api/v1/holidaze/venues";
 
@@ -12,47 +14,32 @@ const VenueCards = ({ venues }) => {
         navigate(`/venue/${id}`);
     }
 
-    /*
-    // Fetch venues from the API
-    useEffect(() => {
-        async function GetVenues() {
-            try {
-                setIsError(false);
-                setIsLoading(true);
-                const response = await fetch(url);
-                const json = await response.json();
-                setVenues(json);
-                console.log(json);
-                setIsLoading(false);
-            } catch (error) {
-                console.error(error);
-                setIsLoading(false);
-                setIsError(true);
-            }
+    function renderStars(rating) {
+        const stars = [];
+        
+        for (let i = 0; i < rating; i++) {
+          stars.push(<FontAwesomeIcon className='star' icon={faStar} key={i} />);
         }
-        GetVenues();
-    }, []);
-  */
+        return stars;
+      }
 
-    // if (isLoading) {
-    //     return <div>Loading venues...</div>
-    // }
-
-    // if (isError) {
-    //     return <div>Error loading venues...</div>
-    // }
     const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images"
     
     return (
         <VenueCardsWrapper venues={venues}>
                 {venues.map((venue) => (
                     <VenueCardsStyles key={venue.id}>
-                        <h2>{venue.name}</h2>
+                        <h1>{venue.name}</h1>
                         {venue.media && venue.media.length > 0 ? (
                         <img src={venue.media} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                         ) : (
                         <img src={placeholderImg} alt="Placeholder"></img>
                         )}
+                        <span>Price: {venue.price}</span>
+                        <span>Max guests: {venue.maxGuests}</span>
+                        {venue.rating > 0 ? (
+                            <span className="stars">Rating: {renderStars(venue.rating)}</span>
+                        ) : <span>Rating: No ratings yet</span>}
                         <p>{venue.description}</p>
                         <ViewVenueButton onClick={() => goToVenuePage(venue.id)}>View venue</ViewVenueButton>
                     </VenueCardsStyles>
@@ -61,3 +48,4 @@ const VenueCards = ({ venues }) => {
     )
 }
 export default VenueCards;
+

@@ -11,22 +11,31 @@ import { Link } from "react-router-dom";
 
 const bookingUrl = "https://api.noroff.dev/api/v1/holidaze/bookings";
 
-export const BookVenueForm = ({ closeModal, venueId }) => {
+export const BookVenueForm = ({ closeModal, venueId, setSelectedBooking, selectedBooking, onBookingUpdate, setIsOnUpdateModal, isOnUpdateModal, getProfileInfo }) => {
     const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
     const isLoggedIn = userProfileLocalStorage !== null;
 
     const [showModal, setShowModal] = useState(true);
     const [isError, setIsError] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
-    const [dateTo, setDateTo] = useState(moment().toDate()); // This will use the current time in Norway
+    const [dateTo, setDateTo] = useState(moment().toDate()); 
     const [dateFrom, setDateFrom] = useState(moment().toDate());
     const [guests, setGuests] = useState("1");
     const [bookedDates, setBookedDates] = useState(new Set());
     const [maxGuests, setMaxGuests] = useState(0);
     const [isSelectDropdown, setIsSelectDropdown] = useState(false);
-
+    const [updateSuccess, setUpdateSuccess] = useState(false);
     const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues/${venueId}?_bookings=true`;
     const bookedDatesArray = Array.from(bookedDates).map(dateStr => moment(dateStr).toDate());
+
+    useEffect(() => {
+      if (selectedBooking) {
+        console.log("Setting up form with existing booking data:", selectedBooking);
+        setDateFrom(moment(selectedBooking.dateFrom).toDate());
+        setDateTo(moment(selectedBooking.dateTo).toDate());
+        setGuests(selectedBooking.guests);
+      }
+    }, [selectedBooking]);
 
     function isPastDate(date) {
       const today = moment().startOf('day');
@@ -96,6 +105,8 @@ export const BookVenueForm = ({ closeModal, venueId }) => {
           return true; 
         }
 
+        const bookingId = selectedBooking ? selectedBooking.id : null;
+        const isUpdateMode = selectedBooking !== null;
 
 async function onBookingSubmit(event) {
   event.preventDefault();
@@ -167,10 +178,64 @@ async function onBookingSubmit(event) {
   }
 };
 
-    
+const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${bookingId}`;
+   
+      async function  updateBooking() {
+        const updatePayload = {
+          dateFrom: moment(dateFrom).format(),
+          dateTo: moment(dateTo).format(),
+          guests: Number(guests),
+        };
+        console.log("updatePayload:", updatePayload);
+        console.log("Updating booking with ID:", bookingId);
+
+        try {
+          setIsError(false);
+          const response = await fetchWithToken(updateBookingUrl, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "Application/json"
+          },
+          body: JSON.stringify(updatePayload)
+        });
+          const json = await response.json();
+          console.log("json response - UpdateBooking", json);
+          
+          if (response.ok) {
+            setIsError(false);
+            setUpdateSuccess(true);
+            
+            setTimeout(() => {
+              setIsOnUpdateModal(false);
+              setSelectedBooking(null);
+              getProfileInfo();
+            }, 4000)
+
+            if (onBookingUpdate) {
+              onBookingUpdate();
+            }
+          } else {
+            setIsError("An error occured while trying to update your booking. Please try again");
+          }         
+        } catch (error) {
+          setIsError("An error occured while trying to update your booking. Please try again");
+        }
+      }                                                                                                                                                                                    
+    async function HandleBookingFormSubmit(event) {
+      event.preventDefault();
+
+      console.log("Form submitted. Update mode:", isOnUpdateModal);
+
+      if (isOnUpdateModal) {
+        console.log("Attempting to update booking");
+        await updateBooking();
+      } else {
+          console.log("Attempting to create new booking");
+        await onBookingSubmit(event);
+      }
+    };
 
     const getDayClassName = (date) => {
-      console.log(`Checking class for date: ${moment(date).format('YYYY-MM-DD')}`);
       const formattedDate = moment(date).format('YYYY-MM-DD');
       const formattedDateFrom = moment(dateFrom).format('YYYY-MM-DD');
       const formattedDateTo = moment(dateTo).format('YYYY-MM-DD');
@@ -191,9 +256,6 @@ async function onBookingSubmit(event) {
       return "available"; 
     };
 
-    console.log("Booked Dates Array: ", bookedDatesArray);
-    console.log("useState Booked:", bookedDates);
-
     return (
         <ModalStylesWrapper>
           <ModalStyles>
@@ -201,7 +263,7 @@ async function onBookingSubmit(event) {
                 <div className="modal-form-container">
                     <CloseModalButton onClick={closeModal}>X</CloseModalButton>
                     <h2>Book Venue</h2>
-                    <form onSubmit={onBookingSubmit} className="booking-form">
+                    <form onSubmit={HandleBookingFormSubmit} className="booking-form">
                         <div className="datePickerContainer">
                             <div className="booking-dates start-date">
                                 <label>Date from:</label>
@@ -242,16 +304,18 @@ async function onBookingSubmit(event) {
                         </div>
                         
                         <input type="hidden" name="id" value={venueId} />
-                        <BookingFormSubmitButton>Book Venue</BookingFormSubmitButton>  
+                        <BookingFormSubmitButton>
+                            {isOnUpdateModal ? "Update Booking" : "Book Venue"}
+                        </BookingFormSubmitButton>  
                     </form>
                     {isError && <p className="error-message">{isError}</p>}
                     {isSuccess && <div className="success-message">Your booking was successful!🎉</div>}
+                    {updateSuccess && <div>Your booking was successfully updated.🎉</div>}
                 </div>
             ) : ""}
           </ModalStyles>
         </ModalStylesWrapper>
     )
 }
-
 
 
