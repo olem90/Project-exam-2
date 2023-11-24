@@ -50,7 +50,7 @@ export const BookingFormSubmitButton = styled.button`
   background: #000;
   color: #fff;
   width: 100%;
-  margin-top: 175px;
+  margin-top: 125px;
 `
 
 export const BecomeVenueManagerButton = styled.button`

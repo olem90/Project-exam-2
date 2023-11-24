@@ -130,6 +130,7 @@ async function onBookingSubmit(event) {
   }
 
   if (!isDateRangeAvailable(mDateFrom, mDateTo, bookedDates)) {
+    setIsSuccess(false); 
     setIsError("Oops! These dates are already booked.");
     return;
   }
@@ -169,10 +170,12 @@ async function onBookingSubmit(event) {
           fetchBookings();
       } else {
           console.log("Booking failed");
+          setIsSuccess(false);
           setIsError("An error occurred while booking. Please try again.");
       }
 
   } catch (error) {
+      setIsSuccess(false);
       console.log("An error occurred:", error);
       setIsError("An error occurred while booking. Please try again.");
   }
@@ -200,17 +203,12 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
         });
           const json = await response.json();
           console.log("json response - UpdateBooking", json);
+
           
           if (response.ok) {
             setIsError(false);
             setUpdateSuccess(true);
             
-            setTimeout(() => {
-              setIsOnUpdateModal(false);
-              setSelectedBooking(null);
-              getProfileInfo();
-            }, 4000)
-
             if (onBookingUpdate) {
               onBookingUpdate();
             }
@@ -218,6 +216,7 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
             setIsError("An error occured while trying to update your booking. Please try again");
           }         
         } catch (error) {
+          setIsSuccess(false);
           setIsError("An error occured while trying to update your booking. Please try again");
         }
       }                                                                                                                                                                                    
@@ -234,6 +233,11 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
         await onBookingSubmit(event);
       }
     };
+
+    const closeUpdateBookingForm = () => {
+      closeModal();
+      getProfileInfo();
+    }
 
     const getDayClassName = (date) => {
       const formattedDate = moment(date).format('YYYY-MM-DD');
@@ -308,14 +312,24 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
                             {isOnUpdateModal ? "Update Booking" : "Book Venue"}
                         </BookingFormSubmitButton>  
                     </form>
-                    {isError && <p className="error-message">{isError}</p>}
-                    {isSuccess && <div className="success-message">Your booking was successful!🎉</div>}
-                    {updateSuccess && <div>Your booking was successfully updated.🎉</div>}
+                    {isError && <div>
+                                    <p className="error-message">{isError}</p>
+                                </div>}
+                    {isSuccess && <div className="success-message">
+                                      <p>Your booking was successful!🎉</p>
+                                      <Link className="go-back-link" onClick={closeModal}>Go Back</Link>
+                                  </div>}
+                    {updateSuccess && <div className="success-message">
+                                      <p>Your booking was successfully updated!🎉</p>
+                                      <Link className="go-back-link" onClick={closeUpdateBookingForm}>Go Back</Link>
+                                  </div>}
                 </div>
             ) : ""}
           </ModalStyles>
         </ModalStylesWrapper>
     )
 }
+
+
 
 

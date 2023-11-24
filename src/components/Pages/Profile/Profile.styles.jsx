@@ -25,16 +25,6 @@ export const ProfileWrapper = styled.div`
     }
 `
 
-
-
-
-
-
-
-
-
-
-
 export const UserDataStyles = styled.div`
   display: flex;
   flex-direction: column;

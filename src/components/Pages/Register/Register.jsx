@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FormStylesWrapper } from "./Register.styles";
 import FormStyles from "./Register.styles";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const url = "https://api.noroff.dev/api/v1/holidaze/auth/register";
 
@@ -18,6 +20,21 @@ export const Register = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [regIsSuccess, setRegIsSuccess] = useState(false);
+
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        if (regIsSuccess) {
+            const timer = setTimeout(() => {
+                navigate("/login");
+            }, 4000);
+
+            return () => clearTimeout(timer); 
+        }
+    }, [regIsSuccess, navigate]);
+
 
     function onNameChange(event) {
         setName(event.target.value)
@@ -86,6 +103,15 @@ export const Register = () => {
                 body: JSON.stringify({ name, email, avatar, password }),
             });
 
+            if (response.ok) {
+                setRegIsSuccess(true);
+                setTimeout(() => {
+                    navigate("/login");
+                }, 4000);
+            } else {
+                setIsError("Failed to register. Please try again.")
+            }
+            
             const formData = await response.json();
             console.log(formData);
             
@@ -137,12 +163,15 @@ export const Register = () => {
                 <span>{passwordError}</span>
 
                 <button>Register</button>
+                {regIsSuccess && (
+                <div> 
+                    <p>Welcome {name}.You've successfully registered!</p>
+                </div>
+                )}
             </FormStyles>
 
         </FormStylesWrapper>
     )
     }
     export default Register;
-                
-    
                 

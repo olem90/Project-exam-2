@@ -41,7 +41,6 @@ const Login = () => {
             const userData = await response.json();
             console.log(userData);
             if (response.ok) {              
-                //saving the accessToken
                 localStorage.setItem("accessToken", userData.accessToken);
                 if (userData) {
                     localStorage.setItem("profile", JSON.stringify(userData));
@@ -49,7 +48,6 @@ const Login = () => {
 
                 setPasswordError("");
                 setEmailError("");
-                //navigating user to home page
                 navigate("/");
             } else {
                 setIsError(true);
@@ -63,7 +61,7 @@ const Login = () => {
             setIsLoading(false);
         }
     };
-
+    
     if (isLoading) {
         return <div>Hang in there while we are logging you in...</div>
     }

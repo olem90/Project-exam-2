@@ -169,7 +169,6 @@ export const CreateVenue = () => {
             }
         }
     
-        
         const onCancel = () => {
             setShowModal(false);
         }

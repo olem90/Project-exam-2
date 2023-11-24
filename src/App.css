@@ -1,3 +1,25 @@
+:root {
+  --blue-100: #e3f2fd; 
+  --blue-200: #bbdefb;
+  --blue-300: #90caf9;
+  --blue-400: #64b5f6;
+  --blue-500: #42a5f5; 
+  --blue-600: #2196f3;
+  --blue-700: #1e88e5;
+  --blue-800: #1976d2;
+  --blue-900: #1565c0; 
+
+  /*darker shades of blue*/
+  --blue-950: #0d47a1; 
+  --blue-960: #0b3d91;
+  --blue-970: #09346d;
+  --blue-980: #072a4b;
+  --blue-990: #041b33; 
+  
+  /* green for success messages*/
+  --success-green: #4CAF50;
+}
+
 #root {
   width: 100%;
   margin: 0 auto;

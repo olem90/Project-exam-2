@@ -12,7 +12,9 @@ import { BookVenueForm } from '../BookingForm/BookingForm';
 
 const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
-const profileInfoUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}?_venues=true&_bookings=true`;
+const profileInfoUrl = userProfileLocalStorage 
+    ? `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}?_venues=true&_bookings=true`
+    : null;
 const isLoggedIn = userProfileLocalStorage !== null;
 
 export const Profile = () => {
@@ -53,6 +55,15 @@ export const Profile = () => {
     useEffect(() => {
         getProfileInfo();
     }, [deleteSuccess]);
+
+    useEffect(() => {
+        const userProfileFromStorage = JSON.parse(localStorage.getItem("profile"));
+        if (userProfileFromStorage && userProfileFromStorage.venueManager) {
+            setIsVenueManager(true);
+        } else {
+            setIsVenueManager(false);
+        }
+    }, []);
     
         async function getProfileInfo() {
             try {
@@ -122,16 +133,26 @@ export const Profile = () => {
             body: JSON.stringify({venueManager: true}),
         };
 
+
         try {
             const response = await fetchWithToken(userProfileDataUrl, requestOptions);
             const profileData = await response.json();
-            setIsVenueManager(profileData.venueManager);
+            setIsVenueManager(true);
+            console.log("venuemanager after response:" , isVenueManager)
 
-        } catch (error) {
-            setIsError(true);
-        }
-    }
+            if (response.ok) {
+                setUserProfileLocalStorageInfo(profileData.venueManager);
+                const updatedProile = {...profileData, venueManager: true };
+                localStorage.setItem("profile" , JSON.stringify(updatedProile));
+                } else {
+                    throw new Error("Failed to update venue manager");
+                }
 
+            } catch (error) {
+                setIsError(true);
+            }
+        };
+    
     async function deleteBooking(bookingId) {      
         const myDeleteBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${bookingId}`;
 
@@ -154,7 +175,6 @@ export const Profile = () => {
     }   
 
     const handleUpdateBooking = (booking) => {
-        console.log("Selected booking for update:", booking);
         setIsOnUpdateModal(true);
         setSelectedBooking(booking);
     };
@@ -239,7 +259,6 @@ export const Profile = () => {
                             </div>
                         </UsersBookingsInfo>
                         {isOnUpdateModal && selectedBooking && (
-                            console.log("Rendering BookVenueForm for update with booking:", selectedBooking),
                             <BookVenueForm
                                 selectedBooking={selectedBooking}
                                 setSelectedBooking={setSelectedBooking}
@@ -276,6 +295,9 @@ export const Profile = () => {
         setShowVenues(true);
         setShowBookings(false); 
     };
+
+    console.log("userProfilelocalStorage:", userProfileLocalStorageInfo);
+    console.log("checking Venue manager:", isVenueManager);
 
     const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images";
     
