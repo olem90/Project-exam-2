@@ -1,4 +1,5 @@
 import { ModalStyles } from "./Modal.styles";
+import { ConfirmDeleteButton } from "../Buttons/Buttons.styles";
 
 export const Modal = ({isOpen, onClose, onCancel, message, deleteSuccess}) => {
     if (!isOpen) return null;
@@ -8,7 +9,7 @@ export const Modal = ({isOpen, onClose, onCancel, message, deleteSuccess}) => {
             <div className="modal-content">
                 <p>{message}</p>
                 <div className="modal-buttons-container" >
-                    <button onClick={onClose}>OK</button>
+                    <ConfirmDeleteButton onClick={onClose}>OK</ConfirmDeleteButton>
                     {!deleteSuccess && <button onClick={onCancel}>Cancel</button>}
                 </div>
             </div>
@@ -24,7 +25,7 @@ export const MyBookingsConfirmationModal = ({message, onCancel, onConfirm, isOpe
             <div className="modal-content">
                 <p>{message}</p>
                 <div className="modal-buttons-container" >
-                    <button onClick={onConfirm}>OK</button>
+                    <ConfirmDeleteButton onClick={onConfirm}>OK</ConfirmDeleteButton>
                     {!deleteSuccess && <button onClick={onCancel}>Cancel</button>}
                 </div>
             </div>

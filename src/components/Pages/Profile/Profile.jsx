@@ -236,17 +236,21 @@ export const Profile = () => {
         if (isLoading) {
             return <div>Loading your bookings...</div>
         }
-        
+
         return (
             <UserBookingsWrapper>
                 {profileInfo.bookings.length > 0 ? (
-                    <h2>My Bookings</h2>
-                ) : <div className="no-bookings">You have no bookings</div>}
+                    <h2>My Bookings ({profileInfo._count?.bookings || 0})</h2>
+                ) : <div className="no-bookings">You have no bookings</div>} 
                 
                 {profileInfo.bookings.map((booking, index) => (
                     <UsersBookingsCards key={booking.id}>
                         <div>
-                            <img src={booking.venue.media[0]}></img>
+                        {booking.venue.media && booking.venue.media.length > 0 ? (
+                            <img src={booking.venue.media} alt={booking.venue.name} onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
+                            ) : (
+                            <img src={placeholderImg} alt="Placeholder image"></img>
+                            )}
                         </div>
                         <UsersBookingsInfo>
                             <h3>{booking.venue.name}</h3>
@@ -304,7 +308,7 @@ export const Profile = () => {
     const MyVenues = () => {
         return (
             <UsersVenuesWrapper>
-                <h2>My Venues</h2>
+                <h2>My Venues ({profileInfo._count?.venues || 0})</h2>
                 {profileInfo && profileInfo.venues.length > 0 ? (
                     <div>
                         <Link to="/account/create-venue">Create a new venue</Link>
@@ -359,11 +363,11 @@ export const Profile = () => {
                     <span> Venue Manager: {userProfileLocalStorage.venueManager ? "Yes" : "No"}</span>
 
                     <ProfileOptionsStyles>
-                        <Link to="/account/my-bookings" onClick={handleMyBookingsOnClick}>
+                        <Link className="profile-link" to="/account/my-bookings" onClick={handleMyBookingsOnClick}>
                             My Bookings ({profileInfo._count?.bookings || 0})
                         </Link>
                         {isVenueManager ? (
-                            <Link to="/account/my-venues" onClick={handleMyVenuesOnClick}>
+                            <Link className="profile-link" to="/account/my-venues" onClick={handleMyVenuesOnClick}>
                                 My Venues ({profileInfo._count?.venues || 0})
                             </Link>
                         ) : (

@@ -5,14 +5,14 @@ export const ProfileWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  max-width: 90%;
+  max-width: 100%;
   margin-inline: auto;
 
     .profile-container {
         display: flex;
-        width: 80%;
-        margin-inline: auto;
-    }
+        width: 100%; 
+        margin-inline: auto; 
+    } 
 
     .not-logged-in {
       border: 2px solid red;
@@ -21,17 +21,24 @@ export const ProfileWrapper = styled.div`
       padding: 5px;
       display: flex;
       flex-direction: column;
-      margin-block: 30px;
-    }
-`
+      margin-block: 30px; 
 
+    }
+` 
+  
 export const UserDataStyles = styled.div`
   display: flex;
   flex-direction: column;
-
+  padding: 20px 100px 60px 100px;  
+  background: var(--blue-300);   
+  max-height: 544px;   
+  border-radius: 0 20px 20px 0;  
+ 
     h1 {
-        margin-top: 20px;
+        margin: 0;
+        margin-bottom: 40px; 
         padding: 0;
+        color: var(--blue-990);  
     }
 
     img {
@@ -45,40 +52,50 @@ export const ProfileOptionsStyles = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
-  gap: 20px 0;
+  gap: 20px 0; 
 
-    a {
-        font-size: 26px;
-        text-decoration: underline;
-    }
+    .profile-link {
+        font-size: 22px; 
+        text-align: center; 
+        border-radius: 5px;  
+        padding: 3px 6px;          
+        max-width: 200px;  
+        transition: 0.3s ease-in-out;  
+        background: var(--blue-200);
+        color: var(--blue-990);
+        border: 1px solid #000; 
+
+          &:hover {
+            background: var(--blue-200);
+            color: var(--blue-990);
+            border: 1px solid #000; 
+          }
+    } 
 `
 
 export const UserBookingsStyles = styled.div`
   display: flex;
   flex-direction: column;
   width: 70%;
- 
 `
 
 export const UserBookingsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 90px;
-  width: 83%;
-  margin-top: 40px;
+  width: 75%;
+  margin-inline: auto; 
 
     h2 {
-        margin-top: 65px;
-        padding: 0;
+        margin-top: 40px; 
+        padding: 0; 
     }
 
     .no-bookings {
-      font-weight: bold;
-      font-size: 22px;
-      margin-top: 120px;
+        font-weight: bold;
+        font-size: 22px;
+        margin-top: 120px;
     }
-`
-
+` 
 
 export const UsersBookingsCards = styled.div`
   display: flex;
@@ -86,18 +103,19 @@ export const UsersBookingsCards = styled.div`
   box-sizing: border-box;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   width: 100%;
-  padding: 10px;
-  max-height: 150px;
+  max-width: 700px;
+  padding: 10px; 
+  height: auto; 
+  background: #ffffff;  
   
     img {
         max-width: 120px;
         min-width: 120px;
-        max-height: 100%;
-        min-height: 100%;
+        max-height: 130px;
+        min-height: 120px;
         object-fit: cover;
         margin-block: auto;
     }
-
 `
 
 export const UsersBookingsInfo = styled.div`
@@ -134,8 +152,9 @@ export const UsersVenueCards = styled(Link)`
   box-sizing: border-box;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   width: 100%;
+  max-width: 700px;
   padding: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s; 
 
     &:hover {
       background-color: #0056b3;
@@ -160,12 +179,11 @@ export const UsersVenueCards = styled(Link)`
 export const UsersVenuesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 150px;
+  margin-left: 50px;
   width: 83%;
-  margin-top: 40px;
 
     h2 {
-        margin-top: 65px;
+        margin-top: 40px; 
         padding: 0;
     }
 `

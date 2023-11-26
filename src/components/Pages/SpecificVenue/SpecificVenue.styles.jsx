@@ -67,7 +67,6 @@ export const SpecificVenueStyles = styled.div`
           .owner-img-container {
             box-sizing: border-box;
             margin-block: auto;
-            
             max-width: 100px; 
             height: fit-content;
 

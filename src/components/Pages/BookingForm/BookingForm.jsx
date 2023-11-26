@@ -226,7 +226,6 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
       console.log("Form submitted. Update mode:", isOnUpdateModal);
 
       if (isOnUpdateModal) {
-        console.log("Attempting to update booking");
         await updateBooking();
       } else {
           console.log("Attempting to create new booking");
@@ -291,11 +290,11 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
                                     />
                             </div>
                         </div>
-
+ 
                         <div className="guests-booking">
-                            <label>Guests</label>
+                            <label className="guest-label">Guests</label>
                             <select name="guests" id="guests" 
-                                size={isSelectDropdown ? Math.min(maxGuests, 6) : 1} 
+                                size={isSelectDropdown ? Math.min(maxGuests, 5) : 1} 
                                 onFocus={() => setIsSelectDropdown(true)}
                                 onBlur={() => setIsSelectDropdown(false)}
                                 onChange={event => {
@@ -319,7 +318,7 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
                                       <p>Your booking was successful!🎉</p>
                                       <Link className="go-back-link" onClick={closeModal}>Go Back</Link>
                                   </div>}
-                    {updateSuccess && <div className="success-message">
+                    {updateSuccess && <div className="update-success-message">
                                       <p>Your booking was successfully updated!🎉</p>
                                       <Link className="go-back-link" onClick={closeUpdateBookingForm}>Go Back</Link>
                                   </div>}

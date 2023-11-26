@@ -15,13 +15,14 @@
   --blue-970: #09346d;
   --blue-980: #072a4b;
   --blue-990: #041b33; 
-  
+
   /* green for success messages*/
-  --success-green: #4CAF50;
+  --success-green: #28a745;
 }
 
 #root {
   width: 100%;
   margin: 0 auto;
+  background: var(--blue-100);
 }
 

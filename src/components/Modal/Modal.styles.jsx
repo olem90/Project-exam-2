@@ -5,19 +5,20 @@ export const ModalStyles = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #000;
   font-size: 18px;
-  height: 180px;
-  width: 460px;
-  top: 50%;
+  height: 120px;
+  width: 420px; 
+  top: 50%; 
   left: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
   z-index: 99;
-  background: #fff;
+  background: linear-gradient(170deg, var(--blue-600)0%, var(--blue-400)50%, var(--blue-300)100%);
   padding: 10px;
-  box-shadow: 0 4px 8px 0 blue;
+  box-shadow: 0 1px 1px 0 var(--blue-300);   
+  border-radius: 5px;  
+  border: 2px solid var(--blue-600);
 
     .modal-content {
         display: flex;
@@ -33,23 +34,33 @@ export const ModalStyles = styled.div`
             margin: 0;
           }
     }
-
+ 
     .modal-buttons-container {
         margin-top: 20px;
         width: 90%;
         display: flex;
-        flex-direction: row;
+        flex-direction: row;  
 
           button {
-            display: flex;
-            align-items: center;
+            color: #fff;
+            background: var(--blue-950); 
+            display: flex; 
+            align-items: center; 
             justify-content: center;
-            height: 40px;
-            width: 40%;
-            border: 2px solid purple;
+            height: 40px; 
+            width: 120px;
             margin-inline: auto;
-
+            border: 3px solid var(--blue-930); 
+            border-radius: 4px;   
+         
+             &:hover {
+                border: 2px solid var(--blue-200);  
+             }
           }
+    }
+
+    button:hover {
+        border: var(--blue-400);
     }
 `
 

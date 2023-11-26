@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginButton = styled.button`
-  background: #000;
+  background: var(--blue-980);
   color: #fff;
   padding: 5px;
   height: 34px;
   margin-top: 25px;
   border: none;
   font-weight: bold;
+ 
 `
 
 export const ViewVenueButton = styled.button`
@@ -18,8 +19,8 @@ export const ViewVenueButton = styled.button`
   margin-top: auto;
   border: none;
   font-weight: bold;
+  border-radius: 5px;
 `
-
 
 export const BookNowButton = styled.button`
   background: #000;
@@ -50,7 +51,7 @@ export const BookingFormSubmitButton = styled.button`
   background: #000;
   color: #fff;
   width: 100%;
-  margin-top: 125px;
+  margin-top: 120px !important;
 `
 
 export const BecomeVenueManagerButton = styled.button`
@@ -85,9 +86,19 @@ export const MyBookingsUpdateButton = styled.button`
 
 export const MyBookingsDeleteLink = styled(Link)`
   color: red;
-  padding: 6px;
+  padding: 4px;
   font-weight: bold;
   margin-left: auto;
   margin-right: 0;
   font-size: 15px;
+
+    &:hover {
+      box-shadow: 0 3px 3px 2px;
+      border-radius: 6px;
+      color: red;
+    }
+`
+
+export const ConfirmDeleteButton = styled.button`
+  
 `

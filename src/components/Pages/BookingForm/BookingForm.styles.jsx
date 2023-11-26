@@ -9,17 +9,19 @@ export const ModalStylesWrapper = styled.div`
   background: rgba(0, 0, 0, 0.80);
   backdrop-filter: blur(10px);
   border-radius: 15px;
-  z-index: 90;
+  z-index: 90; 
 
     .success-message {
+        box-sizing: border-box;
         color: var(--success-green);
         font-weight: 700;
         margin-top: 20px;
         border-radius: 5px;
-        box-shadow: 
-        padding: 15px;
-        font-size: 18px;
+        padding: 12px;
+        font-size: 17px;
         box-shadow: 0px 0px 10px 2px #90ee90;
+        background: var(--blue-100);
+        min-width: 100%;   
 
           p {
             margin: 0;
@@ -29,9 +31,30 @@ export const ModalStylesWrapper = styled.div`
             justify-content: center;
           }
     }
+
+    .update-success-message {
+        box-sizing: border-box;
+        color: var(--success-green);
+        font-weight: 700;
+        margin-top: 20px;
+        border-radius: 5px;
+        padding: 2px;
+        font-size: 17px;
+        box-shadow: 0px 0px 10px 2px #90ee90;
+        background: var(--blue-100);
+        min-width: 100%;  
+
+          p {
+            margin: 0;
+            display: flex;
+            padding: 3px 3px 3px 8px; 
+            margin-inline: auto; 
+            justify-content: center;
+          }
+    }
     
     .go-back-link {
-        color: #fff;
+        color: var(--blue-950);
         margin-left: auto;
         margin-right: 30px;
         border-radius: 3px;
@@ -39,8 +62,10 @@ export const ModalStylesWrapper = styled.div`
         display: flex;
         width: 60px;
         font-size: 15px;
+        font-weight: bold;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
     }
 `
 
@@ -52,9 +77,11 @@ export const ModalStyles = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   position: relative;
-  background: linear-gradient(170deg,  #072a4b 0%, #0b3d91 50%, var(--blue-950)100%);
+  background: linear-gradient(170deg, var(--blue-600)0%, var(--blue-400)50%, var(--blue-200)100%); 
   padding: 50px;
-  border-radius: 25px;
+  border-radius: 10px;
+  border: none;
+  
   
     .error-message {
         color: red;
@@ -68,6 +95,7 @@ export const ModalStyles = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        background: var(--blue-100);
     }
     
     .date-range {
@@ -92,8 +120,8 @@ export const ModalStyles = styled.div`
     }
   
     h2 {
-        margin-left: 35px;
-        color: #fff;
+        margin-left: 42px;
+        color: var(--blue-990);
         margin-top: 0 !important;
     }
 
@@ -108,50 +136,63 @@ export const ModalStyles = styled.div`
         width: 84%;
         margin-inline: auto;
 
-        label {
-            font-size: 18px;
-            display: flex;
-            margin-left: 8px;
-            color: #fff;
-        } 
+            label {
+                font-size: 18px;
+                display: flex;
+                margin-left: 7px;
+                color: #000;
+                font-weight: 600;  
+            }
+
+            .guest-label {
+                margin-left: 4px;
+            }
         
-        .booking-dates {
-            display: flex;
-            flex-direction: column;
-        }
-    } 
+            .booking-dates {
+                display: flex;
+                flex-direction: column;
+            }
+    }
 
     .datePickerContainer {
         display: flex;
         justify-content: center;
 
             input {
-                display: block;
                 margin-inline: auto;
                 font-size: 17px;
-                padding-block: 3px;
+                height: 16px;            
+                padding: 5px 0 3px 3px;     
+                line-height: 24px; 
                 width: 90%;
                 gap: 15px;
-
+                color: var(--blue-990);
+                font-weight: 700;
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                border: 1px solid var(--blue-500);
             }  
     }
 
     .guests-booking {
         margin-top: 25px;   
         position: relative;
+        color: var(--blue-990);
     } 
 
     #guests {
-        margin-left: 9px;
+        margin-left: 4px;
         font-size: 17px;
         padding: 3px;
         max-height: 120px;
         position: absolute;
+        color: var(--blue-990);
         
           option {
             padding-inline: 8px;
+            color: var(--blue-990);
+            font-weight: 700;
           }
-        
     }
-
 `

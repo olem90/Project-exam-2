@@ -60,11 +60,11 @@ const Login = () => {
         } finally {
             setIsLoading(false);
         }
-    };
-    
+    };  
+   
     if (isLoading) {
         return <div>Hang in there while we are logging you in...</div>
-    }
+    }  
 
     return (
         <LoginFormWrapper>

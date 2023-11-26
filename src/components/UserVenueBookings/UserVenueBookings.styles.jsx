@@ -7,20 +7,21 @@ export const VenueBookingsCards = styled.div`
   flex-direction: column;
   padding: 15px;
   max-width: 400px;
+  border: 2px solid red;
 
     .image-container {
       max-width: 100px;
 
         img {
           max-width: 100px;
-
         }
     }
 `
 
 export const VenueBookingsWrapper = styled.div`
-  border: 2px solid gold;
   box-sizing: border-box;
-  width: 74%;
+  width: 49%;
   margin-inline: auto;
+  margin-top: 40px;
+  border: 2px solid red;
 `

@@ -5,14 +5,16 @@ export const VenueCardsWrapper = styled.div`
   grid-template-columns: repeat(3, 1fr);
   border: 4px solid red;
   box-sizing: border-box;
-  gap: 20px 0px; npm run dev
+  gap: 30px 0px;
 `
 
 export const VenueCardsStyles = styled.div`
   box-sizing: border-box;
   border: 2px solid purple;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
+  padding: 10px;
   max-width: 500px;
   min-width: 500px;
   max-height: 460px;
