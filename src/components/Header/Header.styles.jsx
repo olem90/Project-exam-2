@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const HeaderStyles = styled.header`
-  border: 2px solid red;
+  min-width: 100%;
   
     img {
       max-width: 100%;
@@ -10,4 +10,4 @@ export const HeaderStyles = styled.header`
       object-fit: cover;
       filter: brightness(50%);
     }
-`
+` 

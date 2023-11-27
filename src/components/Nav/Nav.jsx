@@ -5,23 +5,28 @@ import { useNavigate } from "react-router-dom";
 function logOutUser() {
     localStorage.clear();
 }
-console.log(localStorage);
 
-export function Nav() {
+const isLoggedIn = localStorage.getItem("profile");
+
+console.log("User is logged in", isLoggedIn);
+
+export function Nav() { 
     const navigate = useNavigate();
 
     return (
         <div>
             <NavStyles>
               <Link to='/home'></Link>
-              <NavLink to= '/home'>Home</NavLink>
-              <NavLink to= '/register'>Register</NavLink>
+              <NavLink to= '/home'>Home</NavLink> 
+              <NavLink to= '/register'>Register</NavLink> 
               <NavLink to= '/contact'>Contact</NavLink>
-              <NavLink to= '/login'>Login</NavLink>
               <NavLink to= '/account'>Account</NavLink>
-
-              <button onClick={() => {logOutUser(); navigate("/login");}}>Log Out</button>
-    
+              {isLoggedIn ? null : (
+                <NavLink className="login-link" to= '/login'>Login</NavLink> 
+              )}
+              {isLoggedIn ? (
+                 <button onClick={() => {logOutUser(); navigate("/login");}}>Log Out</button> 
+              ) : null}
             </NavStyles>
         </div>
     )

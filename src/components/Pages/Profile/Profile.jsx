@@ -326,10 +326,11 @@ export const Profile = () => {
                                         )}
                                     </div>
                                     <UsersVenuesInfo>
-                                        <h3>{venue.name}</h3>
-                                        <div>
-                                            {/* Displaying the number of bookings for the venue */}
+                                        <h3>{venue.name}</h3> 
+                                        <div className="venue-card-info">
                                             <span>Bookings: {venueBooking ? venueBooking.bookings.length : 0}</span>
+                                            <span>Address: {venueBooking.location.address}</span> 
+                                            <span>City: {venueBooking.location.city}</span>  
                                         </div>
                                     </UsersVenuesInfo>
                                 </UsersVenueCards>

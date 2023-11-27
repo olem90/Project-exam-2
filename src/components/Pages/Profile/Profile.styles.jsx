@@ -33,10 +33,11 @@ export const UserDataStyles = styled.div`
   background: var(--blue-300);   
   max-height: 544px;   
   border-radius: 0 20px 20px 0;  
+  box-sizing: border-box;
  
     h1 {
-        margin: 0;
-        margin-bottom: 40px; 
+        margin: 0; 
+        margin-bottom: 10px; 
         padding: 0;
         color: var(--blue-990);  
     }
@@ -44,7 +45,7 @@ export const UserDataStyles = styled.div`
     img {
         max-width: 220px;
         object-fit: cover;
-        max-height: 220px;
+        max-height: 120px;
     }
 `
 
@@ -53,6 +54,7 @@ export const ProfileOptionsStyles = styled.div`
   flex-direction: column;
   margin-top: 30px;
   gap: 20px 0; 
+  box-sizing: border-box;
 
     .profile-link {
         font-size: 22px; 
@@ -60,16 +62,14 @@ export const ProfileOptionsStyles = styled.div`
         border-radius: 5px;  
         padding: 3px 6px;          
         max-width: 200px;  
-        transition: 0.3s ease-in-out;  
+        transition: 0.2s ease-in-out;   
         background: var(--blue-200);
         color: var(--blue-990);
-        border: 1px solid #000; 
+        border: 2px solid var(--blue-970);    
 
           &:hover {
-            background: var(--blue-200);
-            color: var(--blue-990);
-            border: 1px solid #000; 
-          }
+            border: 2px solid var(--blue-100);  
+          } 
     } 
 `
 
@@ -106,15 +106,15 @@ export const UsersBookingsCards = styled.div`
   max-width: 700px;
   padding: 10px; 
   height: auto; 
-  background: #ffffff;  
+  background: #FFF5EE;
   
     img {
-        max-width: 120px;
-        min-width: 120px;
+        max-width: 140px;
+        min-width: 140px;
         max-height: 130px;
-        min-height: 120px;
+        min-height: 130px;
         object-fit: cover;
-        margin-block: auto;
+        margin-block: auto; 
     }
 `
 
@@ -128,6 +128,7 @@ export const UsersBookingsInfo = styled.div`
         margin-top: 0;
         margin-bottom: auto;
         padding: 0;
+        color: ##000;
     }
 
     span {
@@ -145,26 +146,26 @@ export const UsersBookingsInfo = styled.div`
 
 export const UsersVenueCards = styled(Link)`
   display: flex;
-  max-height: 140px;
-  min-height: 140px;
+  max-height: 170px;
+  min-height: 170px;
   margin-block: 25px;
-  border: 2px solid red;
   box-sizing: border-box;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8); 
   width: 100%;
-  max-width: 700px;
+  max-width: 700px; 
   padding: 10px;
   transition: background-color 0.3s; 
+  background: #FFFAFA;
 
     &:hover {
-      background-color: #0056b3;
-      text-decoration: none; 
+      box-shadow: 0 2px 5px var(--blue-800);   
+      text-decoration: none;     
     }
 
     img {
-        max-width: 170px;
-        min-width: 170px;
-        max-height: 100%;
+        max-width: 160px;
+        min-width: 160px;
+        max-height: 140px;
         min-height: 100%;
         object-fit: cover;
         margin-block: auto;
@@ -173,18 +174,28 @@ export const UsersVenueCards = styled(Link)`
     h3 {
       margin: 0;
       padding: 0;
+      color: #000;
+      margin-left: 10px;
+    }
+
+    .venue-card-info {
+      display: flex;
+      flex-direction: column; 
+      margin-top: 10px; 
+      margin-left: 10px;
     }
 `
 
 export const UsersVenuesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
-  width: 83%;
+  margin-inline: auto; 
+  width: 75%;
 
     h2 {
         margin-top: 40px; 
         padding: 0;
+        color: #000;
     }
 `
 
@@ -192,4 +203,8 @@ export const UsersVenuesInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+
+    span {
+      color: #000;
+    }
 `

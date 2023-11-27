@@ -13,7 +13,7 @@ export const LoginButton = styled.button`
 `
 
 export const ViewVenueButton = styled.button`
-  background: #000;
+  background: var(--blue-980);
   color: #fff;
   padding: 5px;
   margin-top: auto;
@@ -99,6 +99,3 @@ export const MyBookingsDeleteLink = styled(Link)`
     }
 `
 
-export const ConfirmDeleteButton = styled.button`
-  
-`

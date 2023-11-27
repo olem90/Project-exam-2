@@ -9,10 +9,9 @@ const url = "https://api.noroff.dev/api/v1/holidaze/venues";
 const VenueCards = ({ venues }) => {
     const navigate = useNavigate();
 
-    // navigate to the venue page
     const goToVenuePage = (id) => {
         navigate(`/venue/${id}`);
-    }
+    };
 
     function renderStars(rating) {
         const stars = [];
@@ -21,7 +20,7 @@ const VenueCards = ({ venues }) => {
           stars.push(<FontAwesomeIcon className='star' icon={faStar} key={i} />);
         }
         return stars;
-      }
+      };
 
     const placeholderImg = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images"
     
@@ -35,16 +34,25 @@ const VenueCards = ({ venues }) => {
                         ) : (
                         <img src={placeholderImg} alt="Placeholder"></img>
                         )}
-                        <span>Price: {venue.price}</span>
-                        <span>Max guests: {venue.maxGuests}</span>
+                        <div className="venue-card-info">
+                            <div className="city-and-country-container">
+                                <span>Country: <span>{venue.location.country}</span></span>  
+                                <span>City: <span>{venue.location.city}</span></span>          
+                            </div>
+
+                            <div className="price-guests-container">
+                                <span>Price: <span className="venue-price">${venue.price}</span></span> 
+                                <span>Max guests: <span className="venue-max-guests">{venue.maxGuests}</span></span>
+                            </div>
+                        </div>
+                        
                         {venue.rating > 0 ? (
                             <span className="stars">Rating: {renderStars(venue.rating)}</span>
-                        ) : <span>Rating: No ratings yet</span>}
-                        <p>{venue.description}</p>
+                        ) : <span>Rating: No ratings yet</span>}  
                         <ViewVenueButton onClick={() => goToVenuePage(venue.id)}>View venue</ViewVenueButton>
                     </VenueCardsStyles>
                 ))}
-        </VenueCardsWrapper>
+        </VenueCardsWrapper> 
     )
 }
 export default VenueCards;
