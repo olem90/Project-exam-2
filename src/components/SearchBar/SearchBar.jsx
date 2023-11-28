@@ -10,8 +10,6 @@ export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
     useEffect(() => {
         function handleClickOutsideSearchBar(event) {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
-                //setFilteredVenues(filteredVenues);
-                // setSearch(event.target.value)
                 setIsSearchDropdownVisible(false);
             } 
         }
@@ -29,16 +27,20 @@ export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
     }, [isSearchDropdownVisible]);
     
         const handleSearchChange = (event) => {
-            const searchInput = event.target.value;
+            const searchInput = event.target.value.toLowerCase();
             setSearch(searchInput);
     
             const matchedVenues = searchInput 
-                ? venues.filter((venue) => venue.name.toLowerCase().includes(searchInput.toLowerCase()))
+                ? venues.filter((venue) => 
+                    venue.name.toLowerCase().includes(searchInput) ||
+                    venue.location.city.toLowerCase().includes(searchInput) ||
+                    venue.location.country.toLowerCase().includes(searchInput)    
+                    )
                 : venues;
 
                 setFilteredVenues(matchedVenues);
                 setIsSearchDropdownVisible(true);
-        };
+        }; 
 
     return(
         <SearchBarStyles ref={searchRef}>

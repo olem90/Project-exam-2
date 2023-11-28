@@ -54,6 +54,8 @@ export const BookingFormSubmitButton = styled.button`
   margin-top: 120px !important;
 `
 
+
+
 export const BecomeVenueManagerButton = styled.button`
   background: #000;
   color: #fff;
@@ -71,9 +73,9 @@ export const UpdateVenueButton = styled.button`
   width: 30%;
   margin: 40px 82px 20px 0 ;
 `
-
-export const MyBookingsUpdateButton = styled.button`
-  background: #000;
+//Buttons on the users booked venue Cards
+export const ViewBookedVenueButton = styled.button`
+  background:var(--blue-990);
   color: #fff;
   padding: 2px;
   font-weight: bold;
@@ -82,20 +84,84 @@ export const MyBookingsUpdateButton = styled.button`
   font-size: 14px;
   height: 30px;
   border-radius: 3px;
+
+  @media(max-width: 450px) {
+    font-size: 14px;
+    height: 25px;
+    width: 86px;
+    padding: 3px;
+  }
+
+  @media(max-width: 350px) {
+    font-size: 13px;
+    width: 76px;
+    padding: 2px;
+  }
+`
+
+export const MyBookingsUpdateButton = styled.button`
+  background:var(--blue-990);
+  display: flex;
+  color: #fff;
+  padding-block: 2px;
+  padding-inline: 0;
+  font-weight: bold;
+  width: 80px;
+  margin-right: 10px;
+  font-size: 14px;
+  height: 30px;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+
+  @media(max-width: 450px) { 
+    font-size: 14px;
+    height: 25px;
+    width: 66px;
+    padding: 3px;
+    margin-right: 6px;
+  }
+
+  @media(max-width: 350px) {
+    font-size: 13px;
+    width: 60px;
+    padding: 2px;
+  }
 `
 
 export const MyBookingsDeleteLink = styled(Link)`
   color: red;
-  padding: 4px;
+  padding-inline: 4px;
+  padding-block: 0;
   font-weight: bold;
   margin-left: auto;
   margin-right: 0;
   font-size: 15px;
+  height: 25px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
 
     &:hover {
-      box-shadow: 0 3px 3px 2px;
+      box-shadow: 0 2px 3px 2px;
       border-radius: 6px;
       color: red;
+    }
+  
+    @media(max-width: 450px) { 
+      font-size: 14px;
+      height: 22px;
+
+      &:hover {
+        box-shadow: 0 1px 2px 1px;
+        border-radius: 6px;
+        color: red;
+      }
+    }
+
+    @media(max-width: 350px) {
+      font-size: 13px;
+
     }
 `
 

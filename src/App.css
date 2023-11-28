@@ -20,8 +20,9 @@
   --success-green: #28a745;
 }
 
-#root {
-  width: 100%;
+#root { 
+  min-width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   background: var(--blue-100);
 }

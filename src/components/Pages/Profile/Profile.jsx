@@ -4,7 +4,7 @@ import { ProfileWrapper, ProfileOptionsStyles, UsersVenuesInfo,
         UsersBookingsCards, UsersBookingsInfo, UserBookingsWrapper } from './Profile.styles';
 import { useEffect, useState } from 'react';
 import { fetchWithToken } from '../../../fetchWithToken';
-import { BecomeVenueManagerButton, MyBookingsUpdateButton, MyBookingsDeleteLink } from '../../Buttons/Buttons.styles';
+import { BecomeVenueManagerButton, MyBookingsUpdateButton, ViewBookedVenueButton, MyBookingsDeleteLink } from '../../Buttons/Buttons.styles';
 import { Link } from 'react-router-dom';
 import { MyBookingsConfirmationModal } from '../../Modal/Modal';
 import { useNavigate } from 'react-router-dom';
@@ -45,13 +45,10 @@ export const Profile = () => {
         }
     }, [deleteSuccess]);
 
-    useEffect(() => {
-        if (deleteSuccess) {
-            navigate("/account");
-            setDeleteSuccess(false);
-        }
-    }, [deleteSuccess]);
-    
+   const goToVenue = (venueId) => {
+    navigate(`/venue/${venueId}`)
+   };
+     
     useEffect(() => {
         getProfileInfo();
     }, [deleteSuccess]);
@@ -239,6 +236,7 @@ export const Profile = () => {
 
         return (
             <UserBookingsWrapper>
+                <div className="users-bookings-container">
                 {profileInfo.bookings.length > 0 ? (
                     <h2>My Bookings ({profileInfo._count?.bookings || 0})</h2>
                 ) : <div className="no-bookings">You have no bookings</div>} 
@@ -249,26 +247,29 @@ export const Profile = () => {
                         {booking.venue.media && booking.venue.media.length > 0 ? (
                             <img src={booking.venue.media} alt={booking.venue.name} onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                             ) : (
-                            <img src={placeholderImg} alt="Placeholder image"></img>
+                            <img src={placeholderImg} alt="Placeholder image"></img>  
                             )}
-                        </div>
+                        </div> 
                         <UsersBookingsInfo>
-                            <h3>{booking.venue.name}</h3>
+                            <h3>{booking.venue.name}</h3> 
+                            <span>Country: {booking.venue.location.country}</span> 
+                            <span>City: {booking.venue.location.city}</span> 
                             <span>From: {formattedDates[index]?.formattedDateFrom || ''}</span>
-                            <span>To: {formattedDates[index]?.formattedDateTo || ''}</span>
-
+                            <span>To: {formattedDates[index]?.formattedDateTo || ''}</span>  
+                    
                             <div className="my-bookings-buttons">
                                 <MyBookingsUpdateButton to="/account/update-booking" onClick={() => handleUpdateBooking(booking)}>Update</MyBookingsUpdateButton>
+                                <ViewBookedVenueButton onClick={() => goToVenue(booking.venue.id)}>View venue</ViewBookedVenueButton>
                                 <MyBookingsDeleteLink onClick={() => handleDeleteClick(booking.id)}>Delete</MyBookingsDeleteLink>
                             </div>
-                        </UsersBookingsInfo>
+                        </UsersBookingsInfo> 
                         {isOnUpdateModal && selectedBooking && (
                             <BookVenueForm
                                 selectedBooking={selectedBooking}
-                                setSelectedBooking={setSelectedBooking}
+                                setSelectedBooking={setSelectedBooking}  
                                 onBookingUpdate={onBookingUpdate}
                                 closeModal={() => setIsOnUpdateModal(false)}
-                                venueId={selectedBooking.venue.id}
+                                venueId={selectedBooking.venue.id} 
                                 setIsOnUpdateModal={setIsOnUpdateModal}
                                 isOnUpdateModal={isOnUpdateModal}
                                 getProfileInfo={getProfileInfo}
@@ -286,6 +287,7 @@ export const Profile = () => {
                         )}
                     </UsersBookingsCards>
                 ))}
+                </div>
             </UserBookingsWrapper>
         )
     }
@@ -308,9 +310,9 @@ export const Profile = () => {
     const MyVenues = () => {
         return (
             <UsersVenuesWrapper>
-                <h2>My Venues ({profileInfo._count?.venues || 0})</h2>
                 {profileInfo && profileInfo.venues.length > 0 ? (
-                    <div>
+                    <div className="users-venue-container">
+                        <h2>My Venues ({profileInfo._count?.venues || 0})</h2>
                         <Link to="/account/create-venue">Create a new venue</Link>
                         {profileInfo.venues.map((venue) => { 
                             // Finding the venueBooking that matches the venue.id
@@ -326,11 +328,12 @@ export const Profile = () => {
                                         )}
                                     </div>
                                     <UsersVenuesInfo>
-                                        <h3>{venue.name}</h3> 
+                                        <h3 className="venue-name">{venue.name}</h3> 
                                         <div className="venue-card-info">
-                                            <span>Bookings: {venueBooking ? venueBooking.bookings.length : 0}</span>
+                                            <span>Country: {venueBooking.location.country}</span> 
+                                            <span>City: {venueBooking.location.city}</span> 
                                             <span>Address: {venueBooking.location.address}</span> 
-                                            <span>City: {venueBooking.location.city}</span>  
+                                            <span className="booking-amount">Bookings: {venueBooking ? venueBooking.bookings.length : 0}</span>  
                                         </div>
                                     </UsersVenuesInfo>
                                 </UsersVenueCards>
@@ -350,18 +353,26 @@ export const Profile = () => {
     return (
         <ProfileWrapper>
             {isLoggedIn ? (
-                <div className="profile-container">
+            <div className="profile-container">
                 <UserDataStyles>
-                    <h1>Account</h1>
-                    {profileInfo.avatar && profileInfo.avatar.length > 0 ? (
-                        <img src={profileInfo.avatar} alt={profileInfo.name} onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
-                            ) : (
-                            <img src={placeholderImg} alt="Placeholder image"></img>
+                    <div className="account-info"> 
+                        <div className="profile-h1-img-link-container">
+                            <h1>Account</h1>
+                            {profileInfo.avatar && profileInfo.avatar.length > 0 ? (
+                                <img className="profile-image" src={profileInfo.avatar} alt={profileInfo.name} onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
+                                ) : (
+                                <img className="profile-image" src={placeholderImg} alt="Placeholder image"></img>
                             )}
-                    <Link to= "/account/edit" className="edit-link">Edit</Link>
-                    <h2>{userProfileLocalStorage.name}</h2>
-                    <span>Email: {userProfileLocalStorage.email}</span>
-                    <span> Venue Manager: {userProfileLocalStorage.venueManager ? "Yes" : "No"}</span>
+                            <Link to= "/account/edit" className="edit-link">Edit</Link>
+                        </div>
+                        <div className="profile-name-info">
+                            <h2>{userProfileLocalStorage.name}</h2>
+                            <div className="email-and-venue-manager">
+                                <span className="profile-email">Email: {userProfileLocalStorage.email}</span>
+                                <span> Venue Manager: {userProfileLocalStorage.venueManager ? "Yes" : "No"}</span>
+                            </div>
+                        </div> 
+                    </div>
 
                     <ProfileOptionsStyles>
                         <Link className="profile-link" to="/account/my-bookings" onClick={handleMyBookingsOnClick}>
