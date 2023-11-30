@@ -11,30 +11,35 @@ import { EditAvatar } from './components/Pages/EditAvatar/EditAvatar';
 import { CreateVenue } from './components/Pages/CreateVenue/CreateVenue';
 import { UserSpecificVenue } from './components/Pages/UserSpecificVenue/UserSpecificVenue';
 import { UpdateVenue } from './components/Pages/UpdateVenue/UpdateVenue';
+import { useState } from 'react';
+import { AuthProvider } from './components/AuthContext/AuthContext';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
   
   return (
-   <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/venue/:id" element={<SpecificVenue />} />
-        <Route path="/account/user-venue/:id" element={<UserSpecificVenue />} />
-        <Route path="/account" element={<Profile />} />
-        <Route path="/account/my-venues" element={<Profile />} />
-        <Route path="/account/my-bookings" element={<Profile />} />
-        <Route path="/account/update-booking" element={<Profile />} />
-        <Route path="/account/edit" element={<EditAvatar />} />
-        <Route path="/account/create-venue" element={<CreateVenue />} />
-        <Route path="/account/update-venue/:id" element={<UpdateVenue />} />
-      </Routes>
-   </Layout>
-  )
-}
+    <AuthProvider>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/venue/:id" element={<SpecificVenue />} />
+          <Route path="/account/user-venue/:id" element={<UserSpecificVenue />} />
+          <Route path="/account" element={<Profile />} />
+          <Route path="/account/my-venues" element={<Profile />} />
+          <Route path="/account/my-bookings" element={<Profile />} />
+          <Route path="/account/update-booking" element={<Profile />} />
+          <Route path="/account/edit" element={<EditAvatar />} />
+          <Route path="/account/create-venue" element={<CreateVenue />} />
+          <Route path="/account/update-venue/:id" element={<UpdateVenue />} />
+        </Routes>
+      </Layout>
+    </AuthProvider>
+  );
+};
 
 export default App;
 

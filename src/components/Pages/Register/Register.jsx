@@ -3,6 +3,7 @@ import { FormStylesWrapper } from "./Register.styles";
 import FormStyles from "./Register.styles";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { RegisterButton } from "../../Buttons/Buttons.styles";
 
 const url = "https://api.noroff.dev/api/v1/holidaze/auth/register";
 
@@ -151,7 +152,7 @@ export const Register = () => {
 
                 <label htmlFor="avatar">Avatar</label>
                 <input value={avatar}
-                placeholder="insert image url.."
+                placeholder="Insert image url" 
                 onChange={onAvatarChange}/>
                 <span>{avatarError}</span>
 
@@ -160,9 +161,9 @@ export const Register = () => {
                 placeholder="Type a password"
                 onChange={onPasswordChange}
                 required/>
-                <span>{passwordError}</span>
+                <span>{passwordError}</span> 
 
-                <button>Register</button>
+                <RegisterButton>Register</RegisterButton>
                 {regIsSuccess && (
                 <div> 
                     <p>Welcome {name}.You've successfully registered!</p>

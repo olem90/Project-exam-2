@@ -2,7 +2,12 @@ import styled from "styled-components";
 
 export const LoginFormWrapper = styled.div`
   display: flex;
-  min-height: 43vh;
+  min-height: calc(100dvh - 80px);  
+  margin-bottom: -100px; 
+
+  @media(max-width: 315px) { 
+    margin-bottom: -70px; 
+  }
 ` 
   
 export const LoginFormStyles = styled.form`
@@ -12,7 +17,8 @@ export const LoginFormStyles = styled.form`
   width: 400px;
   height: 200px;
   padding: 15px;
-  margin: auto; 
+  margin-inline: auto; 
+  margin-top: 100px;
   border-radius: 5px;  
   box-shadow: 0 3px 5px var(--blue-400); 
   
@@ -28,6 +34,7 @@ export const LoginFormStyles = styled.form`
         color: var(--blue-990); 
         font-weight: 500;
         letter-spacing: 0.3px;
+        background: #FFFAFA; 
 
         &:focus {
           border: 2px solid var(--blue-700);
@@ -40,5 +47,14 @@ export const LoginFormStyles = styled.form`
         font-weight: 700;
         font-size: 15px;
     }
+  
+  @media(max-width: 600px) {
+    width: 60%; 
+    max-width: 400px; 
+  }
+
+  @media(max-width: 600px) {
+    width: 80%;
+  }
 
 `

@@ -3,6 +3,7 @@ import { CreateVenueWrapper, CreateVenueForm, VenueFacilities } from "./CreateVe
 import { fetchWithToken } from "../../../fetchWithToken";
 import { Modal } from "../../Modal/Modal";
 import { useNavigate } from "react-router-dom";
+import { CreateVenueButton } from "../../Buttons/Buttons.styles";
 
 const createVenueUrl = "https://api.noroff.dev/api/v1/holidaze/venues";
 
@@ -183,7 +184,8 @@ export const CreateVenue = () => {
 
     return (
         <CreateVenueWrapper>
-            <div>
+            <div className="create-venue-container">
+                <h1>Create a new venue</h1>
                 <CreateVenueForm onSubmit={onCreateVenueFormSubmit}>
                     <label htmlFor="name">Name</label>
                     <input className="form-input"
@@ -203,7 +205,7 @@ export const CreateVenue = () => {
                     required
                     />
 
-                    <label htmlFor="price">price</label>
+                    <label htmlFor="price">Price</label>
                     <input className="form-input"
                     type="text" 
                     value={price}
@@ -216,7 +218,7 @@ export const CreateVenue = () => {
                     <input className="form-input"
                     type="text" 
                     value={maxGuests}
-                    placeholder="enter maximum number of guests"
+                    placeholder="Enter maximum number of guests"
                     onChange={onMaxGuestsChange}
                     required
                     />
@@ -225,7 +227,7 @@ export const CreateVenue = () => {
                     <input className="form-input"
                     type="text" 
                     value={rating}
-                    placeholder="rating"
+                    placeholder="Rating"
                     onChange={onRatingChange}
                     />
 
@@ -233,22 +235,22 @@ export const CreateVenue = () => {
                     <input className="form-input"
                     type="text" 
                     value={media}
-                    placeholder="insert your image url and separate each url with a comma for more images"
-                    onChange={onMediaChange}
+                    placeholder="Insert url, separate with a comma for more images"  
+                    onChange={onMediaChange} 
                     />
                          
                     <h2>Facilities</h2>
                 <VenueFacilities>
                     <div className="wifi-parking-container">
                         <label htmlFor="wifi">Wifi</label>
-                        <input 
+                        <input className="facility-checkbox"
                         type="checkbox" 
                         checked={wifi}
                         onChange={onWifiChange}
                         />
 
                         <label htmlFor="parking">Parking</label>
-                        <input 
+                        <input className="facility-checkbox"
                         type="checkbox" 
                         checked={parking}
                         onChange={onParkingChange}
@@ -257,14 +259,14 @@ export const CreateVenue = () => {
 
                     <div className="breakfast-pets-container">
                         <label htmlFor="breakfast">Breakfast</label>
-                        <input 
+                        <input className="facility-checkbox"
                         type="checkbox"
                         checked={breakfast}
                         onChange={onBreakfastChange}
                         />
 
                         <label htmlFor="pets">Pets</label>
-                        <input 
+                        <input className="facility-checkbox"
                         type="checkbox" 
                         checked={pets}
                         onChange={onPetsChange}
@@ -330,7 +332,7 @@ export const CreateVenue = () => {
                     onChange={onLongitudeChange}
                     />
 
-                    <button onClick={() => setShowModal(true)} type="submit">Create Venue</button>
+                    <CreateVenueButton onClick={() => setShowModal(true)} type="submit">Create Venue</CreateVenueButton>
                     {showModal && (
                     <Modal 
                         isOpen = {showModal}

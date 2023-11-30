@@ -5,23 +5,40 @@ export const ProfileWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  margin-inline: auto;
+  width: 100%;
+  margin-inline: auto;  
+  min-height: calc(100vh - 80px);
 
-    .profile-container {
+    .profile-container { 
         display: flex;
         width: 100%; 
         margin-inline: auto;  
     } 
 
     .not-logged-in {
-      border: 2px solid red;
+      border: 2px solid var(--blue-900);  
       width: 420px;
       margin-inline: auto;
-      padding: 5px;
+      padding: 15px;
       display: flex;
       flex-direction: column;
-      margin-block: 30px; 
+      margin-top: 100px;  
+      font-size: 18px; 
+      background: var(--blue-200);     
+
+        a{
+          color: #000;
+          font-weight: bold; 
+          text-decoration: underline; 
+        }
+
+        p, div {
+          margin: auto; 
+          min-width: 80%;
+          max-width: 80%;  
+          text-align: left;   
+
+        }
     }
 
     @media(max-width: 940px) {
@@ -79,8 +96,19 @@ export const UserDataStyles = styled.div`
   border-radius: 0 0 20px 0;  
   box-sizing: border-box;  
 
+    .edit-link {
+      color: var(--blue-950); 
+      font-size: 17px;
+      font-weight: bold;  
+      transition: 0.3s ease-in-out; 
+ 
+      &:hover {
+        text-decoration: underline;   
+      }
+    }
+
     .profile-email {
-      white-space: nowrap;
+      white-space: nowrap; 
     }
 
     .email-and-venue-manager {  
@@ -221,6 +249,7 @@ export const UserBookingsWrapper = styled.div`
   flex-direction: column;
   width: 75%;
   margin-inline: auto;  
+  
 
     h2 { 
         margin-top: 40px; 
@@ -533,7 +562,6 @@ export const UsersVenuesWrapper = styled.div`
 
     @media(max-width: 440px) {
       .users-venue-container {
-        
         width: 97%;  
       }
 

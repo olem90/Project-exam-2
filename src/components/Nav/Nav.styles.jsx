@@ -5,13 +5,14 @@ export const NavStyles = styled.nav`
   min-width: 100%;
   max-width: 100%;
   height: 80px; 
-  background: var(--blue-200);  
+  background: var(--blue-980);  
 
     a {
-      margin-right: 10px;
+      margin-right: 10px; 
+      color: #fff;
     }
 
     .login-link {
-      margin-left: auto;  
+      margin-left: auto;   
     } 
 ` 

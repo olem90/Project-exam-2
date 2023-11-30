@@ -31,6 +31,28 @@ export const BookNowButton = styled.button`
   margin: 40px 0 20px 0 ;
 `
 
+export const RegisterButton = styled.button`
+  background: var(--blue-900);   
+  margin-top: 10px;  
+  color: #fff;
+  font-weight: bold; 
+  font-size: 20px; 
+  border-radius: 3px; 
+  border: 1px solid var(--blue-970);  
+  height: 37px;
+  padding: 3px;
+  transition: 0.4s ease-in-out;
+
+  &:hover {
+    color: #32CD32; 
+  } 
+
+  @media(max-width: 700px) {
+    height: 30px;
+    font-size: 18px;
+}
+`
+
 export const CloseModalButton = styled.button`
   display: flex;
   padding: 2px;
@@ -54,7 +76,17 @@ export const BookingFormSubmitButton = styled.button`
   margin-top: 120px !important;
 `
 
+export const CreateVenueButton = styled.button`
+  background: #000;
+  color: #fff;
+  font-weight: 700;  
+  width: 100%;
+  margin-top: 18px;
 
+    &:hover {
+      color: #32CD32; 
+    } 
+`
 
 export const BecomeVenueManagerButton = styled.button`
   background: #000;

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../AuthContext/AuthContext";
 import { LoginFormStyles, LoginFormWrapper } from "./Login.styles";
 import { LoginButton } from "../../Buttons/Buttons.styles";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ const loginUrl = "https://api.noroff.dev/api/v1/holidaze/auth/login";
 
 const Login = () => {
     const navigate = useNavigate();
+    const { logIn } = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -42,10 +44,7 @@ const Login = () => {
             console.log(userData);
             if (response.ok) {              
                 localStorage.setItem("accessToken", userData.accessToken);
-                if (userData) {
-                    localStorage.setItem("profile", JSON.stringify(userData));
-                };
-
+                logIn(userData, userData.accessToken);
                 setPasswordError("");
                 setEmailError("");
                 navigate("/");
@@ -74,17 +73,15 @@ const Login = () => {
                 placeholder="Your email"
                 onChange={onEmailChange}
                 required />
-
                 <label htmlFor="password">Password</label>
                 <input value= {password}
                 placeholder="Your password"
                 onChange={onPasswordChange}
                 required />
                 <span>{passwordError || emailError}</span>
-
                 <LoginButton>LOG IN</LoginButton>
             </LoginFormStyles>
         </LoginFormWrapper>
     )
-}
+} 
 export default Login;

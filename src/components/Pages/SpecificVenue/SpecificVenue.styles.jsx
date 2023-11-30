@@ -9,6 +9,8 @@ export const SpecificVenueStyles = styled.div`
   width: fit-content; 
   margin-inline: auto;
   box-sizing: border-box;
+  border: 2px solid red; 
+  padding: 6px;
 
     .faExpand {
       position: absolute;
@@ -126,6 +128,7 @@ export const SpecificVenueStyles = styled.div`
         min-height: 360px;
         object-fit: cover;
         transition: filter 0.3s ease;
+        border: 3px solid gold;
     }
 
     .main-img:hover .faExpand {
@@ -135,9 +138,11 @@ export const SpecificVenueStyles = styled.div`
 
     .specific-venue-description {
         flex: 1;
-        min-width: 440px;
-        max-width: 440px;
+        max-width: 500px;
         line-height: 30px;
+        white-space: wrap; 
+        border: 2px solid red;  
+        height: fit-content;   
 
         p {
             margin-top: 0;
@@ -148,6 +153,8 @@ export const SpecificVenueStyles = styled.div`
     .img-and-description-container {
         display: flex;
         margin-top: 20px;
+        border: 2px solid purple;
+        width: 100%; 
     }
 
     .locationContainer {
@@ -170,7 +177,6 @@ export const SpecificVenueStyles = styled.div`
     }
 
     .facilities-container {
-        
         display: flex; 
         flex-direction: column;
         width: 100%;
@@ -195,6 +201,29 @@ export const SpecificVenueStyles = styled.div`
             color: gray;
             margin-right: 4px;
           }
+    }
+
+    @media(max-width: 950px) {
+      
+      h1 {
+        font-size: 38px;
+        padding-block: 0; 
+        margin: 4px; 
+      }
+
+      .specific-venue-name-img {
+        min-width: 320px;
+        max-width: 320px;  
+        max-height: 320px;   
+        min-height: 320px; 
+      }
+
+      .main-img {
+        max-height: 100%;
+        min-height: 100%;     
+      }
+
+      
     }
 `
 

@@ -2,7 +2,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import { ProfileWrapper, ProfileOptionsStyles, UsersVenuesInfo, 
         UsersVenuesWrapper, UserDataStyles, UsersVenueCards, UserBookingsStyles, 
         UsersBookingsCards, UsersBookingsInfo, UserBookingsWrapper } from './Profile.styles';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../../AuthContext/AuthContext';
 import { fetchWithToken } from '../../../fetchWithToken';
 import { BecomeVenueManagerButton, MyBookingsUpdateButton, ViewBookedVenueButton, MyBookingsDeleteLink } from '../../Buttons/Buttons.styles';
 import { Link } from 'react-router-dom';
@@ -10,14 +11,12 @@ import { MyBookingsConfirmationModal } from '../../Modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import { BookVenueForm } from '../BookingForm/BookingForm';
 
-const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
-const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
-const profileInfoUrl = userProfileLocalStorage 
-    ? `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}?_venues=true&_bookings=true`
-    : null;
-const isLoggedIn = userProfileLocalStorage !== null;
+
 
 export const Profile = () => {
+    
+
+
     const [venueBookings, setVenueBookings] = useState([]);
     const [profileInfo, setProfileInfo] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -31,9 +30,15 @@ export const Profile = () => {
     const [currentBookingId, setCurrentBookingId] = useState(null);
     const [isOnUpdateModal, setIsOnUpdateModal] = useState(false);
     const [selectedBooking, setSelectedBooking] = useState(false);
+    const { loggedInUser } = useContext(AuthContext);
 
-    useEffect(() => {
-        getUserProfileInfo();
+    const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
+    const profileInfoUrl = loggedInUser 
+    ? `https://api.noroff.dev/api/v1/holidaze/profiles/${loggedInUser.name}?_venues=true&_bookings=true`
+    : null;
+
+    useEffect(() => { 
+        getUserProfileInfo(); 
     }, []);
 
     const navigate = useNavigate();
@@ -97,14 +102,13 @@ export const Profile = () => {
     }, []);
 
     async function getUserProfileInfo() {
-        const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 
-        if (!userProfileLocalStorage) {
+        if (!loggedInUser) {
             console.log("User is not logged in");
             return;
         }
 
-        const userProfileDataUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}`;
+        const userProfileDataUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${loggedInUser.name}`;
         
         try {
             const response = await fetchWithToken(userProfileDataUrl);
@@ -120,7 +124,7 @@ export const Profile = () => {
     }
 
     async function becomeAVenueManager() {
-        const userProfileDataUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfileLocalStorage.name}`;
+        const userProfileDataUrl = `https://api.noroff.dev/api/v1/holidaze/profiles/${loggedInUser.name}`;
 
         const requestOptions = {
             method: "PUT",
@@ -352,7 +356,7 @@ export const Profile = () => {
     
     return (
         <ProfileWrapper>
-            {isLoggedIn ? (
+            {loggedInUser ? (
             <div className="profile-container">
                 <UserDataStyles>
                     <div className="account-info"> 
@@ -366,10 +370,10 @@ export const Profile = () => {
                             <Link to= "/account/edit" className="edit-link">Edit</Link>
                         </div>
                         <div className="profile-name-info">
-                            <h2>{userProfileLocalStorage.name}</h2>
+                            <h2>{loggedInUser.name}</h2>
                             <div className="email-and-venue-manager">
-                                <span className="profile-email">Email: {userProfileLocalStorage.email}</span>
-                                <span> Venue Manager: {userProfileLocalStorage.venueManager ? "Yes" : "No"}</span>
+                                <span className="profile-email">Email: {loggedInUser.email}</span>
+                                <span> Venue Manager: {loggedInUser.venueManager ? "Yes" : "No"}</span>
                             </div>
                         </div> 
                     </div>
@@ -391,8 +395,8 @@ export const Profile = () => {
                 </UserDataStyles>
 
                 <UserBookingsStyles>
-                   {isLoggedIn && showBookings && <MyBookings />}
-                   {isVenueManager && showVenues && <MyVenues />}
+                   {loggedInUser && showBookings && <MyBookings />} 
+                   {isVenueManager && showVenues && <MyVenues />} 
                 </UserBookingsStyles>
             </div>
             ) : (

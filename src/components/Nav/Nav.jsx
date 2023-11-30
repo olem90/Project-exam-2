@@ -1,35 +1,41 @@
 import { NavStyles } from "./Nav.styles";
-import { NavLink, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from "../AuthContext/AuthContext";
 
-function logOutUser() {
-    localStorage.clear();
-}
 
-const isLoggedIn = localStorage.getItem("profile");
-
-console.log("User is logged in", isLoggedIn);
-
-export function Nav() { 
+export function Nav() {
     const navigate = useNavigate();
+    const { loggedInUser, logOut } = useContext(AuthContext);
 
-    return (
+    console.log("LoggedInUser: ", loggedInUser); 
+
+    useEffect(() => {
+       
+    }, [loggedInUser]);
+
+    function logOutUser() {
+      logOut();
+      navigate("/login");
+    };
+
+    return ( 
         <div>
             <NavStyles>
-              <Link to='/home'></Link>
-              <NavLink to= '/home'>Home</NavLink> 
-              <NavLink to= '/register'>Register</NavLink> 
-              <NavLink to= '/contact'>Contact</NavLink>
-              <NavLink to= '/account'>Account</NavLink>
-              {isLoggedIn ? null : (
-                <NavLink className="login-link" to= '/login'>Login</NavLink> 
-              )}
-              {isLoggedIn ? (
-                 <button onClick={() => {logOutUser(); navigate("/login");}}>Log Out</button> 
-              ) : null}
+                <Link to='/home'></Link>
+                <NavLink to='/home'>Home</NavLink>
+                <NavLink to='/register'>Register</NavLink> 
+                <NavLink to='/contact'>Contact</NavLink>
+                <NavLink to='/account'>Account</NavLink> 
+                {!loggedInUser && (
+                    <NavLink className="login-link" to='/login'>Login</NavLink>
+                )}
+                {loggedInUser && ( 
+                    <button onClick= {logOutUser}>Log Out</button> 
+                )}
             </NavStyles>
         </div>
-    )
+    );
 }
-export default Nav;
 
+export default Nav;

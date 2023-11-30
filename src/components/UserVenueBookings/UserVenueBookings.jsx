@@ -75,12 +75,18 @@ export const UsersVenueBookings = ({ id }) => {
                         formattedDateUpdated } = getFormattedDates(booking.dateFrom, booking.dateTo, booking.created, booking.updated);
                     return ( 
                         <VenueBookingsCards key={booking.id}>
-                            <span>From: {formattedDateFrom}</span>
-                            <span>To: {formattedDateTo}</span>
-                            <span>Number of guests: {booking.guests}</span> 
-                            <hr />        
-                            <span>Created: {formattedDateCreated}</span>
-                            <span>Last Updated: {formattedDateUpdated}</span>       
+                            <div className="user-venue-bookings-text">
+                                <span>From: {formattedDateFrom}</span>
+                                <span>To: {formattedDateTo}</span>
+                                <span>Number of guests: {booking.guests}</span> 
+                                <hr />        
+                                <span>Created: {formattedDateCreated}</span>
+                                <span>Last Updated: {formattedDateUpdated}</span>   
+                            </div>
+                            <div className="user-venue-booking-img-container">
+                                <img className="user-venue-bookings-img" src={venueBookings.media}></img> 
+                            </div>
+                                
                         </VenueBookingsCards>
                     );   
                 })
