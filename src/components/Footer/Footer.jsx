@@ -1,6 +1,8 @@
 import { FooterStyle } from "./Footer.styles.jsx";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 export function Footer() {
 
@@ -23,11 +25,13 @@ export function Footer() {
         });
     })
 
-    return (
+    return ( 
         <FooterStyle>
-            <Link to={"/contact"}>Contact Us</Link>
-            <div>
-               <i className="scroll-to-top fas fa-arrow-up"></i>
+            <div className="footer-container">
+                <span className="footer-name"> Made by Ole Marius Sandø Rognan </span>
+                <button className="scroll-to-top"> 
+                   <FontAwesomeIcon icon={faArrowUp} />
+                </button>
             </div>
         </FooterStyle>
     );
