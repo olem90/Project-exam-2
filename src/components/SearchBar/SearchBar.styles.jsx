@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const SearchBarStyles = styled.div`
-  height: 30px;
-  width: 36%;
+  height: 26px;
+  padding: 3px;
+  min-width: 600px;  
+  max-width: 600px;
   margin-inline: auto;
-  margin-block: 15px;
+  margin-block: 30px 15px;  
     
-    .hide-search-results {
+    .hide-search-results {  
       display: none;
     }
 
@@ -14,9 +16,8 @@ export const SearchBarStyles = styled.div`
         width:100%;
         height: 100%;
         border-radius: 5px;
-        padding-left: 15px;
         font-size: 18px;
-        background: #fff;
+        background: #fff; 
         color: #000;
     }
 
@@ -37,6 +38,21 @@ export const SearchBarStyles = styled.div`
       border: 1px solid rgb(218, 216, 216);
       width: 100%;
     }
+  
+    @media(max-width: 900px) {
+      min-width: 500px;  
+      max-width: 500px;   
+    }
+
+    @media(max-width: 700px) {
+      min-width: 400px;
+      max-width: 400px;
+    } 
+
+    @media(max-width: 440px) {
+      min-width: 80%; 
+      max-width: 80%;  
+    } 
 `
 
 

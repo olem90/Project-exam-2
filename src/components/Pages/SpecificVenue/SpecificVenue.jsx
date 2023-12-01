@@ -17,6 +17,15 @@ export const SpecificVenue = () => {
     const { id } = useParams();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
+    const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+
+    useEffect(() => {
+        if(venue && venue.media && venue.media.length > 1) {
+            setIsCarouselVisible(true);
+        } else {
+            setIsCarouselVisible(false);
+        }
+    }, [venue]);
 
     const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -68,14 +77,14 @@ export const SpecificVenue = () => {
             <div>
                 {venue ? (
                     <SpecificVenueStyles>
-                        <h1 className="specific-venue-name">{venue.name}</h1>
-                        <div className="img-and-description-container">
-                            <div className="specific-venue-name-img">
+                        <h1 className="specific-venue-name">{venue.name}</h1> 
+                        <div className="img-and-description-container"> 
+                            <div className={`specific-venue-name-img ${!isCarouselVisible ? "specific-venue-with-no-carousel" : ""}`}>
                                 <Link><FontAwesomeIcon className="faExpand" icon={faExpand} /></Link>
                                     {venue.media && venue.media.length > 0 ? (
-                                    <img className="main-img" src={venue.media[activeImageIndex]} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
+                                    <img className={`main-img ${!isCarouselVisible ? "main-img-with-no-carousel" : ""}`} src={venue.media[activeImageIndex]} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                                     ) : (
-                                    <img className="main-img" src={placeholderImg} alt="Placeholder image"></img>
+                                    <img className="main-img" src={placeholderImg} alt="Placeholder image"></img>  
                                     )}
                                     <Swiper 
                                         spaceBetween={10}
@@ -107,9 +116,9 @@ export const SpecificVenue = () => {
                                 <p>{venue.description}</p>
                             </div>
                         </div>
-                        <BookNowButton onClick={toggleModal}>BOOK NOW</BookNowButton>
+                       
                         <div className="venue-content">
-                            <div className="price-container">
+                            <div className={`price-container ${isCarouselVisible ? "price-container-carousel" : ""}`}>
                               <span>Price: ${venue.price}</span>
                               <span>Maximum guests: {venue.maxGuests}</span>
                               {venue.rating > 0 ? (
@@ -117,8 +126,8 @@ export const SpecificVenue = () => {
                                 ) : <span>Rating: No ratings yet</span>}
                                 <hr></hr>
                             </div>
-
-                            <div className="location-and-facilities-container">
+                            <BookNowButton onClick={toggleModal}>BOOK NOW</BookNowButton>
+                            <div className="location-and-facilities-container"> 
                                 <div className="locationContainer">
                                   <h2>Location:</h2>
                                   <span>Address: {venue.location.address}</span>
@@ -133,22 +142,22 @@ export const SpecificVenue = () => {
                                         <div className="icons-container">
                                             <div>
                                                 <FontAwesomeIcon className="wifi-icon" icon={faWifi} />
-                                                <span>Wifi:</span>{venue.meta.wifi ? " Yes" : " No"}
+                                                <span>Wifi: {venue.meta.wifi ? " Yes" : " No"}</span>   
                                             </div>
    
                                             <div>
                                                 <FontAwesomeIcon className="parking-icon" icon={faCar} />
-                                                <span>Parking:</span>{venue.meta.parking ? " Yes" : " No"}
+                                                <span>Parking: {venue.meta.parking ? " Yes" : " No"}</span>
                                             </div>
                                                                    
                                             <div>
                                                 <FontAwesomeIcon className="breakfast-icon" icon={faCoffee} />
-                                                <span>Breakfast:</span>{venue.meta.breakfast ? " Yes" : " No"}
+                                                <span>Breakfast: {venue.meta.breakfast ? " Yes" : " No"}</span>  
                                             </div> 
 
                                             <div>
                                                 <FontAwesomeIcon className="pets-icon" icon={faPaw} />
-                                                <span>Pets:</span>{venue.meta.pets ? " Yes" : " No"}
+                                                <span>Pets: {venue.meta.pets ? " Yes" : " No"}</span>  
                                             </div>                                  
                                         </div>                      
                                 </div>

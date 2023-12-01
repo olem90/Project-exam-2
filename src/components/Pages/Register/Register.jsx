@@ -17,25 +17,25 @@ export const Register = () => {
     const [emailError, setEmailError] = useState("");
     const [avatarError, setAvatarError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [isValid, setIsValid] = useState(false);
+    const [isValid, setIsValid] = useState(false); 
 
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [regIsSuccess, setRegIsSuccess] = useState(false);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        if (regIsSuccess) {
+        if (showSuccessMessage) {
             const timer = setTimeout(() => {
                 navigate("/login");
-            }, 4000);
+            }, 5000);
 
             return () => clearTimeout(timer); 
         }
-    }, [regIsSuccess, navigate]);
-
+    }, [showSuccessMessage, navigate]);
 
     function onNameChange(event) {
         setName(event.target.value)
@@ -101,24 +101,23 @@ export const Register = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ name, email, avatar, password }),
+                body: JSON.stringify({ name, email, avatar, password }),  
             });
+            const formData = await response.json();
+            console.log(formData);
+            console.log("API Response Status: ", response.ok);
 
             if (response.ok) {
                 setRegIsSuccess(true);
-                setTimeout(() => {
-                    navigate("/login");
-                }, 4000);
+                setShowSuccessMessage(true);
+                console.log("setRegisSuccess: ", regIsSuccess ) ;
             } else {
+                setRegIsSuccess(false);
                 setIsError("Failed to register. Please try again.")
             }
             
-            const formData = await response.json();
-            console.log(formData);
-            
-            
-        } catch (error) {
-            setIsError(true);
+        } catch (error) { 
+            setIsError(true); 
         } 
         finally {
             setIsLoading(false);
@@ -129,7 +128,7 @@ export const Register = () => {
         return <div>Registering...</div>
     }
 
-    if (isError) {
+    if (isError) { 
         return <div>Error registering</div>
     }
 
@@ -161,18 +160,14 @@ export const Register = () => {
                 placeholder="Type a password"
                 onChange={onPasswordChange}
                 required/>
-                <span>{passwordError}</span> 
+                <span>{passwordError}</span>  
 
-                <RegisterButton>Register</RegisterButton>
-                {regIsSuccess && (
-                <div> 
-                    <p>Welcome {name}.You've successfully registered!</p>
-                </div>
-                )}
+                <RegisterButton disabled={showSuccessMessage}>Register</RegisterButton>
+                {showSuccessMessage && <p className="success-message">Welcome {name}. You've successfully registered!</p>}
+                {isError && <p>{isError}</p>}
             </FormStyles>
-
-        </FormStylesWrapper>
-    )
-    }
+        </FormStylesWrapper> 
+    );
+};
     export default Register;
                 

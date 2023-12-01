@@ -264,9 +264,22 @@ export const UserBookingsWrapper = styled.div`
 
     @media(max-width: 940px) {  
       width: 130%;   
+
+      .no-bookings {
+        font-weight: bold;
+        font-size: 22px;
+        margin-top: 50px; 
+        margin-inline: auto;
+        min-width: 500px;
+
+          p {
+            margin-inline: auto; 
+            width: fit-content;  
+          }
+      }
       
       .users-bookings-container { 
-        width: fit-content;     
+        width: fit-content;      
         margin-left: 12%;
       } 
     }
@@ -280,12 +293,33 @@ export const UserBookingsWrapper = styled.div`
       }  
     }
 
+    @media(max-width: 550px) {
+      .no-bookings {
+        margin-top: 10px;  
+        min-width: 400px; 
+
+          p {
+            margin-inline: auto; 
+            width: fit-content;  
+          }
+      }
+
+    }
+
     @media(max-width: 500px) {
 
       .users-bookings-container {
         min-width: 94%;   
         margin-inline: 14px 14px;              
       }  
+    }
+
+    @media(max-width: 450px) {
+      .no-bookings {
+        margin-top: 10px;  
+        min-width: 290px; 
+      }
+
     }
 
     @media(max-width: 400px) {
@@ -529,6 +563,23 @@ export const UsersVenuesWrapper = styled.div`
   margin-inline: auto; 
   width: 75%;
 
+    .no-venues {
+      margin-top: 120px;  
+      width: fit-content;
+
+      a {
+        font-size: 18px; 
+        text-decoration: underline; 
+        line-height: 40px;   
+      }
+
+      p {
+        font-weight: bold;
+        font-size: 22px;
+         
+      }
+    }
+
     h2 {
         margin-top: 40px;  
         padding: 0;   
@@ -545,7 +596,12 @@ export const UsersVenuesWrapper = styled.div`
 
     @media(max-width: 940px) { 
       width: 140%;  
-      justify-content: center;    
+      justify-content: center; 
+      
+        .no-venues {
+          margin-inline: auto;   
+          margin-top: 30px;  
+        }
       
         .users-venue-container {
           width: fit-content;   

@@ -9,7 +9,32 @@ export const LoginButton = styled.button`
   margin-top: 25px;
   border: none;
   font-weight: bold;
- 
+`
+
+export const LogOutButton = styled.button`
+  background: var(--blue-980);
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  color: #fff; 
+  border: 2px solid #fff;
+  padding: 5px;
+  height: 30px;
+  font-weight: 500; 
+  font-size: 18px;   
+  border-radius: 8px;  
+  margin:  auto 10px 10px auto; 
+  white-space: nowrap;
+
+  
+
+  @media(max-width: 500px) {
+    font-size: 16px;
+  }
+
+  @media(max-width: 400px) {
+    font-size: 14px;
+  }
 `
 
 export const ViewVenueButton = styled.button`
@@ -27,8 +52,25 @@ export const BookNowButton = styled.button`
   color: #fff;
   padding: 10px;
   font-weight: bold;
-  width: 51.7%;
-  margin: 40px 0 20px 0 ;
+  width: 400px;
+  max-width: 400px;
+  margin: 30px 0 20px 0;
+
+  @media(max-width: 950px) {
+    margin: 20px 0 20px 0;
+  }
+
+  @media(max-width: 800px) {
+    margin: 0px 0 20px 0; 
+  }
+
+  @media(max-width: 940px) {
+    max-width: 350px;
+  }
+
+  @media(max-width: 600px) { 
+    width: 100%; 
+  }
 `
 
 export const RegisterButton = styled.button`
@@ -116,6 +158,7 @@ export const ViewBookedVenueButton = styled.button`
   font-size: 14px;
   height: 30px;
   border-radius: 3px;
+  
 
   @media(max-width: 450px) {
     font-size: 14px;

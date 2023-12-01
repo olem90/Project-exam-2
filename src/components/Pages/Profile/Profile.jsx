@@ -243,7 +243,9 @@ export const Profile = () => {
                 <div className="users-bookings-container">
                 {profileInfo.bookings.length > 0 ? (
                     <h2>My Bookings ({profileInfo._count?.bookings || 0})</h2>
-                ) : <div className="no-bookings">You have no bookings</div>} 
+                ) : <div className="no-bookings">
+                        <p>You have no bookings</p>  
+                    </div>} 
                 
                 {profileInfo.bookings.map((booking, index) => (
                     <UsersBookingsCards key={booking.id}>
@@ -345,7 +347,7 @@ export const Profile = () => {
                         })}
                     </div>
                 ) : (
-                    <div>
+                    <div className='no-venues'>
                         <Link to="/account/create-venue">Create a new venue</Link>
                         <p>You have no venues</p>
                     </div>

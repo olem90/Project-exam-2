@@ -1,32 +1,53 @@
 import styled from "styled-components";
 
 export const SpecificVenueWrapper = styled.div`
-  border: 2px solid pink; 
+   min-width: 94%;
+   max-width: 94%;
+   margin-inline: auto;   
+   border: 2px solid gold; 
+ 
+   @media(max-width: 800px) {  
+    max-width: 80%; 
+    min-width: 80%;  
+   } 
+
+   @media(max-width: 600px) {  
+    max-width: 90%; 
+    min-width: 90%;  
+   } 
+
+   @media(max-width: 400px) {  
+    max-width: 98%; 
+    min-width: 98%;   
+   } 
 `
 
 export const SpecificVenueStyles = styled.div`
   color: #000;
-  width: fit-content; 
+  width: 60%;  
   margin-inline: auto;
   box-sizing: border-box;
-  border: 2px solid red; 
   padding: 6px;
 
-    .faExpand {
+    .faExpand { 
       position: absolute;
       top: 17px;
       right: 15px;
       font-size: 24px;
       font-weight: bold;
       color: transparent;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease; 
       z-index: 99;
     }
 
     .all-thumbnails-container {
-      min-width: 470px;
-      max-width: 470px;
+      min-width: 400px;
+      max-width: 400px; 
       overflow-x: auto;
+    }
+
+    .price-container-carousel { 
+      margin-top: 40px;  
     }
 
     .thumbnail-container {
@@ -51,6 +72,10 @@ export const SpecificVenueStyles = styled.div`
       opacity: 1;
     }
 
+    .book-now-with-carousel { 
+      margin-top: 10px;
+    }
+
     h3  {
         margin: 30px 0 10px 0;
         margin-top: 30px;
@@ -61,7 +86,7 @@ export const SpecificVenueStyles = styled.div`
     .owner-card {
         box-sizing: border-box;
         border: 2px solid gray;
-        max-width: 50%;
+        max-width: 500px;
         display: flex;
         padding: 15px;
         border-radius: 5px;
@@ -74,7 +99,7 @@ export const SpecificVenueStyles = styled.div`
 
                 img {
                     object-fit: cover;  
-                    margin: 0;
+                    margin: 0; 
                     padding: 0;
                     min-width: 100px;
                     max-width: 100px;
@@ -104,13 +129,15 @@ export const SpecificVenueStyles = styled.div`
         font-size: 40px;
         padding-block: 10px;
         margin: 0;
+        white-space: normal;
+        word-wrap: break-word;
     }
 
     .specific-venue-name-img {
         flex: 1;
-        min-width: 470px;
-        max-width: 470px;
-        position: relative;
+        min-width: 400px;
+        max-width: 400px;
+        position: relative;  
     }
     
     .specific-venue-name-img:hover .main-img{
@@ -128,7 +155,6 @@ export const SpecificVenueStyles = styled.div`
         min-height: 360px;
         object-fit: cover;
         transition: filter 0.3s ease;
-        border: 3px solid gold;
     }
 
     .main-img:hover .faExpand {
@@ -137,12 +163,12 @@ export const SpecificVenueStyles = styled.div`
     }
 
     .specific-venue-description {
-        flex: 1;
-        max-width: 500px;
+        flex: 1.5; 
+        min-width: 400px;
+        max-width: 500px;  
         line-height: 30px;
         white-space: wrap; 
-        border: 2px solid red;  
-        height: fit-content;   
+        height: fit-content;
 
         p {
             margin-top: 0;
@@ -153,8 +179,8 @@ export const SpecificVenueStyles = styled.div`
     .img-and-description-container {
         display: flex;
         margin-top: 20px;
-        border: 2px solid purple;
-        width: 100%; 
+        min-width: 90%; 
+        position: relative; 
     }
 
     .locationContainer {
@@ -166,14 +192,15 @@ export const SpecificVenueStyles = styled.div`
           h2 {
             margin: 0;
             padding: 0;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
           }
     }
 
     .location-and-facilities-container {
         display: flex;
-        margin-top: 30px; 
+        margin-top: 30px;   
+        gap: 20px 90px; 
     }
 
     .facilities-container {
@@ -184,7 +211,7 @@ export const SpecificVenueStyles = styled.div`
           h2 {
             margin: 0;
             padding: 0;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
           }
 
@@ -203,19 +230,45 @@ export const SpecificVenueStyles = styled.div`
           }
     }
 
+    @media(max-width: 1200px) {
+      width: 78%;   
+    }
+
+    @media(max-width: 1050px) {
+      width: 86%;
+    }
+
     @media(max-width: 950px) {
+      width: 94%;  
       
       h1 {
-        font-size: 38px;
+        font-size: 38px; 
         padding-block: 0; 
         margin: 4px; 
       }
 
+      .price-container-carousel { 
+        margin-top: 100px;  
+      }
+
+      .book-now-with-carousel {
+        margin-top: 90px;
+        max-width: 400px;  
+        width: 46%;   
+      }
+
       .specific-venue-name-img {
+        min-width: 350px; 
+        max-width: 400px;  
+        max-height: 340px;      
+        min-height: 340px; 
+      }
+
+      .specific-venue-description {
+        max-width: 420px; 
         min-width: 320px;
-        max-width: 320px;  
-        max-height: 320px;   
-        min-height: 320px; 
+        line-height: 26px; 
+        height: fit-content;  
       }
 
       .main-img {
@@ -223,7 +276,178 @@ export const SpecificVenueStyles = styled.div`
         min-height: 100%;     
       }
 
+      .all-thumbnails-container { 
+        max-width: 350px; 
+        min-width: 100%;
+      }
+
+      .owner-card {
+        max-width: 450px; 
+        min-width: 450px;     
+      }
+    }
+
+    @media(max-width: 800px) { 
+      width: 88%; 
+
+      .price-container-carousel { 
+        margin-top: 20px;    
+      }
       
+      .main-img-with-no-carousel { 
+        min-height: 400px;
+        max-width: 400px;  
+        min-width: 300px; 
+      }
+
+      .specific-venue-with-no-carousel {   
+        max-width: 500px; 
+        min-width: 300px; 
+
+      }
+
+      .location-and-facilities-container { 
+        display: flex;
+        margin-top: 20px;      
+        gap: 16px 150px;   
+        white-space: nowrap;  
+      }
+
+      h1 {
+        font-size: 32px;  
+      }
+
+      .book-now-with-carousel {  
+        margin-top: 10px;
+        max-width: 400px;   
+        width: 60%;   
+      }
+
+      .specific-venue-description {
+        margin-top: 18px;     
+        
+        p {
+          margin-left: 0; 
+        }
+      }
+
+      .specific-venue-name-img {
+        min-width: 100%; 
+        max-height: 400px;  
+      } 
+
+      .main-img {
+        max-height: 320px; 
+        min-height: 320px;     
+        min-width: 100%;  
+        max-width: 100%;
+      } 
+
+      .img-and-description-container {
+        flex-direction: column;
+        margin-top: 20px; 
+        width: 100%;
+      }
+
+      .all-thumbnails-container {
+        min-width: 300px;
+        max-width: 400px; 
+        margin-left: 0; 
+      }
+
+      .owner-card {
+        max-width: 450px;
+        min-width: 450px;    
+      }
+    }
+
+    @media(max-width: 600px) {
+      width: 94%; 
+
+      .book-now-with-carousel {  
+        max-width: 280px;  
+        min-width: 280px;  
+      }
+
+      .owner-card { 
+        max-width: 450px; 
+        min-width: 360px;       
+      }
+
+      .location-and-facilities-container {    
+        gap: 16px 80px;   
+        white-space: nowrap;  
+      }
+
+      .main-img {
+        max-height: 300px; 
+        min-height: 300px;     
+        min-width: 100%;  
+        max-width: 100%;
+      } 
+
+      .specific-venue-with-no-carousel {      
+        max-height: fit-content; 
+        min-height: fit-content;
+      }
+
+      .owner-info-container {
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;  
+        
+      }
+    }
+
+    @media(max-width: 450px) {
+
+      .all-thumbnails-container {
+        min-width: 200px;
+        max-width: 400px; 
+      }
+
+      .book-now-with-carousel {  
+        max-width: 300px; 
+      }
+
+      .main-img {
+        max-height: 280px; 
+        min-height: 280px;      
+        min-width: 100%;  
+        max-width: 100%;
+      } 
+
+      .location-and-facilities-container {   
+        display: flex;
+        flex-direction: column; 
+        gap: 16px 70px;             
+ 
+          h2 {
+            font-size: 22px;
+          }
+      }
+
+      .specific-venue-description {
+        min-width: 250px; 
+      }
+
+      .owner-card {
+        min-width: 90%; 
+
+        .owner-img-container {
+          max-width: 100px;   
+          max-height: 100px;     
+
+            img {
+              min-width: 100%;
+              min-height: 100%; 
+              max-height: 100px; 
+            }
+        }   
+      }
+
+      
+
     }
 `
 

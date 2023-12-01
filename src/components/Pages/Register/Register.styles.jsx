@@ -22,13 +22,19 @@ export const FormStyles = styled.form`
   border-radius: 5px;  
   padding: 20px; 
   margin-top: 120px;  
-  background: var(--blue-980);                        
+  background: var(--blue-980);    
+  
+    .success-message {
+        color: #66BB6A;     
+        font-size: 20px;
+        font-weight: bold; 
+    }
    
     input {
         font-size: 16px;
         padding: 4px; 
         border: 2px solid #003;  
-        margin-bottom: 5px;    
+        margin-bottom: 5px;     
         background: #FFFAFA;        
         outline: none; 
         letter-spacing: .8px;     

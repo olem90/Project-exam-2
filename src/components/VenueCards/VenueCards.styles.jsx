@@ -169,8 +169,13 @@ export const VenueCardsStyles = styled.div`
     } 
 }
 
-@media(max-width: 440px) {   
-  max-width: 300px;   
-  min-width: 300px;   
+@media(max-width: 440px) {    
+  max-width: 340px;   
+  min-width: 280px;    
 }   
+
+@media(max-width: 370px) {
+  max-width: 300px;    
+  min-width: 286px;     
+}  
 `  
