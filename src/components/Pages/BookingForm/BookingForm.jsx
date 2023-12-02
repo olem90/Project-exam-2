@@ -265,7 +265,10 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
             {showModal ? (
                 <div className="modal-form-container">
                     <CloseModalButton onClick={closeModal}>X</CloseModalButton>
-                    <h2>Book Venue</h2>
+                    <div className="h2-container">
+                        <h2>Book Venue</h2> 
+                    </div>
+                    
                     <form onSubmit={HandleBookingFormSubmit} className="booking-form">
                         <div className="datePickerContainer">
                             <div className="booking-dates start-date">

@@ -59,7 +59,7 @@ export const Register = () => {
         const emailPattern= /^[\w\-.]+@(stud.)?noroff.no$/;
     
         if (!emailPattern.test(email)) {
-            setEmailError("*Only @(stud.)noroff.no domains are allowed to register");
+            setEmailError("*Only @stud.noroff.no domains are allowed to register");
             valid = false;
         } else {
             setEmailError("");

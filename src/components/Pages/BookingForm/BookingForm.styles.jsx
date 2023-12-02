@@ -72,17 +72,16 @@ export const ModalStylesWrapper = styled.div`
 export const ModalStyles = styled.div`
   width: 29%;
   z-index: 99;
-  height: 400px;
+  height: 360px; 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: relative;
   background: linear-gradient(170deg, var(--blue-600)0%, var(--blue-400)50%, var(--blue-200)100%); 
-  padding: 50px;
+  padding: 20px;
   border-radius: 10px;
   border: none;
-  
-  
+
     .error-message {
         color: red;
         font-weight: 700;
@@ -118,28 +117,36 @@ export const ModalStyles = styled.div`
         background: #90EE90;
         cursor: pointer;
     }
+
+    .h2-container {
+        border: 2px solid gold;
+        min-width: 250px;
+        max-width: 320px;
+        margin-inline: auto; 
+    }
   
     h2 {
-        margin-left: 42px;
-        color: var(--blue-990);
+        color: var(--blue-990); 
         margin-top: 0 !important;
     }
 
     .modal-form-container {
         box-sizing: border-box;
         padding: 5px;
-        width: 84%;
+        min-width: 98%;  
         margin-inline: auto;
+        border: 1px solid green;  
     }
 
     .booking-form {  
-        width: 84%;
-        margin-inline: auto;
+        width: fit-content;  
+        margin-inline: auto;  
+        border: 1px solid blue;  
 
             label {
-                font-size: 18px;
+                font-size: 18px; 
                 display: flex;
-                margin-left: 7px;
+                margin-left: 5px; 
                 color: #000;
                 font-weight: 600;  
             }
@@ -157,7 +164,11 @@ export const ModalStyles = styled.div`
     .datePickerContainer {
         display: flex;
         justify-content: center;
-
+        border: 2px solid gold;
+        min-width: 220px;
+        max-width: 320px;  
+        margin-inline: auto; 
+ 
             input {
                 margin-inline: auto;
                 font-size: 17px;
@@ -165,6 +176,7 @@ export const ModalStyles = styled.div`
                 padding: 5px 0 3px 3px;     
                 line-height: 24px; 
                 width: 90%;
+                
                 gap: 15px;
                 color: var(--blue-990);
                 font-weight: 700;
@@ -195,4 +207,49 @@ export const ModalStyles = styled.div`
             font-weight: 700;
           }
     }
+
+    @media(max-width: 1200px) {
+        width: 400px;   
+
+        .modal-form-container {
+            width: 100%;    
+        } 
+
+        .h2-container {
+            min-width: 220px;
+            max-width: 300px;  
+        }
+
+        .datePickerContainer {
+            display: flex; 
+            justify-content: center;
+            border: 2px solid gold; 
+            max-width: 300px;  
+    
+                input {
+                    width: 90%;
+                    gap: 15px;  
+                    
+                }  
+        }
+    }
+
+    @media(max-width: 850px) {  
+        width: 370px;
+    }
+
+    @media(max-width: 600px) {
+        width: 320px;  
+ 
+        .modal-form-container {
+            
+        } 
+    }
+
+    @media(max-width: 400px) {
+        width: 80%;   
+
+    }
+
+  
 `

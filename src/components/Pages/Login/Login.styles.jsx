@@ -22,7 +22,7 @@ export const LoginFormStyles = styled.form`
   box-shadow: 0 3px 5px var(--blue-400); 
   
     label {
-        font-size: 18px;
+        font-size: 18px; 
         font-weight: 600;
     }
 

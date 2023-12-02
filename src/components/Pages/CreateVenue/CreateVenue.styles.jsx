@@ -7,6 +7,10 @@ export const CreateVenueWrapper = styled.div`
   min-height: 100%; 
   margin-bottom: -55px;
 
+    .update-venue-h1 {
+      font-size: 30px;
+    }
+
     .successful-update-message {
       color: #1f8e00; 
       font-weight: bold; 

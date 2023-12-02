@@ -21,8 +21,8 @@ export const FormStyles = styled.form`
   border-radius: 5px;  
   padding: 20px; 
   margin-top: 120px;  
-  background: var(--blue-980);    
-  
+  background: var(--blue-980);     
+   
     .success-message {
         color: #66BB6A;     
         font-size: 20px;

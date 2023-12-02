@@ -234,13 +234,14 @@ export const UpdateVenue = () => {
    return (
         <CreateVenueWrapper>
             <div className="create-venue-container">
+                <h1 className="update-venue-h1">Update Venue</h1> 
                 <CreateVenueForm onSubmit={onUpdateVenueFormSubmit}>  
                     <label htmlFor="name">Name</label>
                     <input className="form-input"
                     type="text" 
                     value={name}
                     placeholder="Your name"
-                    onChange={onNameChange}
+                    onChange={onNameChange} 
                     required
                     />
 
@@ -248,7 +249,7 @@ export const UpdateVenue = () => {
                     <input className="form-input"
                     type="text" 
                     value={description}
-                    placeholder="Your description of the venue"
+                    placeholder="Your description of the venue" 
                     onChange={onDescriptionChange}
                     required
                     />
