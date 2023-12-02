@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LoginFormWrapper = styled.div`
   display: flex;
-  min-height: calc(100vh -80px);    
+  min-height: 100vh;     
   
     .login-error {
       background: #fff;
@@ -57,7 +57,7 @@ export const LoginFormStyles = styled.form`
   }
 
   @media(max-width: 480px) {
-    width: 90%; 
+    width: 80%; 
     margin-top: 70px;
   }
 
