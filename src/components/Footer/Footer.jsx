@@ -6,10 +6,10 @@ import { useInputFocus } from "../OnInputFocus/OnInputFocus.jsx";
 
 
 export function Footer() {
-    const { isInputFocused } = useInputFocus();
+    const { isinputfocused } = useInputFocus();
 
     useEffect(() => {
-        const scrollToTopButton = document.querySelector(".scroll-to-top");
+        const scrollToTopButton = document.querySelector(".scroll-to-top"); 
         
         window.addEventListener("scroll", () => {
             if(window.scrollY > 200) {
@@ -19,7 +19,7 @@ export function Footer() {
             }
         });
 
-        scrollToTopButton.addEventListener("click", () => {
+        scrollToTopButton.addEventListener("click", () => { 
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
@@ -28,7 +28,7 @@ export function Footer() {
     })
 
     return ( 
-        <FooterStyle isInputFocused={isInputFocused} className="footer">
+        <FooterStyle isinputfocused={isinputfocused} className="footer">
             <div className="footer-container">
                 <span className="footer-name"> Made by Ole Marius Sandø Rognan </span>
                 <button className="scroll-to-top"> 

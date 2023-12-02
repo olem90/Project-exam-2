@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-export const FooterStyle = styled.div.attrs(props => ({
-  style: {
-    bottom: props.isInputFocused && window.innerWidth < 480 ? '-200px' : '0'
-  }
-}))`
+export const FooterStyle = styled.div`
     display: flex;
     box-sizing: border-box;
     background: #362815; 
@@ -55,6 +51,6 @@ export const FooterStyle = styled.div.attrs(props => ({
 
     } 
   @media(480px) {
-    bottom: ${props => props.isInputFocused ? '-200px' : '0'};
+    bottom: ${props => props.isinputfocused ? '-200px' : '0'}; 
   }
 `
