@@ -13,7 +13,7 @@ import { UserSpecificVenue } from './components/Pages/UserSpecificVenue/UserSpec
 import { UpdateVenue } from './components/Pages/UpdateVenue/UpdateVenue';
 import { useState } from 'react';
 import { AuthProvider } from './components/AuthContext/AuthContext';
-import { InputFocusProvider } from './components/Pages/Login/Login.jsx';
+import { InputFocusProvider } from './components/OnInputFocus/OnInputFocus';
 
 function App() {
   
