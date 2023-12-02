@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const FormStylesWrapper = styled.div` 
   display: flex;
   flex-direction: column; 
-  min-height: calc(100svh - 80px);   
-  background: #F5F5DC;       
+  min-height: calc(100vh - 80px);   
   margin-bottom: -90px;   
+  background: #F5F5DC; 
 
   @media(max-width: 320px) { 
     margin-bottom: -90px;        
