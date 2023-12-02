@@ -23,7 +23,7 @@ export const FormStyles = styled.form`
   padding: 20px; 
   margin-top: 120px;  
   background: #3963c6;     
-   
+    
     .success-message {
         color: #66BB6A;     
         font-size: 20px;

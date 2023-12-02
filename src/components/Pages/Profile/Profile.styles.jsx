@@ -205,7 +205,8 @@ export const ProfileOptionsStyles = styled.div`
         background: var(--blue-200);
         color: var(--blue-990);
         border: 2px solid var(--blue-970);  
-        font-weight: 600;    
+        font-weight: 600; 
+        max-height: 30px;    
     } 
 
     @media(max-width: 940px) {
