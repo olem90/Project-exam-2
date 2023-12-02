@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const FooterStyle = styled.div`
+export const FooterStyle = styled.div.attrs(props => ({
+  style: {
+    bottom: props.isInputFocused && window.innerWidth < 480 ? '-200px' : '0'
+  }
+}))`
     display: flex;
     box-sizing: border-box;
     background: #362815; 
@@ -9,8 +13,6 @@ export const FooterStyle = styled.div`
     padding: 5px; 
     height: 100px; 
     margin-top: 30px;   
-    position: absolute;  
-    bottom: 0;
 
       .scroll-to-top {  
         font-size: 20px;  
@@ -45,12 +47,7 @@ export const FooterStyle = styled.div`
 
         @media(max-width: 420px) {   
             font-size: 20px;   
-
         }
       }  
-
     } 
-  @media(480px) {
-    bottom: ${props => props.isinputfocused ? '-200px' : '0'}; 
-  }
 `
