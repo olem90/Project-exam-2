@@ -1,8 +1,9 @@
-import { useState, createContext ,useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthContext";
 import { LoginFormStyles, LoginFormWrapper } from "./Login.styles";
 import { LoginButton } from "../../Buttons/Buttons.styles";
 import { useNavigate } from "react-router-dom";
+import { useInputFocus } from "../../OnInputFocus/OnInputFocus";
 
 const loginUrl = "https://api.noroff.dev/api/v1/holidaze/auth/login";
 
