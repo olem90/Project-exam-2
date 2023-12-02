@@ -92,9 +92,11 @@ export const UserDataStyles = styled.div`
   flex-direction: column;
   padding: 20px 100px 260px 100px;    
   background: var(--blue-300);   
-  max-height: 600px;    
+  max-height: 600px;     
   border-radius: 0 0 20px 0;  
   box-sizing: border-box;  
+     
+  border: 2px solid red; 
 
     .edit-link {
       color: var(--blue-950); 
@@ -129,6 +131,7 @@ export const UserDataStyles = styled.div`
         margin-bottom: 10px; 
         padding: 0;
         color: var(--blue-990);  
+        font-size: 40px; 
     }
 
     @media(max-width: 1100px) {
@@ -142,7 +145,7 @@ export const UserDataStyles = styled.div`
     @media(max-width: 940px) { 
       padding-block: 20px;  
       padding-inline: 0px; 
-      margin: 0;   
+         
       min-width: 100%; 
       max-width: 100%; 
       border-radius: 0; 
@@ -179,13 +182,23 @@ export const UserDataStyles = styled.div`
     @media(max-width: 550px) {
       
       .profile-image {
-        min-width: 300px;
+        min-width: 300px;  
       }
 
       .account-info {
         width: fit-content;
       }
     }
+
+  
+  @media(max-width: 330px) {
+    max-width: 330px; 
+    min-width: 280px;   
+       
+    .profile-image {  
+      min-width: 270px;    
+    }
+  }
 `
 
 export const ProfileOptionsStyles = styled.div`
@@ -224,13 +237,12 @@ export const ProfileOptionsStyles = styled.div`
     @media(max-width: 550px) {
       display: flex; 
       flex-direction: column;    
-      width: 300px;  
+      max-width: 300px;   
       
         .profile-link {
           font-size: 20px; 
           max-width: 100%;
           padding: 2px 4px;   
- 
         }
       
         :nth-child(2) { 
