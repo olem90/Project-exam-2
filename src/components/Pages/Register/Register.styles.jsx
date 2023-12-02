@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const FormStylesWrapper = styled.div` 
   display: flex;
   flex-direction: column; 
-  min-height: 100vh;   
-  background: #F5F5DC;        
+  min-height: calc(100vh - 80px);   
+  background: #F5F5DC;       
+  margin-bottom: -90px;   
 
   @media(max-width: 320px) { 
-    margin-bottom: -70px;        
+    margin-bottom: -90px;        
   } 
 `
 
