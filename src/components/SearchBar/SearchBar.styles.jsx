@@ -5,8 +5,8 @@ export const SearchBarStyles = styled.div`
   min-width: 600px;  
   max-width: 600px;
   margin-inline: auto;
-  margin-block: 30px 15px;  
-  position: relative;         
+  margin-block: 110px 15px;     
+  position: relative;          
 
     .faSearchIcon {
       position: absolute;

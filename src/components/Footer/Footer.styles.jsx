@@ -13,7 +13,7 @@ export const FooterStyle = styled.div.attrs(props => ({
     padding: 5px; 
     height: 100px; 
     margin-top: 30px;   
-    position: fixed;  
+    position: absolute;  
     bottom: 0;
 
       .scroll-to-top {  
