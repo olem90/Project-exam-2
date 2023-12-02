@@ -2,9 +2,13 @@ import { FooterStyle } from "./Footer.styles.jsx";
 import React, { useEffect } from "react";
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useInputFocus } from "../Pages/Login/Login.jsx";
 
 
 export function Footer() {
+    const { isInputFocused } = useInputFocus();
+
+    const dynamicFooterStyle = isInputFocused ? { bottom: '-200px' } : {};
 
     useEffect(() => {
         const scrollToTopButton = document.querySelector(".scroll-to-top");
@@ -25,10 +29,8 @@ export function Footer() {
         });
     })
 
-    
-
     return ( 
-        <FooterStyle className="footer">
+        <FooterStyle isInputFocused={isInputFocused} className="footer">
             <div className="footer-container">
                 <span className="footer-name"> Made by Ole Marius Sandø Rognan </span>
                 <button className="scroll-to-top"> 

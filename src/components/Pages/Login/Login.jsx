@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, createContext ,useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthContext";
 import { LoginFormStyles, LoginFormWrapper } from "./Login.styles";
 import { LoginButton } from "../../Buttons/Buttons.styles";
@@ -6,8 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 const loginUrl = "https://api.noroff.dev/api/v1/holidaze/auth/login";
 
+
+
 const Login = () => {
     const navigate = useNavigate();
+    const { setInputFocused } = useInputFocus();
     const { logIn } = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -61,16 +64,7 @@ const Login = () => {
         }
     };  
 
-    document.querySelectorAll("input").forEach(input => {
-        input.addEventListener("focus", () => {
-          document.querySelector("footer").style.display = "none";
-        });
-      
-        input.addEventListener("blur", () => {
-          document.querySelector("footer").style.display = "block";
-        });
-      });
-      
+
    
     if (isLoading) {
         return <div>Hang in there while we are logging you in...</div>
@@ -81,11 +75,15 @@ const Login = () => {
             <LoginFormStyles onSubmit={onLoginFormSubmit}>
                 <label htmlFor="email">Email</label>
                 <input value= {email}
+                onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
                 placeholder="Your email"
                 onChange={onEmailChange}
                 required />
                 <label htmlFor="password">Password</label>
                 <input value= {password}
+                onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
                 placeholder="Your password"
                 onChange={onPasswordChange}
                 required />

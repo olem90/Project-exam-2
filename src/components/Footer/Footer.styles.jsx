@@ -9,8 +9,8 @@ export const FooterStyle = styled.div`
     padding: 5px; 
     height: 100px; 
     margin-top: 30px;   
-    position: sticky;  
-    bottom: 0; 
+    position: fixed;  
+    bottom: 0;
 
       .scroll-to-top {  
         font-size: 20px;  
@@ -50,4 +50,7 @@ export const FooterStyle = styled.div`
       }  
 
     } 
+  @media(480px) {
+    bottom: ${props => props.isInputFocused ? '-200px' : '0'};
+  }
 `
