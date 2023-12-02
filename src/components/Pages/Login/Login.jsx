@@ -78,7 +78,7 @@ const Login = () => {
                 placeholder="Your password"
                 onChange={onPasswordChange}
                 required />
-                <span>{passwordError || emailError}</span>
+                <span className="login-error">{passwordError || emailError}</span>
                 <LoginButton>LOG IN</LoginButton>
             </LoginFormStyles>
         </LoginFormWrapper>

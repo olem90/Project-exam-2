@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const LoginFormWrapper = styled.div`
   display: flex;
-  min-height: calc(100vh - 80px);   
-  margin-bottom: -90px; 
+  min-height: calc(100vh - 80px);    
+  
+    .login-error {
+
+    }
 ` 
   
 export const LoginFormStyles = styled.form`
@@ -13,8 +16,8 @@ export const LoginFormStyles = styled.form`
   width: 400px;
   height: fit-content;; 
   padding: 15px;
-  margin-inline: auto; 
-  margin-top: 100px;
+  margin-inline: auto;  
+  margin-top: 200px;   
   border-radius: 5px;  
   box-shadow: 0 3px 5px var(--blue-400); 
   background: #609bee;

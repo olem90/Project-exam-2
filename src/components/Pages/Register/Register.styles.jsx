@@ -21,7 +21,7 @@ export const FormStyles = styled.form`
   margin-inline: auto;     
   border-radius: 5px;  
   padding: 20px; 
-  margin-top: 120px;  
+  margin-top: 150px;  
   background: #3963c6;     
     
     .success-message {

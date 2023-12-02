@@ -8,11 +8,11 @@ export const FooterStyle = styled.div`
     width: 100%;
     padding: 5px; 
     height: 100px; 
-    margin-top: 30px;  
-    position: absolute;
-    bottom: 0;
+    margin-top: 30px;   
+    position: absolute; 
+    bottom: 0; 
 
-      .scroll-to-top { 
+      .scroll-to-top {  
         font-size: 20px;  
         font-weight: bold;     
         background: #362815;  
