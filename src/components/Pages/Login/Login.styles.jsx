@@ -57,6 +57,7 @@ export const LoginFormStyles = styled.form`
   }
 
   @media(max-width: 480px) {
+    width: 90%; 
     margin-top: 70px;
   }
 
