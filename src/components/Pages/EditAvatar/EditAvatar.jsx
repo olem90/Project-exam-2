@@ -39,17 +39,19 @@ export const EditAvatar = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    } 
 
     return (
         <EditAvatarWrapper>
-            <EditAvatarForm onSubmit={UpdateAvatar}>
-                <label>Avatar</label>
-                <input placeholder="Insert avatar url" 
-                onChange={onAvatarChange}
-                />
-                <UpdateAvatarButton onClick={UpdateAvatar}>Update Avatar</UpdateAvatarButton>
-            </EditAvatarForm>
+            <div className="edit-avatar-container">
+                <h1>Update Avatar</h1> 
+                <EditAvatarForm onSubmit={UpdateAvatar}>
+                    <input placeholder="Insert avatar url.."  
+                    onChange={onAvatarChange}
+                    />
+                    <UpdateAvatarButton onClick={UpdateAvatar}>Update Avatar</UpdateAvatarButton>
+                </EditAvatarForm>
+            </div>
         </EditAvatarWrapper>
     )
 }  

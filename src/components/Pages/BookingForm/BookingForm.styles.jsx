@@ -119,7 +119,6 @@ export const ModalStyles = styled.div`
     }
 
     .h2-container {
-        border: 2px solid gold;
         min-width: 250px;
         max-width: 320px;
         margin-inline: auto; 
@@ -135,13 +134,11 @@ export const ModalStyles = styled.div`
         padding: 5px;
         min-width: 98%;  
         margin-inline: auto;
-        border: 1px solid green;  
     }
 
     .booking-form {  
         width: fit-content;  
         margin-inline: auto;  
-        border: 1px solid blue;  
 
             label {
                 font-size: 18px; 
@@ -164,7 +161,6 @@ export const ModalStyles = styled.div`
     .datePickerContainer {
         display: flex;
         justify-content: center;
-        border: 2px solid gold;
         min-width: 220px;
         max-width: 320px;  
         margin-inline: auto; 
@@ -223,7 +219,6 @@ export const ModalStyles = styled.div`
         .datePickerContainer {
             display: flex; 
             justify-content: center;
-            border: 2px solid gold; 
             max-width: 300px;  
     
                 input {
@@ -240,16 +235,10 @@ export const ModalStyles = styled.div`
 
     @media(max-width: 600px) {
         width: 320px;  
- 
-        .modal-form-container {
-            
-        } 
     }
-
+ 
     @media(max-width: 400px) {
         width: 80%;   
-
     }
 
-  
 `

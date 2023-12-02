@@ -176,7 +176,6 @@ async function onBookingSubmit(event) {
 
   } catch (error) {
       setIsSuccess(false);
-      console.log("An error occurred:", error);
       setIsError("An error occurred while booking. Please try again.");
   }
 };
@@ -211,24 +210,27 @@ const updateBookingUrl = `https://api.noroff.dev/api/v1/holidaze/bookings/${book
             
             if (onBookingUpdate) {
               onBookingUpdate();
+
             }
           } else {
+            setUpdateSuccess(false); 
             setIsError("An error occured while trying to update your booking. Please try again");
           }         
         } catch (error) {
           setIsSuccess(false);
+          setUpdateSuccess(false);
           setIsError("An error occured while trying to update your booking. Please try again");
         }
       }                                                                                                                                                                                    
     async function HandleBookingFormSubmit(event) {
       event.preventDefault();
 
-      console.log("Form submitted. Update mode:", isOnUpdateModal);
+      setIsSuccess(null);  
+      setIsError(null);
 
       if (isOnUpdateModal) {
         await updateBooking();
       } else {
-          console.log("Attempting to create new booking");
         await onBookingSubmit(event);
       }
     };

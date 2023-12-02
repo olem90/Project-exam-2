@@ -77,7 +77,7 @@ export const BookNowButton = styled.button`
 `
 
 export const RegisterButton = styled.button`
-  background: var(--blue-900);   
+  background: #362815;   
   margin-top: 10px;  
   color: #fff;
   font-weight: bold; 
@@ -95,7 +95,9 @@ export const RegisterButton = styled.button`
   @media(max-width: 700px) {
     height: 30px;
     font-size: 18px;
-}
+  }
+
+  
 `
 
 export const CloseModalButton = styled.button`
@@ -122,12 +124,27 @@ export const BookingFormSubmitButton = styled.button`
 `
 
 export const UpdateAvatarButton = styled.button`
-  background: #000;
+  background: #362815; 
   color: #fff;
   width: 130px;
-  padding: 3px 2px 3px 2px; 
+  padding: 5px 8px 5px 8px;  
   margin-left: 7px; 
-  font-size: 18px;
+  font-size: 16px;
+  white-space: nowrap;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;  
+
+  &:hover {
+    color: #b7963c; 
+    border: 1px solid transparent;
+  }
+
+  @media(max-width: 440px) { 
+    width: 50%;
+    margin-right: auto;
+    margin-left: 4px;
+    margin-top: 7px; 
+  }
 `
 
 export const VenueFormSubmitButton = styled.button`

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FormStylesWrapper = styled.div` 
   display: flex;
   flex-direction: column; 
-  min-height: calc(100dvh - 80px);     
+  min-height: 100vh;   
   background: #F5F5DC;        
 
   @media(max-width: 320px) { 
@@ -21,7 +21,7 @@ export const FormStyles = styled.form`
   border-radius: 5px;  
   padding: 20px; 
   margin-top: 120px;  
-  background: var(--blue-980);     
+  background: #3963c6;     
    
     .success-message {
         color: #66BB6A;     

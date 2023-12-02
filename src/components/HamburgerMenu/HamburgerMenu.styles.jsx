@@ -15,13 +15,15 @@ export const HamburgerStyles = styled.div`
 
   .menu {  
     position: absolute;
-    top: 99%;  
+    top: 99%;   
     right: 0;
     width: 170px;   
     height: fit-content; 
     z-index: 99;  
-    border-radius: 0 0 0 10px;       
-    background: #FFFFFF; 
+    border-radius: 0 0 0 10px;   
+      
+    background: #e5d9af;  
+    border: 1px solid #000;   
      
 
         ul {
@@ -32,10 +34,11 @@ export const HamburgerStyles = styled.div`
    
         a { 
           color: #000; 
-          margin: 0;
+          margin: 0; 
+          font-weight: bold;      
 
           &:hover {
-            color: #b7963c;
+            color: #3963c6;
           }
         }
   }

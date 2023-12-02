@@ -14,16 +14,18 @@ export const LoginFormStyles = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 200px;
+  height: 190px;
   padding: 15px;
   margin-inline: auto; 
   margin-top: 100px;
   border-radius: 5px;  
   box-shadow: 0 3px 5px var(--blue-400); 
+  background: #609bee;
   
     label {
         font-size: 18px; 
         font-weight: 600;
+        margin-top: 5px;
     }
 
     input {
@@ -37,7 +39,7 @@ export const LoginFormStyles = styled.form`
 
         &:focus {
           border: 2px solid var(--blue-700);
-          outline: none;
+          outline: 1px solid var(--blue-700);   
         }
     }
 

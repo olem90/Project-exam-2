@@ -72,6 +72,10 @@ export const NavStyles = styled.nav`
     }
 
     @media(max-width: 700px) {
+
+      .page-name {
+        color: #b7963c;    
+      }
       
       :nth-child(2) { 
         margin-left: 50px;   
