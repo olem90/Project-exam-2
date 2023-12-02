@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LoginFormWrapper = styled.div`
   display: flex;
-  min-height: 100vh;    
+  min-height: calc(100vh -80px);    
   
     .login-error {
       background: #fff;

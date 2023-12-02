@@ -7,8 +7,6 @@ import { useInputFocus } from "../../OnInputFocus/OnInputFocus";
 
 const loginUrl = "https://api.noroff.dev/api/v1/holidaze/auth/login";
 
-
-
 const Login = () => {
     const navigate = useNavigate();
     const { setInputFocused } = useInputFocus();

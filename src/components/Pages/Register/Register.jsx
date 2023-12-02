@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FormStylesWrapper } from "./Register.styles";
 import FormStyles from "./Register.styles";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { RegisterButton } from "../../Buttons/Buttons.styles";
+import { useInputFocus } from "../../OnInputFocus/OnInputFocus";
 
 const url = "https://api.noroff.dev/api/v1/holidaze/auth/register";
 
@@ -12,6 +13,7 @@ export const Register = () => {
     const [email, setEmail] = useState("");
     const [avatar, setAvatar] = useState("");
     const [password, setPassword] = useState("");
+    const { setInputFocused } = useInputFocus();
 
     const [nameError, setNameError] = useState("");
     const [emailError, setEmailError] = useState("");
@@ -137,6 +139,8 @@ export const Register = () => {
             <FormStyles onSubmit={onRegisterFormSubmit}>
                 <label htmlFor="name">Name</label>
                 <input value={name}
+                onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
                 placeholder="Your name"
                 onChange={onNameChange}
                 required/>
@@ -144,6 +148,8 @@ export const Register = () => {
 
                 <label htmlFor="email">Email</label>
                 <input value={email}
+                onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
                 placeholder="Your email"
                 onChange={onEmailChange}
                 required/>
@@ -151,12 +157,16 @@ export const Register = () => {
 
                 <label htmlFor="avatar">Avatar</label>
                 <input value={avatar}
+                onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
                 placeholder="Insert image url" 
                 onChange={onAvatarChange}/>
                 <span>{avatarError}</span>
 
                 <label htmlFor="password">Password</label>
                 <input value={password}
+                onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
                 placeholder="Type a password"
                 onChange={onPasswordChange}
                 required/>
