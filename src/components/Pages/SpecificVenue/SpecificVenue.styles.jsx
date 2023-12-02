@@ -140,7 +140,6 @@ export const SpecificVenueStyles = styled.div`
         max-width: 500px;  
         line-height: 30px;
         height: fit-content;
-        border: 2px solid red;
         white-space: normal;
         word-wrap: break-word;
         word-break: break-all; 

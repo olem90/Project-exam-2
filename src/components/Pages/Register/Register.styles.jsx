@@ -4,7 +4,6 @@ export const FormStylesWrapper = styled.div`
   display: flex;
   flex-direction: column; 
   min-height: calc(100dvh - 80px);     
-  margin-bottom: -100px;   
   background: #F5F5DC;        
 
   @media(max-width: 320px) { 

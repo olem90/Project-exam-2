@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const LoginFormWrapper = styled.div`
   display: flex;
   min-height: calc(100dvh - 80px);  
-  margin-bottom: -100px; 
 
   @media(max-width: 315px) { 
     margin-bottom: -70px; 
