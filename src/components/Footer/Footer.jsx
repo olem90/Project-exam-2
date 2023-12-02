@@ -1,5 +1,5 @@
 import { FooterStyle } from "./Footer.styles.jsx";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useInputFocus } from "../OnInputFocus/OnInputFocus.jsx";
@@ -7,8 +7,6 @@ import { useInputFocus } from "../OnInputFocus/OnInputFocus.jsx";
 
 export function Footer() {
     const { isInputFocused } = useInputFocus();
-
-    const dynamicFooterStyle = isInputFocused ? { bottom: '-200px' } : {};
 
     useEffect(() => {
         const scrollToTopButton = document.querySelector(".scroll-to-top");

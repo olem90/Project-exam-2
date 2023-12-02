@@ -1,5 +1,4 @@
-import React from "react";
-import { createContext } from "react";
+import React, { createContext, useState, useContext } from "react";
 
 const InputFocusContext = createContext();
 
