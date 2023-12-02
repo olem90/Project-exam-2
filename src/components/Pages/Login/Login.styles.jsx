@@ -11,7 +11,7 @@ export const LoginFormStyles = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 190px;
+  height: fit-content;; 
   padding: 15px;
   margin-inline: auto; 
   margin-top: 100px;
@@ -22,7 +22,7 @@ export const LoginFormStyles = styled.form`
     label {
         font-size: 18px; 
         font-weight: 600;
-        margin-top: 5px;
+        margin-top: 5px; 
     }
 
     input {

@@ -6,11 +6,11 @@ export const LoginButton = styled.button`
   color: #fff;
   padding: 5px;
   height: 34px;
-  margin-top: 25px;
-  border: none;
-  font-weight: bold; 
+  margin-top: 20px;
+  border: none; 
+  font-weight: bold;  
 `
-
+ 
 export const LogOutButton = styled.button`
   background: #362815;  
   display: flex;
@@ -85,7 +85,7 @@ export const RegisterButton = styled.button`
   border-radius: 3px; 
   border: 1px solid var(--blue-970);  
   height: 37px;
-  padding: 3px;
+  padding: 5px;
   transition: 0.4s ease-in-out;
 
   &:hover {

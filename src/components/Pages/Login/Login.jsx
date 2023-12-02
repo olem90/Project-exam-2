@@ -23,7 +23,7 @@ const Login = () => {
     };
 
     function onPasswordChange(event) {
-        setPassword(event.target.value);
+        setPassword(event.target.value.toLowerCase()); 
     };
 
     async function onLoginFormSubmit(event) {
@@ -31,7 +31,7 @@ const Login = () => {
 
         try {
             setIsError(false);
-            setIsLoading(true);
+            setIsLoading(true); 
             const response = await fetch(loginUrl, {
                 method: "POST",
                 headers: {
