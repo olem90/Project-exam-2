@@ -79,6 +79,9 @@ export const BookNowButton = styled.button`
 export const RegisterButton = styled.button`
   background: #362815;   
   margin-top: 10px;  
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   color: #fff;
   font-weight: bold; 
   font-size: 20px; 
