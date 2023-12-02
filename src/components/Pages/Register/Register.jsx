@@ -42,7 +42,7 @@ export const Register = () => {
     };
 
     function onEmailChange(event) {
-        setEmail(event.target.value)
+        setEmail(event.target.value.toLowerCase())
     };
 
     function onAvatarChange(event) {

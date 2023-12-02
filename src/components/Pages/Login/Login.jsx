@@ -19,14 +19,14 @@ const Login = () => {
     const [isError, setIsError] = useState(false);
 
     function onEmailChange(event) {
-        setEmail(event.target.value);
+        setEmail(event.target.value.toLowerCase());
     };
 
     function onPasswordChange(event) {
-        setPassword(event.target.value.toLowerCase()); 
+        setPassword(event.target.value);  
     };
 
-    async function onLoginFormSubmit(event) {
+    async function onLoginFormSubmit(event) { 
         event.preventDefault();
 
         try {
