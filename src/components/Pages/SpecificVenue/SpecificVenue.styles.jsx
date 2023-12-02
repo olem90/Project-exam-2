@@ -16,9 +16,9 @@ export const SpecificVenueWrapper = styled.div`
     min-width: 90%;  
    } 
 
-   @media(max-width: 400px) {  
-    max-width: 98%; 
-    min-width: 98%;   
+   @media(max-width: 450px) {  
+    max-width: 100%; 
+    min-width: 100%;   
    } 
 `
 
@@ -134,18 +134,16 @@ export const SpecificVenueStyles = styled.div`
         transition: filter 0.3s ease;
     }
 
-    .main-img:hover .faExpand {
-      display: block;
-      color: red;
-    }
-
     .specific-venue-description {
         flex: 1.5; 
         min-width: 400px;
         max-width: 500px;  
         line-height: 30px;
-        white-space: wrap; 
         height: fit-content;
+        border: 2px solid red;
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all; 
 
         p {
             margin-top: 0;

@@ -21,8 +21,8 @@ export const HamburgerStyles = styled.div`
     height: fit-content; 
     z-index: 99;  
     border-radius: 0 0 0 10px;       
-    background: #211b0b; 
-    opacity: 0.96;    
+    background: #FFFFFF; 
+     
 
         ul {
           display: flex; 
@@ -31,7 +31,7 @@ export const HamburgerStyles = styled.div`
         }
    
         a { 
-          color: #fff; 
+          color: #000; 
           margin: 0;
 
           &:hover {

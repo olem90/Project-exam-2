@@ -12,7 +12,7 @@ export const NavStyles = styled.nav`
     .page-name {
       margin-left: 50px; 
       font-family: 'Great Vibes', cursive;     
-      color: #fff;     
+      color: #b7963c;      
       font-size: 42px;    
       margin-top: auto;  
       height: 55px; 
