@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const FooterStyle = styled.div.attrs(props => ({
   style: {
-    bottom: props.isInputFocused && window.innerWidth < 480 ? '-200px' : '0'
+    bottom: props.isInputFocused && window.innerWidth < 480 ? '-200px' : '0',
+    paddingBottom: props.isInputFocused && window.innerWidth < 480 ? '100px' : '0'
   }
 }))`
     display: flex;
@@ -46,7 +47,8 @@ export const FooterStyle = styled.div.attrs(props => ({
         padding-inline: 5px; 
 
         @media(max-width: 420px) {   
-            font-size: 20px;   
+            font-size: 20px; 
+             
         }
       }  
     } 
