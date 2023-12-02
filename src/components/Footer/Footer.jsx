@@ -2,7 +2,7 @@ import { FooterStyle } from "./Footer.styles.jsx";
 import React, { useEffect } from "react";
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useInputFocus } from "../Pages/Login/Login.jsx";
+import { useInputFocus } from "../OnInputFocus/OnInputFocus.jsx";
 
 
 export function Footer() {
