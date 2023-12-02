@@ -25,18 +25,10 @@ export function Footer() {
         });
     })
 
-    document.querySelectorAll("input").forEach(input => {
-        input.addEventListener("focus", () => {
-          document.querySelector("footer").style.display = "none";
-        });
-      
-        input.addEventListener("blur", () => {
-          document.querySelector("footer").style.display = "block";
-        });
-      });
+    
 
     return ( 
-        <FooterStyle>
+        <FooterStyle className="footer">
             <div className="footer-container">
                 <span className="footer-name"> Made by Ole Marius Sandø Rognan </span>
                 <button className="scroll-to-top"> 

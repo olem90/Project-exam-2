@@ -60,6 +60,17 @@ const Login = () => {
             setIsLoading(false);
         }
     };  
+
+    document.querySelectorAll("input").forEach(input => {
+        input.addEventListener("focus", () => {
+          document.querySelector("footer").style.display = "none";
+        });
+      
+        input.addEventListener("blur", () => {
+          document.querySelector("footer").style.display = "block";
+        });
+      });
+      
    
     if (isLoading) {
         return <div>Hang in there while we are logging you in...</div>
