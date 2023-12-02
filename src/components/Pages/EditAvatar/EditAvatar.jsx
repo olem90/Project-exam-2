@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { fetchWithToken } from "../../../fetchWithToken";
+import { EditAvatarWrapper, EditAvatarForm } from "./EditAvatar.styles";
+import { UpdateAvatarButton } from "../../Buttons/Buttons.styles";
 
 const userProfile = JSON.parse(localStorage.getItem("profile"));
 
@@ -40,12 +42,14 @@ export const EditAvatar = () => {
     }
 
     return (
-        <form onSubmit={UpdateAvatar}>
-            <label>Avatar</label>
-            <input placeholder="type your avatar url"
-            onChange={onAvatarChange}
-            />
-            <button onClick={UpdateAvatar}>Update Avatar</button>
-        </form>
+        <EditAvatarWrapper>
+            <EditAvatarForm onSubmit={UpdateAvatar}>
+                <label>Avatar</label>
+                <input placeholder="Insert avatar url" 
+                onChange={onAvatarChange}
+                />
+                <UpdateAvatarButton onClick={UpdateAvatar}>Update Avatar</UpdateAvatarButton>
+            </EditAvatarForm>
+        </EditAvatarWrapper>
     )
-}
+}  

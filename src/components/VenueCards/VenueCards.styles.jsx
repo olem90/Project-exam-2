@@ -1,52 +1,59 @@
 import styled from "styled-components";
 
 export const VenueCardsWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  box-sizing: border-box;
   gap: 50px 0px;
   margin-top: 60px; 
-  width: 90%; 
+  width: 94%; 
   margin-inline: auto; 
 
-  @media(max-width: 1550px) {
-    width: 100%; 
-  }
+  .venue-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    box-sizing: border-box;  
+    gap: 50px 40px;
+    margin-inline: auto;    
+    width: fit-content;  
+  }  
 
-  @media(max-width: 1200px) { 
-    grid-template-columns: repeat(2, 1fr);   
-    width: 87%;
-  }
-
-  @media(max-width: 1000px) { 
-    width: 96%;
+  @media(max-width: 1270px) {   
+    grid-template-columns: repeat(2, 1fr);      
+    width: 87%;  
+ 
+    .venue-cards-container {
+      grid-template-columns: repeat(2, 1fr);   
+      gap: 40px 60px; 
+    } 
   } 
 
-  @media(max-width: 820px) {  
-    width: 100%; 
+  @media(max-width: 1000px) {  
+    width: 98%; 
+
+    .venue-cards-container { 
+      gap: 40px 60px; 
+    } 
   } 
 
-  @media(max-width: 730px) {  
+  @media(max-width: 730px) {   
     width: 100%;
-  } 
-
-  @media(max-width: 700px) {   
-    grid-template-columns: repeat(1, 1fr);
+    
+    .venue-cards-container {
+      grid-template-columns: repeat(1, 1fr);  
+      gap: 40px 0px; 
+    } 
   } 
 `
  
 export const VenueCardsStyles = styled.div`
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 2px;  
   display: flex;
-  flex-direction: column;  
-  padding: 20px;
-  max-width: 420px;
-  min-width: 420px; 
-  max-height: 460px;
-  min-height: 460px;
-  margin-inline: auto;
-  background: var(--blue-200);     
+  flex-direction: column;   
+  padding: 8px; 
+  max-width: 400px;
+  min-width: 400px;  
+  max-height: 400px; 
+  min-height: 400px;  
+  background: #FFFAFA;     
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);  
   overflow: hidden;
 
@@ -57,7 +64,8 @@ export const VenueCardsStyles = styled.div`
 
         .city-and-country-container, .price-guests-container { 
           display: flex; 
-          flex-direction: column;    
+          flex-direction: column; 
+          padding-inline: 5px;   
         }  
 
         .venue-max-guests {  
@@ -101,7 +109,7 @@ export const VenueCardsStyles = styled.div`
     h1 {
       margin: 0;
       margin-bottom: 8px; 
-      font-size: 29px; 
+      font-size: 27px; 
       word-wrap: break-word;
     }
 
@@ -155,10 +163,10 @@ export const VenueCardsStyles = styled.div`
 
 @media(max-width: 700px) {    
   max-width: 400px;   
-  min-width: 400px;  
-  max-height: 4330px;   
-  min-height: 430px;    
-} 
+  min-width: 400px;   
+  max-height: 390px;        
+  min-height: 390px;    
+}  
    
 @media(max-width: 440px) {   
   max-width: 320px;  

@@ -7,6 +7,42 @@ export const CreateVenueWrapper = styled.div`
   min-height: 100%; 
   margin-bottom: -55px;
 
+    .successful-update-message {
+      color: #1f8e00; 
+      font-weight: bold; 
+      margin-top: 20px;
+      font-size: 22px; 
+      border: 2px solid #1f8e00;
+      padding: 6px; 
+      border-radius: 10px;  
+
+      @media(max-width: 600px) {
+        font-size: 19px;  
+      }
+
+      @media(max-width: 400px) {
+        font-size: 17px;  
+      }
+    }
+
+    .error-update-message {
+      color: #be0127; 
+      font-weight: bold; 
+      margin-top: 20px;
+      font-size: 22px;  
+      border: 2px solid red;
+      padding: 6px; 
+      border-radius: 10px;  
+
+      @media(max-width: 600px) {
+        font-size: 19px;  
+      }
+
+      @media(max-width: 400px) {
+        font-size: 17px;  
+      }
+    }
+
     .create-venue-container {
       border: 1px solid var(--blue-950);  
       box-shadow: 0 3px 3px #1793e8;       
@@ -15,7 +51,7 @@ export const CreateVenueWrapper = styled.div`
       padding: 12px;  
       background: #2e9cd1;
       background: #6fbcea; 
-      margin: 20px auto 70px auto; 
+      margin: 20px auto 70px auto;  
     }
 
     h1 {
@@ -64,14 +100,15 @@ export const CreateVenueForm = styled.form`
   max-width: 600px; 
   min-width: 400px;    
   margin-inline: auto;
-  padding-right: 10px;  
+  padding-right: 10px; 
+  margin-block: 30px 70px;    
 
     h2 {
         margin: 0;
         padding-block: 20px; 
         color: #000; 
-        font-size: 26px;    
-    }
+        font-size: 26px;     
+    } 
 
     .form-input {
         padding: 3px 0 3px 5px;  
@@ -140,7 +177,7 @@ export const VenueFacilities = styled.div`
     .facility-checkbox {
       width: 16px;
       height: 16px;   
-      accent-color: var(--blue-970);
+      accent-color: var(--blue-970); 
     } 
 
     .wifi-parking-container, .breakfast-pets-container { 

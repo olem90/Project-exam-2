@@ -64,36 +64,39 @@ export const UsersVenueBookings = ({ id }) => {
     }
 
     return (
+       
         <VenueBookingsWrapper>
-            <h3>Bookings({bookings.length})</h3>
-            {bookings.length > 0 ? (
-                bookings.map((booking) => {
-                    const { 
-                        formattedDateFrom, 
-                        formattedDateTo, 
-                        formattedDateCreated, 
-                        formattedDateUpdated } = getFormattedDates(booking.dateFrom, booking.dateTo, booking.created, booking.updated);
-                    return ( 
-                        <VenueBookingsCards key={booking.id}>
-                            <div className="user-venue-bookings-text">
-                                <span>From: {formattedDateFrom}</span>
-                                <span>To: {formattedDateTo}</span>
-                                <span>Number of guests: {booking.guests}</span> 
-                                <hr />        
-                                <span>Created: {formattedDateCreated}</span>
-                                <span>Last Updated: {formattedDateUpdated}</span>   
-                            </div>
-                            <div className="user-venue-booking-img-container">
-                                <img className="user-venue-bookings-img" src={venueBookings.media}></img> 
-                            </div>
-                                
-                        </VenueBookingsCards>
-                    );   
-                })
-            ) : (
-                <p>No bookings available for this venue.</p>
-            )}
+            <div className="venue-bookings-container">
+                <h3>Bookings({bookings.length})</h3>
+                {bookings.length > 0 ? (
+                    bookings.map((booking) => {
+                        const { 
+                            formattedDateFrom, 
+                            formattedDateTo, 
+                            formattedDateCreated, 
+                            formattedDateUpdated } = getFormattedDates(booking.dateFrom, booking.dateTo, booking.created, booking.updated);
+                        return ( 
+                            <VenueBookingsCards key={booking.id}>
+                                <div className="user-venue-bookings-text">
+                                    <span>From: {formattedDateFrom}</span>
+                                    <span>To: {formattedDateTo}</span>
+                                    <span>Number of guests: {booking.guests}</span> 
+                                    <hr />        
+                                    <span>Created: {formattedDateCreated}</span>
+                                    <span>Last Updated: {formattedDateUpdated}</span>   
+                                </div>
+                                <div className="user-venue-booking-img-container">
+                                    <img className="user-venue-bookings-img" src={venueBookings.media}></img> 
+                                </div>
+                            </VenueBookingsCards>
+                        );   
+                    })
+                ) : (
+                    <p>No bookings available for this venue.</p>
+                )}
+            </div>
         </VenueBookingsWrapper>
+        
     )
 }
 

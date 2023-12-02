@@ -4,8 +4,8 @@ export const SpecificVenueWrapper = styled.div`
    min-width: 94%;
    max-width: 94%;
    margin-inline: auto;   
-   border: 2px solid gold; 
- 
+   min-width: calc(100dvh - 80px); 
+  
    @media(max-width: 800px) {  
     max-width: 80%; 
     min-width: 80%;  
@@ -28,17 +28,6 @@ export const SpecificVenueStyles = styled.div`
   margin-inline: auto;
   box-sizing: border-box;
   padding: 6px;
-
-    .faExpand { 
-      position: absolute;
-      top: 17px;
-      right: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      color: transparent;
-      transition: color 0.3s ease; 
-      z-index: 99;
-    }
 
     .all-thumbnails-container {
       min-width: 400px;
@@ -70,10 +59,6 @@ export const SpecificVenueStyles = styled.div`
     .thumbnail-container img.active-thumbnail {
       border: 2px solid #000;
       opacity: 1;
-    }
-
-    .book-now-with-carousel { 
-      margin-top: 10px;
     }
 
     h3  {
@@ -138,14 +123,6 @@ export const SpecificVenueStyles = styled.div`
         min-width: 400px;
         max-width: 400px;
         position: relative;  
-    }
-    
-    .specific-venue-name-img:hover .main-img{
-      filter: brightness(50%);
-    }
-
-    .specific-venue-name-img:hover .faExpand {
-      color: #fff;
     }
 
     .main-img {

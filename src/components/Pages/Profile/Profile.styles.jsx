@@ -411,14 +411,14 @@ export const UsersBookingsInfo = styled.div`
       span {
         margin: 0;
         padding: 0;
-        font-size: 14px;       
+        font-size: 14px;
       }
 
       h3 {
         font-size: 18px;
         white-space: normal;
         word-wrap: break-word;
-        word-break: break-all;     
+        word-break: break-all;
       }
     }
 `
@@ -428,14 +428,21 @@ export const UsersVenueCards = styled(Link)`
   height: auto;
   margin-block: 25px;
   box-sizing: border-box;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   width: 100%;
-  max-width: 700px; 
+  max-width: 700px;
   min-width: 500px;
-  padding: 10px;
-  transition: background-color 0.3s; 
-  background: #FFFAFA;
-  border: 1px solid #000;  
+  padding: 10px; 
+  transition: background-color 0.3s;
+  background: #FFF5EE;
+  border: 1px solid #000;
+
+  .venue-name {   
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all; 
+    color: #000; 
+  } 
 
     &:hover {
       box-shadow: 0 2px 5px var(--blue-800);    

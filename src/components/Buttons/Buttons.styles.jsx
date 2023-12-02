@@ -8,43 +8,46 @@ export const LoginButton = styled.button`
   height: 34px;
   margin-top: 25px;
   border: none;
-  font-weight: bold;
+  font-weight: bold; 
 `
 
 export const LogOutButton = styled.button`
-  background: var(--blue-980);
+  background: #362815;  
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   align-items: center; 
   color: #fff; 
   border: 2px solid #fff;
   padding: 5px;
-  height: 30px;
+  height: 30px; 
   font-weight: 500; 
   font-size: 18px;   
   border-radius: 8px;  
   margin:  auto 10px 10px auto; 
   white-space: nowrap;
 
-  
-
-  @media(max-width: 500px) {
-    font-size: 16px;
-  }
-
-  @media(max-width: 400px) {
+  @media(max-width: 600px) {
     font-size: 14px;
+    margin:  auto 6px 10px auto; 
+    padding: 0 4px 0 4px;
+    display: none;
   }
+
 `
 
 export const ViewVenueButton = styled.button`
-  background: var(--blue-980);
+  background: #403007;
   color: #fff;
   padding: 5px;
   margin-top: auto;
   border: none;
   font-weight: bold;
   border-radius: 5px;
+  transition: 0.2s ease-in-out; 
+
+  &:hover {
+    opacity: 0.9; 
+  }
 `
 
 export const BookNowButton = styled.button`
@@ -118,6 +121,23 @@ export const BookingFormSubmitButton = styled.button`
   margin-top: 120px !important;
 `
 
+export const UpdateAvatarButton = styled.button`
+  background: #000;
+  color: #fff;
+  width: 130px;
+  padding: 3px 2px 3px 2px; 
+  margin-left: 7px; 
+  font-size: 18px;
+`
+
+export const VenueFormSubmitButton = styled.button`
+  background: #000;
+  color: #fff;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 18px;
+`
+
 export const CreateVenueButton = styled.button`
   background: #000;
   color: #fff;
@@ -144,8 +164,25 @@ export const UpdateVenueButton = styled.button`
   color: #fff;
   padding: 10px;
   font-weight: bold;
-  width: 30%;
-  margin: 40px 82px 20px 0 ;
+  width: 180px ;
+  margin: 20px 82px 20px 0 ;
+  white-space: nowrap;
+
+  @media(max-width: 890px) { 
+    width: 170px; 
+    margin: 20px 62px 20px 0 ;
+  } 
+
+  @media(max-width: 400px) { 
+    width: 160px; 
+    margin: 20px 42px 20px 0 ;
+  }
+
+  @media(max-width: 370px) { 
+    width: 140px; 
+    margin: 20px 32px 20px 0 ;
+  }
+
 `
 //Buttons on the users booked venue Cards
 export const ViewBookedVenueButton = styled.button`

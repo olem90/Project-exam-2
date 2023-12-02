@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const HeaderStyles = styled.header`
   min-width: 100%;
+  position: relative;
   
     img {
       max-width: 100%;

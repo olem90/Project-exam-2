@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { SearchBarStyles } from "./SearchBar.styles";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
     const [search, setSearch] = useState("");
@@ -46,14 +48,15 @@ export const SearchBar = ({ venues, setFilteredVenues, filteredVenues }) => {
         <SearchBarStyles ref={searchRef}>
             <input type="text" 
             value={search}
-            onChange={handleSearchChange}
-            placeholder="Search venues.."
+            onChange={handleSearchChange} 
+            placeholder="Search venues.."   
             onFocus={() => setIsSearchDropdownVisible(true)}
             />
+            <FontAwesomeIcon onClick={() => setIsSearchDropdownVisible(false)} className="faSearchIcon" icon={faSearch} />
             {search && isSearchDropdownVisible && venues.length > 0 ? (
                 <div className="searchResults">
                 {filteredVenues.map((venue) => (
-                    <Link className="searchBarLink" to={`/venue/${venue.id}`} key={venue.id}>
+                    <Link className="searchBarLink" to={`/venue/${venue.id}`} key={venue.id}> 
                         { venue.name }
                     </Link>
                 ))}

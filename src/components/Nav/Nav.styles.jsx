@@ -6,22 +6,39 @@ export const NavStyles = styled.nav`
   min-width: 100%;
   max-width: 100%;
   height: 80px; 
-  background: var(--blue-980);      
-  border: 2px solid red;
+  background: #362815;  
   align-items: end; 
 
-  :first-child {
-    margin-left: 110px;     
-  }
+    .page-name {
+      margin-left: 50px; 
+      font-family: 'Great Vibes', cursive;     
+      color: #fff;     
+      font-size: 42px;    
+      margin-top: auto;  
+      height: 55px; 
+
+      @media(max-width: 700px) { 
+        margin-left: 10px;   
+        color: #fff;   
+      }
+    }
+
+    :nth-child(2) { 
+      margin-left: 80px;
+    }
 
     a {
-      margin-right: 22px;  
+      margin-right: 22px;
       color: #fff;
       margin-bottom: 10px;
       font-size: 20px;
 
+      &:hover {
+        color: #b7963c; 
+      }
+
       &.active {
-        text-decoration: underline;
+        text-decoration: underline; 
       }
     }
 
@@ -40,50 +57,45 @@ export const NavStyles = styled.nav`
       border-radius: 8px;   
       margin:  auto 10px 10px auto; 
       white-space: nowrap; 
+
+      @media(max-width: 600px) {  
+        display: none; 
+      }
     
-    @media(max-width: 500px) { 
-      font-size: 16px;
+      @media(max-width: 500px) { 
+        font-size: 16px;
+      }
+
+      @media(max-width: 400px) {
+        font-size: 14px;
+      }  
     }
-
-    @media(max-width: 400px) {
-      font-size: 14px;
-
-    }  
-  }
 
     @media(max-width: 700px) {
       
-      :first-child { 
-        margin-left: 60px;
+      :nth-child(2) { 
+        margin-left: 50px;   
       }
 
     }
 
-@media(max-width: 500px) { 
+@media(max-width: 600px) { 
 
-  :first-child {  
-    margin-left: 20px; 
+  :nth-child(2) { 
+    margin-left: 0;   
+  } 
+
+  .nav-link, login-link { 
+    display: none;  
   }
 
   a {
     font-size: 18px;
-
-    &.active {
-      text-decoration: 2px #fff underline;  
-    }
   }
-}
+} 
 
-@media(max-width: 400px) {
+@media(max-width: 500px) {    
 
-  :first-child {  
-    margin-left: 8px;  
-  }
-
-  a {
-    font-size: 16px;
-    margin-right: 12px; 
-    
-  }
+ 
 }
 ` 

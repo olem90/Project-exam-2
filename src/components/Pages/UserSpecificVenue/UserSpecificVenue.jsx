@@ -24,8 +24,17 @@ export const UserSpecificVenue = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { id } = useParams();
+    const [isCarouselVisible, setIsCarouselVisible] = useState(false);
     console.log("Venue ID:", id);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+    useEffect(() => { 
+        if(managerVenue && managerVenue.media && managerVenue.media.length > 1) { 
+            setIsCarouselVisible(true);
+        } else {
+            setIsCarouselVisible(false);
+        }
+    }, [managerVenue]);
 
     const handleThumbnailClick = (index) => {
         setActiveImageIndex(index);
@@ -84,7 +93,7 @@ export const UserSpecificVenue = () => {
                 <SpecificVenueStyles>
                     <h1 className="specific-venue-name">{managerVenue.name}</h1>
                     <div className="img-and-description-container">
-                        <div className="specific-venue-name-img">
+                        <div className={`specific-venue-name-img ${!isCarouselVisible ? "specific-venue-with-no-carousel" : ""}`}>
                             {managerVenue.media && managerVenue.media.length > 0 ? (
                             <img className="main-img" src={managerVenue.media[activeImageIndex]} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                             ) : (
@@ -116,20 +125,23 @@ export const UserSpecificVenue = () => {
                                 </SwiperSlide>
                             </Swiper>                                 
                         </div>
-                        <div className="specific-venue-description">
+                        <div className="specific-venue-description"> 
                             <p>{managerVenue.description}</p>
                         </div>
                     </div>
                     <div className="venue-content">
-                        <div className="price-container">
+                        <div className={`price-container ${isCarouselVisible ? "price-container-carousel" : ""}`}>
                             <span>Price: ${managerVenue.price}</span>
                             <span>Maximum guests: {managerVenue.maxGuests}</span>
                             {managerVenue.rating > 0 ? (
                             <span>Rating: {renderStars(managerVenue.rating)}</span>
                             ) : <span>Rating: No ratings yet</span>}
                             </div>
-                            <UpdateVenueButton onClick={() => goToUpdateVenuePage(id)}>Update Venue</UpdateVenueButton>
-                            <RemoveVenue />
+                            <div className="update-venue-buttons-container">
+                                <UpdateVenueButton onClick={() => goToUpdateVenuePage(id)}>Update Venue</UpdateVenueButton>
+                                <RemoveVenue />
+                            </div>
+                            
                             <div className="location-and-facilities-container">
                                 <div className="locationContainer">
                                     <h2>Location:</h2>

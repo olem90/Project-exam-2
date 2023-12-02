@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import { SpecificVenueWrapper, SpecificVenueStyles } from "./SpecificVenue.styles";
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faWifi, faCar, faCoffee, faPaw, faExpand } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faWifi, faCar, faCoffee, faPaw } from '@fortawesome/free-solid-svg-icons';
 import { BookNowButton } from "../../Buttons/Buttons.styles";
 import { BookVenueForm } from "../BookingForm/BookingForm";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-
-const userProfileLocalStorage = JSON.parse(localStorage.getItem("profile"));
 
 export const SpecificVenue = () => {
     const [venue, setVenue] = useState(null);
@@ -80,14 +78,13 @@ export const SpecificVenue = () => {
                         <h1 className="specific-venue-name">{venue.name}</h1> 
                         <div className="img-and-description-container"> 
                             <div className={`specific-venue-name-img ${!isCarouselVisible ? "specific-venue-with-no-carousel" : ""}`}>
-                                <Link><FontAwesomeIcon className="faExpand" icon={faExpand} /></Link>
                                     {venue.media && venue.media.length > 0 ? (
                                     <img className={`main-img ${!isCarouselVisible ? "main-img-with-no-carousel" : ""}`} src={venue.media[activeImageIndex]} alt="venue" onError={(event)=>{event.target.onerror = null; event.target.src= placeholderImg}} />
                                     ) : (
-                                    <img className="main-img" src={placeholderImg} alt="Placeholder image"></img>  
+                                    <img className={`main-img ${!isCarouselVisible ? "main-img-with-no-carousel" : ""}`} src={placeholderImg} alt="Placeholder image"></img>  
                                     )}
                                     <Swiper 
-                                        spaceBetween={10}
+                                        spaceBetween={10} 
                                         slidesPerView={'auto'}
                                         freeMode={true}
                                         className="all-thumbnails-container"

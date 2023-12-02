@@ -257,7 +257,7 @@ export const CreateVenue = () => {
                         />
                     </div>
 
-                    <div className="breakfast-pets-container">
+                    <div className="breakfast-pets-container"> 
                         <label htmlFor="breakfast">Breakfast</label>
                         <input className="facility-checkbox"
                         type="checkbox"

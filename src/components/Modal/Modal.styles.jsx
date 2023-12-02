@@ -62,6 +62,53 @@ export const ModalStyles = styled.div`
     button:hover {
         border: var(--blue-400);
     }
+
+    @media(max-width: 600px) {
+      width: 350px;   
+      font-size: 17px;
+
+        .modal-buttons-container {
+          button {
+            height: 36px; 
+            width: 120px;
+          }
+        }
+
+        .modal-content {
+            p {
+              width: 100%;  
+            }
+        }
+    }
+
+    @media(max-width: 450px) {
+      width: 300px;   
+      height: 110px; 
+      font-size: 15px;  
+
+        .modal-buttons-container { 
+          width: 100%; 
+
+          button {
+            height: 30px;   
+            width: 100px;
+          }
+        }
+
+        .modal-content {
+          
+          p {
+            padding: 0;
+            margin: 0;
+            width: 100%;  
+          }
+        }
+    }
+
+    @media(max-width: 400px) {
+      width: 260px;   
+
+    }
 `
 
 

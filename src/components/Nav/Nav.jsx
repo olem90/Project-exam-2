@@ -3,7 +3,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useContext } from 'react';
 import { AuthContext } from "../AuthContext/AuthContext";
 import { LogOutButton } from "../Buttons/Buttons.styles";
-
+import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
 
 export function Nav() {
     const navigate = useNavigate();
@@ -13,9 +13,9 @@ export function Nav() {
 
     useEffect(() => {
        
-    }, [loggedInUser]);
+    }, [loggedInUser]); 
 
-    function logOutUser() {
+    function logOutUser() { 
       logOut();
       navigate("/login"); 
     };
@@ -23,16 +23,17 @@ export function Nav() {
     return ( 
         <div>
             <NavStyles>
-                <NavLink to='/home'></NavLink>
-                <NavLink to='/home'>Home</NavLink>
-                <NavLink to='/register'>Register</NavLink> 
-                <NavLink to='/account'>Account</NavLink> 
+                <Link className="page-name" to="/">Holidaze</Link>
+                <NavLink className="nav-link" to='/home'>Home</NavLink>
+                <NavLink className="nav-link" to='/register'>Register</NavLink>  
+                <NavLink className="nav-link" to='/account'>Account</NavLink>  
                 {!loggedInUser && (
-                    <Link className="login-link" to='/login'>Login</Link>
+                    <Link className="login-link" to='/login'>Login</Link> 
                 )}
                 {loggedInUser && ( 
                     <LogOutButton onClick= {logOutUser}>Log Out</LogOutButton>   
                 )}
+                <HamburgerMenu />
             </NavStyles>
         </div>
     );

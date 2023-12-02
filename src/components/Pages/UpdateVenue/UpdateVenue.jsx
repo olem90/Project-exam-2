@@ -1,19 +1,18 @@
-import { UpdateVenueForm, UpdateVenueWrapper } from "./UpdateVenue.styles";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { VenueFacilities } from "../CreateVenue/CreateVenue.styles";
-import { CreateVenueWrapper } from "../CreateVenue/CreateVenue.styles";
-import { CreateVenueForm } from "../CreateVenue/CreateVenue.styles";
-import { useParams } from "react-router-dom";
+import { CreateVenueWrapper, CreateVenueForm } from "../CreateVenue/CreateVenue.styles";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchWithToken } from "../../../fetchWithToken";
+import { VenueFormSubmitButton } from "../../Buttons/Buttons.styles"; 
 
-export const UpdateVenue = () => {
+export const UpdateVenue = () => { 
     
     const [formData, setFormData] = useState({});
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [media, setMedia] = useState([]);
     const [price, setPrice] = useState("");
-    const [maxGuests, setMaxGuests] = useState("");
+    const [maxGuests, setMaxGuests] = useState(""); 
     const [rating, setRating] = useState("");
     //meta
     const [wifi, setWifi] = useState(false);
@@ -32,8 +31,11 @@ export const UpdateVenue = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { id } = useParams();
+    const [isSuccessfullUpdate, setIsSuccessfullUpdate] = useState(null);
+    const successMessageRef = useRef(null);
+    const navigate = useNavigate();
 
-    const updateVenueUrl = `https://api.noroff.dev/api/v1/holidaze/venues/${id}`;
+    const updateVenueUrl = `https://api.noroff.dev/api/v1/holidaze/venues/${id}`; 
 
     useEffect(() => {
         async function getVenueData() {
@@ -57,13 +59,19 @@ export const UpdateVenue = () => {
                 setCountry(json.location.country);
                 setContinent(json.location.continent);
                 setLatitude(json.location.latitude);
-                setLongitude(json.location.longitude);
+                setLongitude(json.location.longitude); 
 
             } catch (error) {
             }
         }
         getVenueData();
     }, [id]);
+
+    useEffect(() => {
+        if (isSuccessfullUpdate) {
+            successMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [isSuccessfullUpdate]);
 
     async function onUpdateVenueFormSubmit(event) {
         event.preventDefault();
@@ -105,13 +113,27 @@ export const UpdateVenue = () => {
             const json = await response.json();
             setFormData(json);
             setIsLoading(false);
-            console.log("Update venue info:", json);
+            console.log("Update venue info:", json); 
             setName(json.name);
             setDescription(json.description);
+            
+            if(response.ok) {
+                setIsSuccessfullUpdate(true);
+                successMessageRef.current?.scrollIntoView({ behavior: "smooth" });  
+ 
+                setTimeout(() => {
+                    navigate(-1);  
+                }, 2500);
+
+            } else {
+                setIsSuccessfullUpdate(false);
+                successMessageRef.current?.scrollIntoView({ behavior: "smooth" });  
+            }
 
         } catch (error) {
             setIsLoading(false);
             setIsError(true);
+            setIsSuccessfullUpdate(false);
             console.error(error);
         }
     };
@@ -125,7 +147,7 @@ export const UpdateVenue = () => {
     };
 
     function onMediaChange(event) {
-        const mediaUrls = event.target.value.split(",").map(mediaUrl => mediaUrl.trim())
+        const mediaUrls = event.target.value.split(",").map(mediaUrl => mediaUrl.trim()) 
         setMedia(mediaUrls);
     };
 
@@ -185,6 +207,22 @@ export const UpdateVenue = () => {
         setLongitude(event.target.value);
     };
 
+    const SuccessfullUpdate = () => {
+        if(isSuccessfullUpdate === true){
+            return(
+                <div className="successful-update-message" ref={successMessageRef}>
+                    <p>You successfully updated your venue!🎉</p>
+                </div>
+            );
+        }else if(isSuccessfullUpdate === false) {
+            return ( 
+                <div className="error-update-message" ref={successMessageRef}>
+                    <p>Oops! An error occured while trying to update your venue. Please try again.</p>  
+                </div>
+            );
+        };
+    };
+
     if (isError) {
         return <div>Oops an error occured submitting the form</div>
     }
@@ -193,11 +231,10 @@ export const UpdateVenue = () => {
         return <div>Submitting the form...</div>
     }
 
-
    return (
         <CreateVenueWrapper>
-            <div>
-                <CreateVenueForm onSubmit={onUpdateVenueFormSubmit}>
+            <div className="create-venue-container">
+                <CreateVenueForm onSubmit={onUpdateVenueFormSubmit}>  
                     <label htmlFor="name">Name</label>
                     <input className="form-input"
                     type="text" 
@@ -237,7 +274,7 @@ export const UpdateVenue = () => {
                     <label htmlFor="rating">Rating</label>
                     <input className="form-input"
                     type="text" 
-                    value={rating}
+                    value={rating || ""}
                     placeholder="rating"
                     onChange={onRatingChange}
                     />
@@ -245,7 +282,7 @@ export const UpdateVenue = () => {
                     <label htmlFor="media">Images</label>
                     <input className="form-input"
                     type="text" 
-                    value={media}
+                    value={media || []}
                     placeholder="insert your image url and separate each url with a comma for more images"
                     onChange={onMediaChange}
                     />
@@ -254,30 +291,30 @@ export const UpdateVenue = () => {
                     <VenueFacilities>
                         <div className="wifi-parking-container">
                             <label htmlFor="wifi">Wifi</label>
-                            <input 
+                            <input className="facility-checkbox"
                             type="checkbox" 
                             checked={wifi}
                             onChange={onWifiChange}
                             />
 
                             <label htmlFor="parking">Parking</label>
-                            <input 
-                            type="checkbox" 
-                            checked={parking}
+                            <input className="facility-checkbox"
+                            type="checkbox"  
+                            checked={parking} 
                             onChange={onParkingChange}
                             />
                         </div>
 
                         <div className="breakfast-pets-container">
                             <label htmlFor="breakfast">Breakfast</label>
-                            <input 
+                            <input className="facility-checkbox"
                             type="checkbox"
                             checked={breakfast}
                             onChange={onBreakfastChange}
                             />
 
                             <label htmlFor="pets">Pets</label>
-                            <input 
+                            <input className="facility-checkbox"
                             type="checkbox" 
                             checked={pets}
                             onChange={onPetsChange}
@@ -290,7 +327,7 @@ export const UpdateVenue = () => {
                     <label htmlFor="address">Address</label>
                     <input className="form-input"
                     type="text" 
-                    value={address}
+                    value={address || ""}
                     placeholder="Your address"
                     onChange={onAddressChange}
                     />
@@ -298,7 +335,7 @@ export const UpdateVenue = () => {
                     <label htmlFor="city">City</label>
                     <input className="form-input"
                     type="text" 
-                    value={city}
+                    value={city || ""}
                     placeholder="The venues city"
                     onChange={onCityChange}
                     />
@@ -306,7 +343,7 @@ export const UpdateVenue = () => {
                     <label htmlFor="zip">Zip</label>
                     <input className="form-input"
                     type="text" 
-                    value={zip}
+                    value={zip || ""}
                     placeholder="The venues zip code"
                     onChange={onZipChange}
                     />
@@ -314,7 +351,7 @@ export const UpdateVenue = () => {
                      <label htmlFor="country">Country</label>
                     <input className="form-input"
                     type="text" 
-                    value={country}
+                    value={country || ""}
                     placeholder="The venues country"
                     onChange={onCountryChange}
                     />
@@ -322,28 +359,29 @@ export const UpdateVenue = () => {
                     <label htmlFor="continent">Continent</label>
                     <input className="form-input"
                     type="text" 
-                    value={continent}
-                    placeholder="The venues continent"
+                    value={continent || ""}
+                    placeholder="The venues continent" 
                     onChange={onContinentChange}
                     />
 
                     <label htmlFor="latitude">Latitude</label>
                     <input className="form-input"
                     type="text" 
-                    value={latitude}
+                    value={latitude || ""}
                     placeholder="The venues latitude"
                     onChange={onLatitudeChange}
                     />
 
-                    <label htmlFor="longitude">Longitude</label>
+                    <label htmlFor="longitude">Longitude</label> 
                     <input className="form-input"
                     type="text" 
-                    value={longitude}
+                    value={longitude || ""}
                     placeholder="The venues longitude"
-                    onChange={onLongitudeChange}
+                    onChange={onLongitudeChange} 
                     />
 
-                    <button type="submit">Update Venue</button>
+                    <VenueFormSubmitButton type="submit">Update Venue</VenueFormSubmitButton>           
+                    {SuccessfullUpdate()}
                 </CreateVenueForm>
             </div>
         </CreateVenueWrapper>
