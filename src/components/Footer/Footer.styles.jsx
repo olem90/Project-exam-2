@@ -11,7 +11,6 @@ export const FooterStyle = styled.div`
     margin-top: 30px;   
     position: sticky;  
     bottom: 0; 
-    z-index: 999;
 
       .scroll-to-top {  
         font-size: 20px;  

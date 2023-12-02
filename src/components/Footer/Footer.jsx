@@ -25,6 +25,16 @@ export function Footer() {
         });
     })
 
+    document.querySelectorAll("input").forEach(input => {
+        input.addEventListener("focus", () => {
+          document.querySelector("footer").style.display = "none";
+        });
+      
+        input.addEventListener("blur", () => {
+          document.querySelector("footer").style.display = "block";
+        });
+      });
+
     return ( 
         <FooterStyle>
             <div className="footer-container">
