@@ -347,8 +347,6 @@ export const Profile = () => {
             const venueBooking =  venueBookings.find(
                  (vb) => vb.id === venue.id);   
 
-                 const numberOfBookings = venue.bookings ? venue.bookings.length : 0;
-
               return (
                 <UsersVenueCards
                   to={`/account/user-venue/${venue.id}`}      
@@ -367,17 +365,15 @@ export const Profile = () => {
                     ) : (
                       <img src={placeholderImg} alt="Placeholder image"></img>
                     )}
-                  </div>
+                  </div> 
                   <UsersVenuesInfo>
                     <h3 className="venue-name">{venue.name}</h3> 
                     <div className="venue-card-info"> 
                         <span>Country: {venue.location.country}</span> 
                         <span>City: {venue.location.city}</span> 
-                        <span>Address: {venue.location.address}</span>  
-                        <span className="booking-amount">Bookings: {numberOfBookings}</span>    
-                            
+                        <span>Address: {venue.location.address}</span>                    
                     </div>
-                  </UsersVenuesInfo>
+                  </UsersVenuesInfo> 
                 </UsersVenueCards> 
               ); 
             })}
