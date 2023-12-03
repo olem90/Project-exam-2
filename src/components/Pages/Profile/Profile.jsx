@@ -44,12 +44,16 @@ export const Profile = () => {
 
   const venueBookingsUrl = `https://api.noroff.dev/api/v1/holidaze/venues?_bookings=true`;
   const profileInfoUrl = loggedInUser
-    ? `https://api.noroff.dev/api/v1/holidaze/profiles/${loggedInUser.name}?_venues=true&_bookings=true`
+    ? `https://api.noroff.dev/api/v1/holidaze/profiles/${loggedInUser.name}?_venues=true&_bookings=true` 
     : null;
 
   useEffect(() => {
     getUserProfileInfo();
   }, []);
+
+  const onBookingUpdate = (booking) => {
+    console.log("Update booking:", booking);
+  };
 
   const navigate = useNavigate();
 

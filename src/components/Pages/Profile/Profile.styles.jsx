@@ -265,6 +265,11 @@ export const UserBookingsStyles = styled.div`
     margin-inline: auto;
   }
 
+  @media(max-width: 440px) { 
+    max-width: 88%; 
+    min-width: 80%; 
+  }
+
   @media(max-width: 400px) { 
     width: 90%;
     
@@ -553,6 +558,8 @@ export const UsersVenueCards = styled(Link)`
   }
 
   @media (max-width: 440px) {
+    max-width: 400px;
+    min-width: 280px;  
 
     .venue-name {
       font-size: 20px;
@@ -572,7 +579,8 @@ export const UsersVenueCards = styled(Link)`
   }
 
   @media (max-width: 400px) {
-    
+    max-width: 300px;
+    min-width: 260px;  
   }
 
   @media (max-width: 350px) {
@@ -596,6 +604,7 @@ export const UsersVenuesWrapper = styled.div`
   flex-direction: column;
   margin-inline: auto;
   width: 75%;
+  border: 3px solid gold; 
 
   .no-venues {
     margin-top: 120px;
@@ -645,13 +654,11 @@ export const UsersVenuesWrapper = styled.div`
     .users-venue-container {
       width: 94%;
     }
-  }
+  } 
 
-  @media (max-width: 440px) {
-    width: 98%;
-    .users-venue-container {
-      width: 97%;
-    }
+  @media (max-width: 440px) { 
+   
+
   }
 `;
 
