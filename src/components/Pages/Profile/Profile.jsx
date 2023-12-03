@@ -347,7 +347,7 @@ export const Profile = () => {
             const venueBooking =  venueBookings.find(
                  (vb) => vb.id === venue.id);   
 
-                 const numberOfBookings = venueBooking ? venueBooking.bookings.length : 0;
+                 const numberOfBookings = venue.bookings ? venue.bookings.length : 0;
 
               return (
                 <UsersVenueCards
