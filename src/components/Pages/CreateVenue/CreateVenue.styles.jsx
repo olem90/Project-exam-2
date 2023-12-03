@@ -188,7 +188,7 @@ export const VenueFacilities = styled.div`
 
     .wifi-parking-container, .breakfast-pets-container { 
         box-sizing: border-box;
-        width: 120px; 
+        width: 110px; 
         border: 2px solid gold; 
         display: block; 
         
