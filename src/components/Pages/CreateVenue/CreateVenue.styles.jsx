@@ -210,7 +210,7 @@ export const VenueFacilities = styled.div`
     }
 
     .breakfast-pets-container {
-      width: fit-content;
+      width: 140px;
     }
     @media(max-width: 510px) {
 
