@@ -11,4 +11,5 @@ export const RemoveVenueLink = styled(Link)`
     border-radius: 6px;
     color: red;
   }
+
 `;

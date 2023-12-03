@@ -5,13 +5,13 @@ export const ProfileWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-width: 100%;
   margin-inline: auto;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px); 
 
   .profile-container {
     display: flex;
-    width: 100%;
+    width: 100%; 
     margin-inline: auto;
   }
 
@@ -258,14 +258,24 @@ export const ProfileOptionsStyles = styled.div`
 export const UserBookingsStyles = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width:70%;
+
+  @media(max-width: 940px) {
+    width: 90%;
+    margin-inline: auto;
+  }
+
+  @media(max-width: 400px) { 
+    width: 90%;
+    
+  }
 `;
 
 export const UserBookingsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 75%;
-  margin-inline: auto;
+  margin-inline: auto;  
 
   h2 {
     margin-top: 40px;
@@ -279,7 +289,7 @@ export const UserBookingsWrapper = styled.div`
   }
 
   @media (max-width: 940px) {
-    width: 130%;
+    width: 98%;
 
     .no-bookings {
       font-weight: bold;
@@ -296,20 +306,20 @@ export const UserBookingsWrapper = styled.div`
 
     .users-bookings-container {
       width: fit-content;
-      margin-left: 12%;
+      margin-left: 0; 
     }
   }
 
   @media (max-width: 600px) {
-    width: 140%;
 
     .users-bookings-container {
       width: fit-content;
-      margin-inline: 19px 8px;
+      margin-inline: auto; 
     }
   }
 
   @media (max-width: 550px) {
+    
     .no-bookings {
       margin-top: 10px;
       min-width: 400px;
@@ -323,12 +333,12 @@ export const UserBookingsWrapper = styled.div`
 
   @media (max-width: 500px) {
     .users-bookings-container {
-      min-width: 94%;
-      margin-inline: 14px 14px;
-    }
+      
+    } 
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 450px) { 
+
     .no-bookings {
       margin-top: 10px;
       min-width: 290px;
@@ -336,8 +346,9 @@ export const UserBookingsWrapper = styled.div`
   }
 
   @media (max-width: 400px) {
+    min-width: 98%;
     .users-bookings-container {
-      margin-inline: 10px 3px;
+      margin-inline: auto; 
     }
   }
 `;
@@ -363,7 +374,7 @@ export const UsersBookingsCards = styled.div`
     margin-block: auto;
   }
 
-  @media (max-width: 600px) {
+  @media(max-width: 600px) {
     min-width: 350px;
 
     img {
@@ -372,12 +383,23 @@ export const UsersBookingsCards = styled.div`
     }
   }
 
+  @media (max-width: 525px) {
+    max-width: 98%; 
+
+  }
+
+  @media (max-width: 425px) {
+    max-width: 97%;
+    min-width: 97%; 
+
+  }
+ 
   @media (max-width: 400px) {
-    min-width: 300px;
+    min-width: 260px; 
 
     img {
-      max-width: 90px;
-      min-width: 90px;
+      max-width: 80px;
+      min-width: 80px;
     }
   }
 `;
@@ -394,6 +416,10 @@ export const UsersBookingsInfo = styled.div`
     padding: 0;
     color: ##000;
     line-height: 23px;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all; 
+
   }
 
   span {
@@ -409,7 +435,7 @@ export const UsersBookingsInfo = styled.div`
   }
 
   @media (max-width: 500px) {
-    max-width: 320px;
+    max-width: 100%;
 
     .my-bookings-buttons {
       min-width: 100%;
@@ -441,7 +467,7 @@ export const UsersVenueCards = styled(Link)`
   box-sizing: border-box;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   min-width: 500px;
   padding: 10px;
   transition: background-color 0.3s;
@@ -517,8 +543,8 @@ export const UsersVenueCards = styled(Link)`
   }
 
   @media (max-width: 550px) {
-    min-width: 400px;
-    max-width: 500px;
+    min-width: 280px;
+    max-width: 500px; 
 
     img {
       min-width: 110px;
@@ -527,7 +553,6 @@ export const UsersVenueCards = styled(Link)`
   }
 
   @media (max-width: 440px) {
-    min-width: 300px;
 
     .venue-name {
       font-size: 20px;
@@ -547,10 +572,7 @@ export const UsersVenueCards = styled(Link)`
   }
 
   @media (max-width: 400px) {
-    img {
-      max-width: 100px;
-      min-width: 100px;
-    }
+    
   }
 
   @media (max-width: 350px) {
@@ -606,7 +628,6 @@ export const UsersVenuesWrapper = styled.div`
   }
 
   @media (max-width: 940px) {
-    width: 140%;
     justify-content: center;
 
     .no-venues {
@@ -627,6 +648,7 @@ export const UsersVenuesWrapper = styled.div`
   }
 
   @media (max-width: 440px) {
+    width: 98%;
     .users-venue-container {
       width: 97%;
     }

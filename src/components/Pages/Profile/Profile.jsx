@@ -332,11 +332,11 @@ export const Profile = () => {
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images";
 
   const MyVenues = () => {
-    console.log('Profile Info Venues gpt: ', profileInfo.venues);
+    console.log('ProfileInfo.venues: ', profileInfo.venues);
     console.log('Venue Bookings gpt: ', venueBookings); 
     return (
       <UsersVenuesWrapper>
-        {profileInfo && profileInfo.venues.length > 0 ? (
+        {profileInfo && profileInfo.venues.length > 0 ? ( 
           <div className="users-venue-container">
             <h2>My Venues ({profileInfo._count?.venues || 0})</h2>
             <Link to="/account/create-venue">Create a new venue</Link>
@@ -344,9 +344,9 @@ export const Profile = () => {
               // Finding the venueBooking that matches the venue.id
               const venueBooking = venueBookings.find(
                 (vb) => vb.id === venue.id); 
+                console.log("venueBooking with id === vb:" , venueBooking ) 
 
               return (
-                
                 <UsersVenueCards
                   to={`/account/user-venue/${venue.id}`}   
                   key={venue.id}
@@ -355,7 +355,7 @@ export const Profile = () => {
                   <div>
                     {venue.media[0] && venue.media[0].length > 0 ? (
                       <img
-                        src={venue.media[0]}
+                        src={venue.media[0]} 
                         alt={venue.name}
                         onError={(event) => {
                           event.target.onerror = null; 
@@ -369,25 +369,14 @@ export const Profile = () => {
                   <UsersVenuesInfo>
                     <h3 className="venue-name">{venue.name}</h3>
                     <div className="venue-card-info">
-                    {venueBooking ? ( 
-                      <>
-                        <span>Country: {venueBooking.location.country || 'Unknown'}</span>
-                        <span>City: {venueBooking.location.city || 'Unknown'}</span>
-                        <span>Address: {venueBooking.location.address || 'Unknown'}</span>
-                        <span className="booking-amount">Bookings: {venueBooking.bookings.length}</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Country: {venue.location.country || 'Unknown'}</span> 
-                        <span>City: {venue.location.city || 'Unknown'}</span>
-                        <span>Address: {venue.location.address || 'Unknown'}</span> 
-                        <span className="booking-amount">Bookings: {venueBooking ? venueBookings.length : 0}</span>  
-                      </>
-                    )}
+                        <span>Country: {venue.location.country}</span> 
+                        <span>City: {venue.location.city}</span>
+                        <span>Address: {venue.location.address}</span>  
+                        <span className="booking-amount">Bookings: {venueBooking? venueBooking.bookings.length : 0}</span>    
                     </div>
                   </UsersVenuesInfo>
                 </UsersVenueCards>
-              );
+              ); 
             })}
           </div>
         ) : (

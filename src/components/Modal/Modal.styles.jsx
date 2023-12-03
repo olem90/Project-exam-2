@@ -25,8 +25,8 @@ export const ModalStyles = styled.div`
   border-radius: 5px;
   border: 2px solid var(--blue-600);
 
-  .modal-message { 
-    color: #7cfc00; 
+  .modal-message {  
+    color: #000; 
   }  
 
   .modal-content { 
@@ -39,7 +39,7 @@ export const ModalStyles = styled.div`
     padding: 6px;
 
     p {
-      padding: 0;
+      padding: 0; 
       margin: 0;
     }
   }

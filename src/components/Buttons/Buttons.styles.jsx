@@ -211,28 +211,33 @@ export const UpdateVenueButton = styled.button`
 `;
 //Buttons on the users booked venue Cards
 export const ViewBookedVenueButton = styled.button`
-  background: var(--blue-990);
-  color: #fff;
-  padding: 2px;
-  font-weight: bold;
-  width: 100px;
-  margin-right: auto;
+background: var(--blue-990);
+display: flex;
+color: #fff;
+padding-block: 2px;
+padding-inline: 0;
+font-weight: bold;
+width: 80px;
+margin-right: 10px;
+font-size: 14px;
+height: 30px;
+border-radius: 3px;
+justify-content: center;
+align-items: center; 
+
+@media (max-width: 450px) {
   font-size: 14px;
-  height: 30px;
-  border-radius: 3px;
+  height: 25px;
+  width: 52px;
+  padding: 3px;
+  margin-right: 6px;
+}
 
-  @media (max-width: 450px) {
-    font-size: 14px;
-    height: 25px;
-    width: 86px;
-    padding: 3px;
-  }
-
-  @media (max-width: 350px) {
-    font-size: 13px;
-    width: 76px;
-    padding: 2px;
-  }
+@media (max-width: 350px) {
+  font-size: 13px;
+  width: 60px;
+  padding: 2px;
+}
 `;
 
 export const MyBookingsUpdateButton = styled.button`
