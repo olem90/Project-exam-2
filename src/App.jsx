@@ -3,7 +3,6 @@ import { Layout } from "./components/Layout/Layout.jsx";
 import { Home } from "./components/Pages/Home/Home.jsx";
 import { Routes, Route } from "react-router-dom";
 import Register from "./components/Pages/Register/Register.jsx";
-import { Contact } from "./components/Pages/Contact/Contact.jsx";
 import Login from "./components/Pages/Login/Login.jsx";
 import { SpecificVenue } from "./components/Pages/SpecificVenue/SpecificVenue";
 import { Profile } from "./components/Pages/Profile/Profile";
