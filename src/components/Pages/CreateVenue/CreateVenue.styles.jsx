@@ -175,9 +175,9 @@ export const CreateVenueForm = styled.form`
 export const VenueFacilities = styled.div`
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   gap: 10px;
   max-height: 100px;
-  border: 2px solid gold;
 
     .facility-checkbox {
       width: 16px;
@@ -188,30 +188,30 @@ export const VenueFacilities = styled.div`
 
     .wifi-parking-container, .breakfast-pets-container { 
         box-sizing: border-box;
-        width: 110px; 
-        border: 2px solid gold; 
-        display: block; 
-        
-        gap: 20px 0px;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
     
         input { 
             margin-bottom: 40px; 
-            background: red; 
-            white-space: nowrap;    
+            background: red;   
          }
 
         label {
             font-size: 17px;  
             font-weight: bold;    
             color: #000; 
-            margin-right: 3px;
-            margin-left: 10px;
+            margin: 0 3px 36px 0; 
           }
     }
+    .breakfast-pets-container label:nth-of-type(2){
+      margin-left: 30px;
 
-    .breakfast-pets-container {
-      width: 140px;
     }
+    .wifi-parking-container label:nth-of-type(2){
+      margin-left: 74px; 
+    }
+
     @media(max-width: 510px) {
 
       label {   

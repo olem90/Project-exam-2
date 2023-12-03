@@ -261,11 +261,11 @@ export const Profile = () => {
                             <span>Country: {booking.venue.location.country}</span> 
                             <span>City: {booking.venue.location.city}</span> 
                             <span>From: {formattedDates[index]?.formattedDateFrom || ''}</span>
-                            <span>To: {formattedDates[index]?.formattedDateTo || ''}</span>  
+                            <span>To: {formattedDates[index]?.formattedDateTo || ''}</span>   
                     
                             <div className="my-bookings-buttons">
                                 <MyBookingsUpdateButton to="/account/update-booking" onClick={() => handleUpdateBooking(booking)}>Update</MyBookingsUpdateButton>
-                                <ViewBookedVenueButton onClick={() => goToVenue(booking.venue.id)}>View venue</ViewBookedVenueButton>
+                                <ViewBookedVenueButton onClick={() => goToVenue(booking.venue.id)}>View</ViewBookedVenueButton>
                                 <MyBookingsDeleteLink onClick={() => handleDeleteClick(booking.id)}>Delete</MyBookingsDeleteLink>
                             </div>
                         </UsersBookingsInfo> 
