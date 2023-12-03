@@ -95,8 +95,6 @@ export const UserDataStyles = styled.div`
   max-height: 600px;     
   border-radius: 0 0 20px 0;  
   box-sizing: border-box;  
-     
-  border: 2px solid red; 
 
     .edit-link {
       color: var(--blue-950); 

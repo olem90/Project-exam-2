@@ -18,7 +18,7 @@ export const FormStyles = styled.form`
   padding: 20px; 
   margin-top: 150px;  
   background: #3963c6;     
-  z-index: 15;
+  z-index: 15; 
     
     .success-message {
         color: #66BB6A;     

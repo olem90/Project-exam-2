@@ -16,7 +16,7 @@ export const HamburgerStyles = styled.div`
   .menu {  
     position: absolute;
     top: 80px;    
-    right: 0; 
+    right: 0;  
     width: 170px;    
     height: fit-content; 
     z-index: 99;  

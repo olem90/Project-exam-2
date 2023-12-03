@@ -177,20 +177,27 @@ export const VenueFacilities = styled.div`
   display: flex;
   gap: 10px;
   max-height: 100px;
+  border: 2px solid gold;
 
     .facility-checkbox {
       width: 16px;
       height: 16px;   
       accent-color: var(--blue-970); 
+      
     } 
 
     .wifi-parking-container, .breakfast-pets-container { 
         box-sizing: border-box;
-        width: 100px; 
+        width: 120px; 
+        border: 2px solid gold; 
+        display: block; 
+        
+        gap: 20px 0px;
     
         input { 
-            margin-bottom: 40px;
-            background: red;   
+            margin-bottom: 40px; 
+            background: red; 
+            white-space: nowrap;    
          }
 
         label {
@@ -198,6 +205,7 @@ export const VenueFacilities = styled.div`
             font-weight: bold;    
             color: #000; 
             margin-right: 3px;
+            margin-left: 10px;
           }
     }
     @media(max-width: 510px) {
