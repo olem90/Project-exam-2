@@ -604,7 +604,6 @@ export const UsersVenuesWrapper = styled.div`
   flex-direction: column;
   margin-inline: auto;
   width: 75%;
-  border: 3px solid gold; 
 
   .no-venues {
     margin-top: 120px;
