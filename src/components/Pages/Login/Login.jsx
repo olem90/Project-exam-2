@@ -72,7 +72,7 @@ const Login = () => {
   return (
     <LoginFormWrapper>
       <LoginFormStyles onSubmit={onLoginFormSubmit}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email</label> 
         <input
           value={email}
           onFocus={() => setInputFocused(true)}
@@ -83,7 +83,7 @@ const Login = () => {
         />
 
         <label htmlFor="password">Password</label>
-        <input
+        <input 
           className="pw-input"
           value={password}
           type={isPasswordVisible ? "text" : "password"}

@@ -53,7 +53,7 @@ export const VenueCardsStyles = styled.div`
   min-width: 400px;
   max-height: 400px;
   min-height: 400px;
-  background: #baa583;    
+  background: #d5c8ad;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6); 
   overflow: hidden;
 

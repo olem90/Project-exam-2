@@ -367,7 +367,7 @@ export const UsersBookingsCards = styled.div`
   max-width: 700px;
   padding: 6px;
   height: auto;
-  background: #fff5ee;
+  background: #d5c8ad;
   margin-bottom: 30px;
 
   img {
@@ -476,7 +476,7 @@ export const UsersVenueCards = styled(Link)`
   min-width: 500px;
   padding: 10px;
   transition: background-color 0.3s;
-  background: #fff5ee;
+  background: #d5c8ad; 
   border: 1px solid #000;
 
   .venue-name {

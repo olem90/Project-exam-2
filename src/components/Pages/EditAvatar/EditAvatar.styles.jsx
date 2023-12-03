@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const EditAvatarWrapper = styled.div`
-  min-height: calc(100dvh - 80px);
-  margin-bottom: -130px;
+  min-height: 100vh ;
   display: flex;
   justify-content: center;
 
-  h1 {
+  h1 { 
     font-size: 40px;
   }
 

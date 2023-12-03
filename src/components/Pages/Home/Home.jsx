@@ -22,6 +22,7 @@ export const Home = () => {
         setVenues(json);
         console.log("Home Venues:", json);
         setIsLoading(false);
+
       } catch (error) {
         console.error(error);
         setIsLoading(false);

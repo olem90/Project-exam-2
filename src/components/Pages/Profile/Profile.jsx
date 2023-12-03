@@ -51,9 +51,9 @@ export const Profile = () => {
     getUserProfileInfo();
   }, []);
 
-  const onBookingUpdate = (booking) => {
-    console.log("Update booking:", booking);
-  };
+//   const onBookingUpdate = (booking) => {
+//     console.log("Update booking:", booking);
+//   };
 
   const navigate = useNavigate();
 
@@ -89,12 +89,17 @@ export const Profile = () => {
       const json = await response.json();
       setProfileInfo(json);
       setIsLoading(false);
-      console.log("profileInfo:", json);
+      console.log("GetProfileInfo:", json);
+
+      if(json.bookings && json.bookings.length > 0 ) { 
+        json.bookings.sort((a, b) => new Date(a.dateTo) - new Date(b.dateFrom)); 
+      }
+
     } catch (error) {
       setIsLoading(false);
       setIsError(true);
     }
-  }
+  } 
 
   useEffect(() => {
     async function getUsersVenueBookings() {
@@ -104,7 +109,8 @@ export const Profile = () => {
         const response = await fetchWithToken(venueBookingsUrl);
         const json = await response.json();
         setVenueBookings(json);
-        setIsLoading(false);
+        setIsLoading(false); 
+        console.log("getVenueUserBookings:" , json)  
       } catch (error) {
         setIsLoading(false);
         setIsError(true);
@@ -293,7 +299,7 @@ export const Profile = () => {
                 <BookVenueForm
                   selectedBooking={selectedBooking}
                   setSelectedBooking={setSelectedBooking}
-                  onBookingUpdate={onBookingUpdate}
+                  //onBookingUpdate={onBookingUpdate}
                   closeModal={() => setIsOnUpdateModal(false)}
                   venueId={selectedBooking.venue.id}
                   setIsOnUpdateModal={setIsOnUpdateModal}
@@ -305,7 +311,7 @@ export const Profile = () => {
               {showModal && (
                 <MyBookingsConfirmationModal
                   onConfirm={() => confirmDeleteBooking()}
-                  deleteSuccess={deleteSuccess}
+                  deleteSuccess={deleteSuccess} 
                   onCancel={!deleteSuccess ? onCancel : null}
                   message={
                     deleteSuccess
@@ -337,7 +343,8 @@ export const Profile = () => {
 
   const MyVenues = () => {
     console.log('ProfileInfo.venues: ', profileInfo.venues);
-    console.log('Venue Bookings gpt: ', venueBookings); 
+    console.log('VenueBookings: ', venueBookings); 
+   
     return (
       <UsersVenuesWrapper>
         {profileInfo && profileInfo.venues.length > 0 ? ( 
@@ -345,23 +352,23 @@ export const Profile = () => {
             <h2>My Venues ({profileInfo._count?.venues || 0})</h2>
             <Link to="/account/create-venue">Create a new venue</Link>
             {profileInfo.venues.map((venue) => {
-              // Finding the venueBooking that matches the venue.id
-              const venueBooking = venueBookings.find(
-                (vb) => vb.id === venue.id); 
-                console.log("venueBooking with id === vb:" , venueBooking ) 
+            //Finding the venueBooking that matches the venue.id
+            const venueBooking =  venueBookings.find(
+                 (vb) => vb.id === venue.id);   
+
+                 const numberOfBookings = venueBooking ? venueBooking.bookings.length : 0;
 
               return (
                 <UsersVenueCards
-                  to={`/account/user-venue/${venue.id}`}   
+                  to={`/account/user-venue/${venue.id}`}      
                   key={venue.id}
                 >
-                    {console.log("venueBooking testing:" , venueBooking)}  
                   <div>
-                    {venue.media[0] && venue.media[0].length > 0 ? (
+                    {venue.media[0] && venue.media[0].length > 0 ? ( 
                       <img
-                        src={venue.media[0]} 
+                        src={venue.media[0]}  
                         alt={venue.name}
-                        onError={(event) => {
+                        onError={(event) => { 
                           event.target.onerror = null; 
                           event.target.src = placeholderImg;
                         }}
@@ -371,15 +378,16 @@ export const Profile = () => {
                     )}
                   </div>
                   <UsersVenuesInfo>
-                    <h3 className="venue-name">{venue.name}</h3>
-                    <div className="venue-card-info">
+                    <h3 className="venue-name">{venue.name}</h3> 
+                    <div className="venue-card-info"> 
                         <span>Country: {venue.location.country}</span> 
-                        <span>City: {venue.location.city}</span>
+                        <span>City: {venue.location.city}</span> 
                         <span>Address: {venue.location.address}</span>  
-                        <span className="booking-amount">Bookings: {venueBooking? venueBooking.bookings.length : 0}</span>    
+                        <span className="booking-amount">Bookings: {numberOfBookings}</span>    
+                            
                     </div>
                   </UsersVenuesInfo>
-                </UsersVenueCards>
+                </UsersVenueCards> 
               ); 
             })}
           </div>
