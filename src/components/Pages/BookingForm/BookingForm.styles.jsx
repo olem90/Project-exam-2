@@ -8,7 +8,7 @@ export const ModalStylesWrapper = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.80);
   backdrop-filter: blur(10px);
-  border-radius: 15px;
+   
   z-index: 90; 
 
     .success-message {
@@ -17,7 +17,7 @@ export const ModalStylesWrapper = styled.div`
         font-weight: 700;
         margin-top: 20px;
         border-radius: 5px;
-        padding: 12px;
+        padding: 12px; 
         font-size: 17px;
         box-shadow: 0px 0px 10px 2px #90ee90;
         background: var(--blue-100);
@@ -73,7 +73,7 @@ export const ModalStyles = styled.div`
   width: 29%;
   z-index: 99;
   height: 360px; 
-  top: 50%;
+  top: 40%;  
   left: 50%;
   transform: translate(-50%, -50%);
   position: relative;
