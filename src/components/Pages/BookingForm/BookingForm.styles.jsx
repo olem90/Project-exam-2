@@ -73,7 +73,7 @@ export const ModalStyles = styled.div`
   width: 29%;
   z-index: 99;
   height: 360px; 
-  top: 40%;  
+  top: 50%;  
   left: 50%;
   transform: translate(-50%, -50%);
   position: relative;
@@ -235,6 +235,10 @@ export const ModalStyles = styled.div`
 
     @media(max-width: 600px) {
         width: 320px;  
+    }
+
+    @media(max-width: 480px) {
+        top: 45%;
     }
  
     @media(max-width: 400px) {
