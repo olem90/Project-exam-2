@@ -6,5 +6,5 @@ const myTestFunction = (num1, num2) => {
 myTestFunction(7, 9);
 
 module.exports = {
-  myTestFunction
+  myTestFunction,
 };

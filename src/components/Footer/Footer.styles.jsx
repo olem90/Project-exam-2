@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const FooterStyle = styled.div.attrs(props => ({
+export const FooterStyle = styled.div.attrs((props) => ({
   style: {
-    bottom: props.isInputFocused && window.innerWidth < 480 ? '-200px' : '0',
-    paddingBottom: props.isInputFocused && window.innerWidth < 480 ? '100px' : '0'
-  }
+    bottom: props.isInputFocused && window.innerWidth < 480 ? "-200px" : "0",
+    paddingBottom:
+      props.isInputFocused && window.innerWidth < 480 ? "100px" : "0",
+  },
 }))`
     display: flex;
     box-sizing: border-box;
@@ -52,4 +53,4 @@ export const FooterStyle = styled.div.attrs(props => ({
         }
       }  
     } 
-`
+`;

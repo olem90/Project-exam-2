@@ -8,7 +8,9 @@ export const InputFocusProvider = ({ children }) => {
   const [isinputfocused, setInputFocused] = useState(false);
 
   return (
-    <InputFocusContext.Provider value={{ isInputFocused: isinputfocused, setInputFocused }}>
+    <InputFocusContext.Provider
+      value={{ isInputFocused: isinputfocused, setInputFocused }}
+    >
       {children}
     </InputFocusContext.Provider>
   );
