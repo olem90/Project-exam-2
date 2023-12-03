@@ -51,10 +51,6 @@ export const Profile = () => {
     getUserProfileInfo();
   }, []);
 
-//   const onBookingUpdate = (booking) => {
-//     console.log("Update booking:", booking);
-//   };
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -89,7 +85,6 @@ export const Profile = () => {
       const json = await response.json();
       setProfileInfo(json);
       setIsLoading(false);
-      console.log("GetProfileInfo:", json);
 
       if(json.bookings && json.bookings.length > 0 ) { 
         json.bookings.sort((a, b) => new Date(a.dateTo) - new Date(b.dateFrom)); 
@@ -110,7 +105,6 @@ export const Profile = () => {
         const json = await response.json();
         setVenueBookings(json);
         setIsLoading(false); 
-        console.log("getVenueUserBookings:" , json)  
       } catch (error) {
         setIsLoading(false);
         setIsError(true);
@@ -151,7 +145,6 @@ export const Profile = () => {
       const response = await fetchWithToken(userProfileDataUrl, requestOptions);
       const profileData = await response.json();
       setIsVenueManager(true);
-      console.log("venuemanager after response:", isVenueManager);
 
       if (response.ok) {
         setUserProfileLocalStorageInfo(profileData.venueManager);
@@ -342,8 +335,6 @@ export const Profile = () => {
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F233-2332677_image-500580-placeholder-transparent.png&f=1&nofb=1&ipt=e4343f78ff0f7af5109020267ce01c0c613d9fd7ad65d2b8622a4b60419c5152&ipo=images";
 
   const MyVenues = () => {
-    console.log('ProfileInfo.venues: ', profileInfo.venues);
-    console.log('VenueBookings: ', venueBookings); 
    
     return (
       <UsersVenuesWrapper>

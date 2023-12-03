@@ -141,10 +141,6 @@ export const CreateVenue = () => {
       },
     };
 
-    console.log(requestBody);
-
-    
-
     try {
       setIsError(false);
       setIsLoading(true);
@@ -159,7 +155,6 @@ export const CreateVenue = () => {
       const json = await response.json();
       setFormData(json);
       setIsLoading(false);
-      console.log(json);
 
       if (response.ok) {
         setCreateVenueSuccess(true);

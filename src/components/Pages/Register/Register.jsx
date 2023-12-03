@@ -105,13 +105,10 @@ export const Register = () => {
         body: JSON.stringify({ name, email, avatar, password }),
       });
       const formData = await response.json();
-      console.log(formData);
-      console.log("API Response Status: ", response.ok);
-
+     
       if (response.ok) {
         setRegIsSuccess(true);
         setShowSuccessMessage(true);
-        console.log("setRegisSuccess: ", regIsSuccess);
       } else {
         setRegIsSuccess(false);
         setIsError("Failed to register. Please try again.");

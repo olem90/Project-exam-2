@@ -44,7 +44,6 @@ export const UpdateVenue = () => {
       try {
         const response = await fetch(updateVenueUrl);
         const json = await response.json();
-        console.log("MyUpdateVenueData:", json);
         setName(json.name);
         setDescription(json.description);
         setMedia(json.media);
@@ -113,7 +112,6 @@ export const UpdateVenue = () => {
       const json = await response.json();
       setFormData(json);
       setIsLoading(false);
-      console.log("Update venue info:", json);
       setName(json.name);
       setDescription(json.description);
 

@@ -24,13 +24,10 @@ export const EditAvatar = () => {
       body: JSON.stringify({ avatar: updatedAvatar }),
     };
 
-    console.log("AVATAR:", updatedAvatar);
-
     try {
       const response = await fetchWithToken(userProfileDataUrl, requestOptions);
       if (response.ok) {
         const profileData = await response.json();
-        console.log("MYPROFILE DATA: ", profileData);
 
         localStorage.setItem(
           "profile",

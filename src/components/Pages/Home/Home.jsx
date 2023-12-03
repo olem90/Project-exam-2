@@ -20,7 +20,6 @@ export const Home = () => {
         const response = await fetch(venuesUrl);
         const json = await response.json();
         setVenues(json);
-        console.log("Home Venues:", json);
         setIsLoading(false);
 
       } catch (error) {

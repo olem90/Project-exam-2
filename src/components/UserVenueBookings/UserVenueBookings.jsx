@@ -20,7 +20,6 @@ export const UsersVenueBookings = ({ id }) => {
         const response = await fetch(venueBookingsUrl);
         const json = await response.json();
         setVenueBookings(json);
-        console.log("VenueBookings from sep component:", json);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);

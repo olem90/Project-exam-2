@@ -71,7 +71,6 @@ export const UserSpecificVenue = () => {
         const json = await response.json();
         setManagerVenue(json);
         setIsLoading(false);
-        console.log("userSpecificVenue bookings:" , json.bookings) 
       } catch (error) {
         setIsLoading(false);
         setIsError(true);

@@ -46,10 +46,6 @@ export const BookVenueForm = ({
 
   useEffect(() => {
     if (selectedBooking) {
-      console.log(
-        "Setting up form with existing booking data:",
-        selectedBooking,
-      );
       setDateFrom(moment(selectedBooking.dateFrom).toDate());
       setDateTo(moment(selectedBooking.dateTo).toDate());
       setGuests(selectedBooking.guests);
@@ -75,8 +71,6 @@ export const BookVenueForm = ({
     );
   }
 
-  console.log("loggedInUser" ,loggedInUser);
-
   async function fetchBookings() {
     try {
       const response = await fetchWithToken(venueBookingsUrl, {
@@ -89,7 +83,6 @@ export const BookVenueForm = ({
       if (response.ok) {
         const venueData = await response.json();
         const venueSpecificBookings = venueData.bookings || [];
-        console.log("checking VenueBookings:", venueSpecificBookings);
         setBookedDates(bookedDatesArray);
         setMaxGuests(venueData.maxGuests);
         const newBookedDatesSet = new Set();
@@ -180,8 +173,6 @@ export const BookVenueForm = ({
         body: JSON.stringify(payload),
       });
 
-      console.log("Response:", response);
-
       if (response.ok) {
         setIsSuccess(true);
         setIsError(false);
@@ -195,10 +186,8 @@ export const BookVenueForm = ({
         }
 
         setBookedDates(updatedBookedDatesSet);
-        console.log("Booking successful");
         fetchBookings();
       } else {
-        console.log("Booking failed");
         setIsSuccess(false);
         setIsError("An error occurred while booking. Please try again.");
       }
@@ -216,8 +205,6 @@ export const BookVenueForm = ({
       dateTo: moment(dateTo).format(),
       guests: Number(guests),
     };
-    console.log("updatePayload:", updatePayload);
-    console.log("Updating booking with ID:", bookingId);
 
     try {
       setIsError(false);
@@ -229,7 +216,6 @@ export const BookVenueForm = ({
         body: JSON.stringify(updatePayload),
       });
       const json = await response.json();
-      console.log("json response - UpdateBooking", json);
 
       if (response.ok) {
         setIsError(false);
