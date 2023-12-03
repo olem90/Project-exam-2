@@ -208,6 +208,10 @@ export const VenueFacilities = styled.div`
             margin-left: 10px;
           }
     }
+
+    .breakfast-pets-container {
+      width: 120px;
+    }
     @media(max-width: 510px) {
 
       label {   
