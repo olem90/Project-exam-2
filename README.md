@@ -18,15 +18,25 @@ capability to create, update and delete their own venues.
 - [Vite](https://vitejs.dev/) - A frontend build tool that significantly improves the frontend development experience
 - [Styled Components](https://styled-components.com/) - A library for styling React applications using tagged template literals
 
-## Installation
+## Getting Started
+### Installing
 
 1. Clone the repository:
 ```bash
    gh repo clone olem90/Project-exam-2
 ```
 
-3. Install the dependencies:
-   Run npm install   
+2. Install the dependencies:
+```bash
+   Run npm install
+```
 
-4. Start the development server:
+### Running
+```bash
    npm run dev
+```
+
+### Contact
+- [My LinkedIn Profile](https://www.linkedin.com/in/ole-marius-sand%C3%B8-rognan-923202249/)
+- Add me on discord: ```olerognanjan22ft#9663```
+- Email: olemariusrognan90@gmail.com
