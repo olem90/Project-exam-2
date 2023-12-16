@@ -2,8 +2,16 @@
 
 ![project-image](/src/Holidaze-exam.png)
 
-## Introduction
-Holidaze, a newly launched accommodation booking site, has tasked us with developing a modern front-end application. This project has both customer-facing and admin-facing sides, enabling users to book holidays and manage venues and bookings.
+## Description
+Holidaze, my final exam, introduces a newly launched accommodation
+booking site, that has tasked us with developing a modern front-end
+application. This project has both customer-facing and admin-facing
+sides, enabling users to book holidays and manage venues and bookings.
+
+Users who are not registered can still browse and search for venues.
+However, signing in is a prerequisite for booking venues.
+Additionally, only users registered as venue managers have the
+capability to create, update and delete their own venues.
 
 ### Goals
 - Implement a user-friendly interface for venue booking.
