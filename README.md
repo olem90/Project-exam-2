@@ -1,5 +1,7 @@
 # Holidaze Accommodation Booking Application
 
+![project-image](/src/Holidaze-exam.png)
+
 ## Introduction
 Holidaze, a newly launched accommodation booking site, has tasked us with developing a modern front-end application. This project has both customer-facing and admin-facing sides, enabling users to book holidays and manage venues and bookings.
 
