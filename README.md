@@ -1,4 +1,4 @@
-# Holidaze Accommodation Booking Application
+# Holidaze - Project Exam 2
 
 ![project-image](/src/Holidaze-exam.png)
 
