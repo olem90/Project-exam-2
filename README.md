@@ -28,12 +28,12 @@ capability to create, update and delete their own venues.
 
 2. Install the dependencies:
 ```bash
-   Run npm install
+npm install
 ```
 
 ### Running
 ```bash
-   npm run dev
+npm run dev
 ```
 
 ### Contact
