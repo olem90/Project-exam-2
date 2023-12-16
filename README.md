@@ -22,7 +22,7 @@ capability to create, update and delete their own venues.
 
 1. Clone the repository:
 ```bash
-   git clone [https://github.com/olem90/Project-exam-2]
+   gh repo clone olem90/Project-exam-2
 ```
 
 3. Install the dependencies:
