@@ -1,6 +1,6 @@
 # Holidaze - Project Exam 2
 
-![project-image](/src/Holidaze-exam.png)
+![project-image](/Holidaze-exam.png)
 
 ## Description
 Holidaze, my final exam, introduces a newly launched accommodation
