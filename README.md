@@ -13,15 +13,20 @@ However, signing in is a prerequisite for booking venues.
 Additionally, only users registered as venue managers have the
 capability to create, update and delete their own venues.
 
+## Build With
+- [React.js](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Vite](https://vitejs.dev/) - A frontend build tool that significantly improves the frontend development experience
+- [Styled Components](https://styled-components.com/) - A library for styling React applications using tagged template literals
+
 ## Installation
 
-To set up this project locally, follow these steps:
-
 1. Clone the repository:
+```bash
    git clone [https://github.com/olem90/Project-exam-2]
+```
 
-2. Install the dependencies:
+3. Install the dependencies:
    Run npm install   
 
-3. Start the development server:
+4. Start the development server:
    npm run dev
