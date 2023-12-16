@@ -13,14 +13,6 @@ However, signing in is a prerequisite for booking venues.
 Additionally, only users registered as venue managers have the
 capability to create, update and delete their own venues.
 
-### Goals
-- Implement a user-friendly interface for venue booking.
-- Provide a smooth administrative interface for venue management.
-
-## Requirements
-- Utilize the Holidaze API as mentioned in the Noroff API documentation.
-- Follow specified user stories and technical restrictions.
-
 ## Installation
 
 To set up this project locally, follow these steps:
