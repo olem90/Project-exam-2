@@ -14,16 +14,18 @@ export const ModalStyles = styled.div`
   position: fixed;
   transform: translate(-50%, -50%);
   z-index: 99;
-  background: linear-gradient( 
+  background: linear-gradient(
     170deg,
-    var(--blue-600) 0%,
-    var(--blue-400) 50%,
-    var(--blue-300) 100%
+    #EFE0D0 0%,
+    #D2B1A3 25%,
+    #8E735B 50%,
+    #8E735B 75%,
+    #836953 100%
   );
-  padding: 10px;
-  box-shadow: 0 1px 1px 0 var(--blue-300);
+  padding: 18px;
+  box-shadow: 0 1px 1px 0 #3B2F2F;
   border-radius: 5px;
-  border: 2px solid var(--blue-600);
+  border: 2px solid #3B2F2F;
 
   .modal-message {  
     color: #000; 
@@ -52,7 +54,7 @@ export const ModalStyles = styled.div`
 
     button {
       color: #fff;
-      background: var(--blue-950);
+      background: #3B2F2F;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -63,7 +65,7 @@ export const ModalStyles = styled.div`
       border-radius: 4px;
 
       &:hover {
-        border: 2px solid var(--blue-200);
+        border: 2px solid #F6EEE4;
       }
     }
   }

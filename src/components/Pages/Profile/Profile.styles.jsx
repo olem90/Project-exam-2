@@ -7,7 +7,7 @@ export const ProfileWrapper = styled.div`
   flex-direction: column;
   min-width: 100%;
   margin-inline: auto;
-  min-height: calc(100vh - 80px); 
+  min-height: calc(100vh - 80px);
 
   .profile-container {
     display: flex;
@@ -16,7 +16,8 @@ export const ProfileWrapper = styled.div`
   }
 
   .not-logged-in {
-    border: 2px solid var(--blue-900);
+    border: 2px solid #000;
+    color: #000;
     width: 420px;
     margin-inline: auto;
     padding: 15px;
@@ -24,11 +25,12 @@ export const ProfileWrapper = styled.div`
     flex-direction: column;
     margin-top: 100px;
     font-size: 18px;
-    background: var(--blue-200);
+    background:  #F6EEE4;
 
     a {
       font-weight: bold;
       text-decoration: underline;
+      color: #000;
     }
 
     p,
@@ -101,13 +103,13 @@ export const UserDataStyles = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 100px 260px 100px;
-  background: var(--blue-300);
+  background: #D6C1A7;
   max-height: 600px;
   border-radius: 0 0 20px 0;
   box-sizing: border-box;
 
   .edit-link {
-    color: var(--blue-950);
+    color: #000;
     font-size: 17px;
     font-weight: bold;
     transition: 0.3s ease-in-out;
@@ -218,7 +220,7 @@ export const ProfileOptionsStyles = styled.div`
     padding: 3px 6px;
     max-width: 200px;
     transition: 0.2s ease-in-out;
-    background: var(--blue-200);
+    background:  #EFE0D0;
     color: var(--blue-990);
     border: 2px solid var(--blue-970);
     font-weight: 600;
@@ -654,11 +656,6 @@ export const UsersVenuesWrapper = styled.div`
       width: 94%;
     }
   } 
-
-  @media (max-width: 440px) { 
-   
-
-  }
 `;
 
 export const UsersVenuesInfo = styled.div`

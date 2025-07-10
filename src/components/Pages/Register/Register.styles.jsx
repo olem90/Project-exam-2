@@ -4,7 +4,6 @@ export const FormStylesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #f5f5dc;
 `;
 
 export const FormStyles = styled.form`
@@ -15,9 +14,9 @@ export const FormStyles = styled.form`
   max-width: 420px;
   margin-inline: auto;
   border-radius: 5px;
-  padding: 20px;
+  padding: 22px 30px;
   margin-top: 150px;
-  background: #3963c6;
+  background: #D6C1A7;
   z-index: 15;
 
   .success-message {
@@ -29,21 +28,22 @@ export const FormStyles = styled.form`
   input {
     font-size: 16px;
     padding: 4px;
-    border: 2px solid #003;
+    border: 1px solid #A17C6B;
     margin-bottom: 5px;
+    border-radius: 3px;
     background: #fffafa;
     outline: none;
     letter-spacing: 0.8px;
   }
 
   input:focus {
-    border: 2px solid #add8e6;
+    border: 2px solid rgb(116, 73, 8);
   }
 
   label {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #4B3832;
   }
 
   span {

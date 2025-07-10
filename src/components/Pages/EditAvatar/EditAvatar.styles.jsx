@@ -25,18 +25,18 @@ export const EditAvatarWrapper = styled.div`
 export const EditAvatarForm = styled.form`
   display: flex;
   width: fit-content;
-  padding: 14px 30px 14px 30px;
+  padding: 24px 30px 24px 30px;
   height: 40px;
   margin-top: 60px;
   background: #9e7651;
-  border-radius: 30px;
+  border-radius: 6px;
   align-items: center;
   border: 2px solid #000;
+
 
   input {
     font-size: 16px;
     border: 1px solid #000;
-    border-radius: 4px;
     padding: 5px 9px 3px 3px;
     height: 20px;
     width: 350px;

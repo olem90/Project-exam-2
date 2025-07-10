@@ -11,19 +11,18 @@ export const LoginFormWrapper = styled.div`
 `;
 
 export const LoginFormStyles = styled.form`
-  border: 2px solid var(--blue-500);
+  border: 1px solid #A17C6B;;
   display: flex;
   flex-direction: column;
   width: 400px;
   height: fit-content;
   padding: 15px;
-  margin-inline: auto;
-  margin-top: 80px;
+  margin: auto;
   border-radius: 5px;
-  box-shadow: 0 3px 5px var(--blue-400);
-  background: #609bee;
+  box-shadow: 0 3px 5px  #A17C6B;;
+  background: #D6C1A7;
   z-index: 15;
-  position: relative;
+  transform: translate(0%, -50%);
 
   .show-hide-pw {
     color: #000;
@@ -42,15 +41,16 @@ export const LoginFormStyles = styled.form`
   input {
     padding: 3px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 3px;
     color: var(--blue-990);
     font-weight: 500;
     letter-spacing: 0.3px;
-    background: #fffafa;
+    border: 1px solid #A17C6B;
+    background:rgb(255, 255, 255);
 
     &:focus {
-      border: 2px solid var(--blue-700);
-      outline: 1px solid var(--blue-700);
+      border: 1px solid rgb(116, 73, 8);
+      outline: 1px solid rgb(116, 73, 8);
     }
   }
 

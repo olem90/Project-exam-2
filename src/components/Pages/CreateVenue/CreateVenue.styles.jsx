@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CreateVenueWrapper = styled.div`
   box-sizing: border-box;
   border: 2px solid transparent;
-  background: #c4e3f2;
+  background: #D6C1A7;
   min-height: 100%;
   margin-bottom: -55px;
 
@@ -48,19 +48,18 @@ export const CreateVenueWrapper = styled.div`
   }
 
   .create-venue-container {
-    border: 1px solid var(--blue-950);
-    box-shadow: 0 3px 3px #1793e8;
+    box-shadow: 0 3px 3px  #EFE0D0;
     border-radius: 8px;
-    width: 40%;
+    width: 50%;
     padding: 12px;
-    background: #2e9cd1;
-    background: #6fbcea;
-    margin: 20px auto 70px auto;
+    background:  #EFE0D0;
+    margin: 50px auto 70px auto;
   }
 
   h1 {
     font-size: 32px;
     margin-left: 7px;
+    text-align: center;
   }
 
   @media (max-width: 1200px) {
@@ -120,12 +119,12 @@ export const CreateVenueForm = styled.form`
     min-width: 300px;
     font-size: 16px;
     margin-bottom: 8px;
-    outline: none;
-    border: 2px solid #189ee7;
+    outline: transparent;
+    border: 1px solid #A17C6B;
     background: #fffafa;
 
     &:focus {
-      border: 2px solid var(--blue-990);
+      outline: 1px solid #A17C6B;
     }
   }
 

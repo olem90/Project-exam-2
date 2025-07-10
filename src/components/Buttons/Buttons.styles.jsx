@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginButton = styled.button`
-  background: var(--blue-980);
+  background: #4B3832;
   color: #fff;
   padding: 5px;
   height: 34px;
@@ -76,7 +76,7 @@ export const BookNowButton = styled.button`
 `;
 
 export const RegisterButton = styled.button`
-  background: #362815;
+  background: #4B3832;
   margin-top: 10px;
   display: flex;
   justify-content: center;
@@ -88,10 +88,12 @@ export const RegisterButton = styled.button`
   border: 1px solid var(--blue-970);
   height: 37px;
   padding: 5px;
-  transition: 0.4s ease-in-out;
+  border: none;
+  transition: 0.3s ease-in-out;
 
   &:hover {
-    color: #32cd32;
+    color: #D6C1A7;
+    cursor: pointer;
   }
 
   @media (max-width: 700px) {
@@ -120,7 +122,12 @@ export const BookingFormSubmitButton = styled.button`
   background: #000;
   color: #fff;
   width: 100%;
-  margin-top: 120px !important;
+  margin-top: 120px; 
+
+ &:hover{
+    outline: 2px solid  #EFE0D0;
+    border: none;
+  }
 `;
 
 export const UpdateAvatarButton = styled.button`
@@ -131,7 +138,7 @@ export const UpdateAvatarButton = styled.button`
   margin-left: 7px;
   font-size: 16px;
   white-space: nowrap;
-  border-radius: 10px;
+  border-radius: 3px;
   transition: 0.2s ease-in-out;
 
   &:hover {
@@ -194,6 +201,12 @@ export const UpdateVenueButton = styled.button`
   margin: 20px 82px 20px 0;
   white-space: nowrap;
 
+  &:hover{
+    cursor: pointer;
+    outline: transparent;
+    border: 1px solid transparent;
+  }
+
   @media (max-width: 890px) {
     width: 170px;
     margin: 20px 62px 20px 0;
@@ -211,7 +224,7 @@ export const UpdateVenueButton = styled.button`
 `;
 //Buttons on the users booked venue Cards
 export const ViewBookedVenueButton = styled.button`
-background: var(--blue-990);
+background:  #000;
 display: flex;
 color: #fff;
 padding-block: 2px;
@@ -224,6 +237,12 @@ height: 30px;
 border-radius: 3px;
 justify-content: center;
 align-items: center; 
+border: none;
+
+&:hover{
+    outline: 2px solid  #EFE0D0;
+    border: none;
+  }
 
 @media (max-width: 450px) {
   font-size: 14px;
@@ -241,7 +260,7 @@ align-items: center;
 `;
 
 export const MyBookingsUpdateButton = styled.button`
-  background: var(--blue-990);
+  background:  #000;;
   display: flex;
   color: #fff;
   padding-block: 2px;
@@ -254,6 +273,12 @@ export const MyBookingsUpdateButton = styled.button`
   border-radius: 3px;
   justify-content: center;
   align-items: center;
+  border: none;
+
+  &:hover{
+    outline: 2px solid  #EFE0D0;
+    border: none;
+  }
 
   @media (max-width: 450px) {
     font-size: 14px;

@@ -8,7 +8,6 @@ export const ModalStylesWrapper = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
-
   z-index: 90;
 
   .success-message {
@@ -81,35 +80,34 @@ export const ModalStyles = styled.div`
   position: relative;
   background: linear-gradient(
     170deg,
-    var(--blue-600) 0%,
-    var(--blue-400) 50%,
-    var(--blue-200) 100%
+  #EFE0D0 0%,
+  #D2B1A3 25%,
+  #8E735B 50%,
+  #8E735B 75%,
+  #836953 100%
   );
   padding: 20px;
   border-radius: 10px;
   border: none;
 
   .error-message {
-    color: red;
+    color: #000;
     font-weight: 700;
     margin-top: 20px;
     border: none;
     border-radius: 5px;
     padding: 15px;
     font-size: 18px;
-    box-shadow: 0px 0px 10px 2px #ff0000;
+    box-shadow: 0px 0px 4px 2px #ff0000;
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--blue-100);
 
     a {
-      color: green;
+      color: #000;
       font-weight: bold;
-    }
-
-    span {
-      color: ##000;
+      text-decoration: underline;
     }
 
     .error-booking-div {
@@ -192,14 +190,19 @@ export const ModalStyles = styled.div`
       padding: 5px 0 3px 3px;
       line-height: 24px;
       width: 90%;
-
+      outline: transparent;  
       gap: 15px;
       color: var(--blue-990);
       font-weight: 700;
       display: flex;
       align-content: center;
       justify-content: center;
-      border: 1px solid var(--blue-500);
+      border: 1px solid #A67B5B;
+    }
+
+    input:focus {
+      border: 1px solid rgb(116, 73, 8);
+      outline: 1px solid rgb(116, 73, 8);  
     }
   }
 
