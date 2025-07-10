@@ -11,6 +11,7 @@ export const VenueCardsWrapper = styled.div`
     grid-template-columns: repeat(3, 1fr);
     box-sizing: border-box;
     gap: 50px 40px;
+    color: #000;
     margin-inline: auto;
     width: fit-content;
   }

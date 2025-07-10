@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const LoginFormWrapper = styled.div`
   display: flex;
   min-height: 100vh;
+ 
 
   .login-error {
     color: #8b0000;
@@ -22,7 +23,6 @@ export const LoginFormStyles = styled.form`
   box-shadow: 0 3px 5px  #A17C6B;;
   background: #D6C1A7;
   z-index: 15;
-  transform: translate(0%, -50%);
 
   .show-hide-pw {
     color: #000;
