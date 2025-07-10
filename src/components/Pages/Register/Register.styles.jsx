@@ -18,6 +18,7 @@ export const FormStyles = styled.form`
   margin-top: 150px;
   background: #D6C1A7;
   z-index: 15;
+  color: #000;
 
   .success-message {
     color: #32cd32;
@@ -33,6 +34,7 @@ export const FormStyles = styled.form`
     border-radius: 3px;
     background: #fffafa;
     outline: none;
+    color: #000;
     letter-spacing: 0.8px;
   }
 

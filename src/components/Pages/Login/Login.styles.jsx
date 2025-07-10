@@ -36,13 +36,14 @@ export const LoginFormStyles = styled.form`
     font-size: 18px;
     font-weight: 600;
     margin-top: 5px;
+    color: #000;
   }
 
   input {
     padding: 3px;
     font-size: 16px;
     border-radius: 3px;
-    color: var(--blue-990);
+    color: #000;
     font-weight: 500;
     letter-spacing: 0.3px;
     border: 1px solid #A17C6B;
