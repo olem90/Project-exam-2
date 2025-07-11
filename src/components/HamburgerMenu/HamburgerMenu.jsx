@@ -47,7 +47,7 @@ export const HamburgerMenu = () => {
       {isOpen && (
         <div className="menu">
           <ul>
-            <Link to="/">Home</Link>
+            <Link onClick={setIsOpen(false)} to="/">Home</Link>
             <Link to="/account">Account</Link>
             <Link to="/register">Register</Link>
             {!loggedInUser && <Link to="/login">Login</Link>}
