@@ -4,9 +4,11 @@ export const EditAvatarWrapper = styled.div`
   min-height: 100vh ;
   display: flex;
   justify-content: center;
+  color: #000;
 
   h1 { 
     font-size: 40px;
+    color: #000;
   }
 
   @media (max-width: 500px) {
