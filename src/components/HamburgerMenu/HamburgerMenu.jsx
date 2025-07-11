@@ -38,6 +38,10 @@ export const HamburgerMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <HamburgerStyles ref={menuRef}>
       <div onClick={toggleMenu}>
@@ -47,9 +51,9 @@ export const HamburgerMenu = () => {
       {isOpen && (
         <div className="menu">
           <ul>
-            <Link onClick={setIsOpen(false)} to="/">Home</Link>
-            <Link to="/account">Account</Link>
-            <Link to="/register">Register</Link>
+            <Link onClick={handleLinkClick} to="/">Home</Link>
+            <Link onClick={handleLinkClick} to="/account">Account</Link>
+            <Link onClick={handleLinkClick} to="/register">Register</Link>
             {!loggedInUser && <Link to="/login">Login</Link>}
             {loggedInUser && <Link onClick={logOutUser}>Log Out</Link>}
           </ul>
