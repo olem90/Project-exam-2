@@ -45,7 +45,7 @@ export const FormStyles = styled.form`
   label {
     font-size: 18px;
     font-weight: 700;
-    color: #4B3832;
+    color: #000;
   }
 
   span {
@@ -63,8 +63,6 @@ export const FormStyles = styled.form`
 
     label {
       font-size: 16px;
-      font-weight: 700;
-      color: #fff;
     }
 
     input {

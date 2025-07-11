@@ -192,12 +192,13 @@ export const ModalStyles = styled.div`
       width: 90%;
       outline: transparent;  
       gap: 15px;
-      color: var(--blue-990);
+      color: #000;
       font-weight: 700;
       display: flex;
       align-content: center;
       justify-content: center;
       border: 1px solid #A67B5B;
+      background: #fff;
     }
 
     input:focus {
