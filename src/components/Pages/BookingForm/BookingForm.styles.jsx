@@ -219,11 +219,12 @@ export const ModalStyles = styled.div`
     padding: 3px;
     max-height: 120px;
     position: absolute;
-    color: var(--blue-990);
+    color: #000;
+    background: #fff;
 
     option {
       padding-inline: 8px;
-      color: var(--blue-990);
+      background: #000;
       font-weight: 700;
     }
   }
