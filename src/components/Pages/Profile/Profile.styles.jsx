@@ -8,6 +8,7 @@ export const ProfileWrapper = styled.div`
   min-width: 100%;
   margin-inline: auto;
   min-height: calc(100vh - 80px);
+  color: #000;
 
   .profile-container {
     display: flex;
@@ -293,6 +294,7 @@ export const UserBookingsWrapper = styled.div`
     font-weight: bold;
     font-size: 22px;
     margin-top: 120px;
+    color: #000;
   }
 
   @media (max-width: 940px) {
@@ -610,6 +612,7 @@ export const UsersVenuesWrapper = styled.div`
   .no-venues {
     margin-top: 120px;
     width: fit-content;
+    color: #000;
 
     a {
       font-size: 18px;

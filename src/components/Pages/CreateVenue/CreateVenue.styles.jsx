@@ -6,6 +6,7 @@ export const CreateVenueWrapper = styled.div`
   background: #D6C1A7;
   min-height: 100%;
   margin-bottom: -55px;
+  color: #000;
 
   .update-venue-h1 {
     font-size: 30px;
@@ -54,12 +55,14 @@ export const CreateVenueWrapper = styled.div`
     padding: 12px;
     background:  #EFE0D0;
     margin: 50px auto 70px auto;
+    color: #000;
   }
 
   h1 {
     font-size: 32px;
     margin-left: 7px;
     text-align: center;
+    color: #000;
   }
 
   @media (max-width: 1200px) {
@@ -182,6 +185,7 @@ export const VenueFacilities = styled.div`
     width: 16px;
     height: 16px;
     accent-color: var(--blue-970);
+    color: #fff;
   }
 
   .wifi-parking-container,
