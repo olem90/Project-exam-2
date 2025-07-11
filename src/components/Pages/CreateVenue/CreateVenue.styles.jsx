@@ -184,8 +184,8 @@ export const VenueFacilities = styled.div`
   .facility-checkbox {
     width: 16px;
     height: 16px;
-    accent-color: var(--blue-970);
-    color: #fff;
+    accent-color: #fff;
+    background: #fff;
   }
 
   .wifi-parking-container,
